@@ -50,3 +50,7 @@ files/
 # Backups
 *.bak
 *.backup
+*.backup-v2
+
+# Package lock
+package-lock.json
