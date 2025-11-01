@@ -1,4 +1,4 @@
-<title>Diagnosa - Dignets 1.0</title>
+<title>Diagnosa - DigNet 1.0</title>
 <?php
 switch ($_GET['act'] ?? '') {
 
@@ -143,15 +143,15 @@ switch ($_GET['act'] ?? '') {
 		  </div>";
     } else {
       echo "
-	 <h2 class='text text-primary'>Diagnosa Repair</h2>  <hr>
+	 <h2 class='text text-primary'>Diagnosa Gangguan IndiHome</h2>  <hr>
 	 <div class='alert alert-success alert-dismissible'>
                 <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
                 <h4><i class='icon fa fa-exclamation-triangle'></i>Perhatian !</h4>
-                Silahkan memilih incident sesuai dengan kondisi ayam anda, anda dapat memilih kepastian kondisi ayam dari pasti tidak sampai pasti ya, jika sudah tekan tombol proses (<i class='fa fa-search-plus'></i>)  di bawah untuk melihat hasil.
+                Silahkan memilih gejala sesuai dengan kondisi perangkat IndiHome (ODP, ONT, STB, Telepon). Anda dapat memilih tingkat kepastian gejala dari pasti tidak sampai pasti ya. Setelah selesai, tekan tombol proses (<i class='fa fa-search-plus'></i>) di bawah untuk melihat hasil diagnosis.
               </div>
 		<form name=text_form method=POST action='diagnosa' >
            <table class='table table-bordered table-striped konsultasi'><tbody class='pilihkondisi'>
-           <tr><th>No</th><th>Kode</th><th>Incident</th><th width='20%'>Pilih Kondisi</th></tr>";
+           <tr><th>No</th><th>Kode</th><th>Gejala</th><th width='20%'>Pilih Kondisi</th></tr>";
 
       $sql3 = mysqli_query($conn, "SELECT * FROM incident order by kode_incident");
       $i = 0;

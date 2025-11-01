@@ -13,6 +13,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Kompatibilitas IE -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> <!-- Responsif -->
     <base href="http://localhost/dignet/"> <!-- Base URL -->
+    <title>DigNet 1.0 - Sistem Pakar Diagnosis Gangguan IndiHome</title> <!-- Page Title -->
     <link rel="icon" href="gambar/admin/favicon.png"> <!-- Favicon -->
     <link href="css/font-awesome-4.2.0/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet"> <!-- Font Awesome -->
     <link href="css/owl-carousel/owl.carousel.css" rel="stylesheet" media="all"> <!-- Owl Carousel -->
@@ -41,7 +42,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
     <script src="aset/Flot/jquery.flot.categories.js"></script> <!-- Flot Categories -->
     <script src="aset/app.js"></script> <!-- AdminLTE App -->
 </head>
-<body id="pakarayam" class="hold-transition skin-purple-light sidebar-mini">
+<body id="dignet-indihome" class="hold-transition skin-purple-light sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
             <a href="./" class="logo">
@@ -63,7 +64,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
                             <ul class="dropdown-menu">
                                 <li class="user-header">
                                     <img src="gambar/admin/admin.png" class="img-circle" alt="User Image">
-                                    <p>Login sebagai <?php echo ucfirst($_SESSION['username']); ?><small>Pakar dari Dignets 1.0</small></p>
+                                    <p>Login sebagai <?php echo ucfirst($_SESSION['username']); ?><small>Admin Pakar DigNet 1.0</small></p>
                                 </li>
                                 <li class="user-body">
                                     <a <?php if ($module == "bantuan") echo 'class="active"'; ?> href="bantuan"><i class="fa fa-question-circle"></i> <span>Bantuan</span></a>

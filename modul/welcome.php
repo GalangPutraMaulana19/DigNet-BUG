@@ -1,4 +1,4 @@
-<title>Beranda - Dignets 1.0</title>
+<title>Beranda - DigNet 1.0</title>
 <?php 
   $htincident=mysqli_query($conn,"SELECT count(*) as total from incident");
   $dtincident=mysqli_fetch_assoc($htincident); ?>
@@ -8,7 +8,7 @@
           <div class='small-box bg-aqua'>
             <div class='inner'>
               <h3> <?php echo $dtincident["total"]; ?></h3>
-              <p>Total Incident</p>
+              <p>Total Gejala</p>
             </div>
             <div class='icon'>
               <i class='ion ion-thermometer'></i>
@@ -25,7 +25,7 @@
             <div class="inner">
               <h3> <?php echo $dtrepair["total"]; ?></h3>
 
-              <p>Total Repair</p>
+              <p>Total Gangguan</p>
             </div>
             <div class="icon">
               <i class="ion ion-bug"></i>
@@ -42,7 +42,7 @@
             <div class="inner">
               <h3><?php echo $dtpengetahuan["total"]; ?></h3>
 
-              <p>Total Pengetahuan</p>
+              <p>Total Aturan</p>
             </div>
             <div class="icon">
               <i class="ion ion-erlenmeyer-flask"></i>
@@ -105,7 +105,7 @@
                             <img src="aset/banner/logo_telkomsel.png" alt="">
                       
                         <h2>Aplikasi Responsif</h2>
-                        <p>Aplikasi sistem pakar ini dapat menyesuaikan ukuran perangkat anda, jadi walupun di akses melalui perangkat mobile tetap nyaman juga.</p>
+                        <p>Aplikasi sistem pakar ini dapat menyesuaikan ukuran perangkat, sehingga dapat diakses dengan nyaman melalui desktop maupun perangkat mobile.</p>
                     </div>
                 </div>
                 <div class="col-sm-4 text-center padding wow fadeIn animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeIn;">
@@ -113,15 +113,15 @@
                        
                             <img src="aset/banner/logo_telkomsel.png" alt="">
                         
-                        <h2>Sahabat Teknisi Pemula</h2>
-                        <p>Sistem Pakar ini terus di sesuaikan perhitungan diagnosanya, supaya akurasi terhadap repair yang lebih sesuai dan menjadi acuan teknisi.</p>
+                        <h2>Bantu Teknisi Provisioning</h2>
+                        <p>Sistem pakar untuk membantu teknisi provisioning dalam mendiagnosis gangguan IndiHome selama masa retensi 60 hari dengan metode Forward Chaining dan Certainty Factor.</p>
                     </div>
                 </div>
                 <div class="col-sm-4 text-center padding wow fadeIn animated" data-wow-duration="1000ms" data-wow-delay="900ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 900ms; animation-name: fadeIn;">
                     <div class="single-service">
                             <img src="aset/banner/logo_telkomsel.png" alt="">
-                        <h2>Admin Pakar</h2>
-                        <p>Terdapat fitur admin pakar, untuk mengatur pengetahuan dan CF pakar, telah di sesuaikan tampilannya sehingga pakar bisa lebih mengeksplore aplikasi.</p>
+                        <h2>Basis Pengetahuan Pakar</h2>
+                        <p>Fitur admin pakar untuk mengelola basis pengetahuan, mengatur aturan diagnosis, dan nilai Certainty Factor untuk setiap kombinasi gejala dan gangguan.</p>
                     </div>
                 </div>
             </div>

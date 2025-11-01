@@ -8,11 +8,11 @@ $module = $_GET['module'] ?? '';
       ?>
     <li><a <?php if ($module == "admin") echo 'class="active"'; ?> href="admin"><i class="fa fa-user"></i> <span>Admin</span></a><li>
       <div class="container"></div>	
-    <li><a <?php if ($module == "repair") echo 'class="active"'; ?> href="repair"><i class="fa fa-bug"></i> <span>Repair</span></a><li>
+    <li><a <?php if ($module == "repair") echo 'class="active"'; ?> href="repair"><i class="fa fa-bug"></i> <span>Data Gangguan</span></a><li>
       <div class="container"></div>	
-    <li><a <?php if ($module == "incident") echo 'class="active"'; ?> href="incident"><i class="fa fa-eyedropper"></i> <span>Incident</span></a><li>
+    <li><a <?php if ($module == "incident") echo 'class="active"'; ?> href="incident"><i class="fa fa-eyedropper"></i> <span>Data Gejala</span></a><li>
       <div class="container"></div>
-    <li><a <?php if ($module == "pengetahuan") echo 'class="active"'; ?> href="pengetahuan"><i class="fa fa-flask"></i> <span>Pengetahuan</span></a><li>
+    <li><a <?php if ($module == "pengetahuan") echo 'class="active"'; ?> href="pengetahuan"><i class="fa fa-flask"></i> <span>Basis Pengetahuan</span></a><li>
       <div class="container"></div>
     <li><a <?php if ($module == "post") echo 'class="active"'; ?> href="post"><i class="fa fa-file-text"></i> <span>Post Keterangan</span></a><li>
       <div class="container"></div>

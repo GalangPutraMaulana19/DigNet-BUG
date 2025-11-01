@@ -21,7 +21,7 @@ return (true);
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Login Pakar - Dignets 1.0</title>
+  <title>Login Pakar - DigNet 1.0</title>
       <link rel="stylesheet" href="aset/login/css/style.css">
 </head>
   <body>
@@ -54,6 +54,6 @@ $('input[type="password"]').on('focus', () => {
 });;
 </script>
 <script>
-var d = document.getElementById("pakarayam");
+var d = document.getElementById("dignet-indihome");
 d.className += " sidebar-collapse";
 </script>

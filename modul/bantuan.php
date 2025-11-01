@@ -1,4 +1,4 @@
-<title>Bantuan - Dignets 1.0</title>
+<title>Bantuan - DigNet 1.0</title>
 <style>
 @media only screen and (max-width: 1220px) {
     img {
@@ -56,12 +56,12 @@
                      	<a href="animasi/bantuan/user/diagnosahasil.gif" target="_blank"><img src="animasi/bantuan/user/diagnosahasil.gif" alt="Mengakses Diagnosa" /></a><br><br>
                      <div style="font-size: 16px;">
 					 1. Langkah pertama adalah mengarahkan kursor atau tangan ke bagian menu diagnosa<br>
-					 2. Selanjutnya silahkan cari incident yang di dapati di lapangan, misal ayam dengan incident Nafsu makan berkurang.<br>
-					 3. Pilih keyakinan anda terhadap incident tersebut.<br>
-					 4. Pilih salah satu keyakinan, misal hampir pasti ya.<br>
-					 5. Selanjutnya jika terdapat incident lain anda dapat memilih kembali, dan mengisi seperti langkah 3 & 4.<br>
-					 6. jika sudah tekan tombol proses (<i class="fa fa-search-plus"></i>) di bawah untuk melihat hasil.
-					 6. Hasil Akan di tampilkan dan repair di derita dapat di ketahui.</div>
+					 2. Selanjutnya silahkan cari gejala yang ditemui di lapangan pada perangkat IndiHome (ODP, ONT, STB, Telepon), misalnya "Lampu PON berkedip merah" atau "Tidak ada koneksi internet".<br>
+					 3. Pilih tingkat keyakinan anda terhadap gejala tersebut.<br>
+					 4. Pilih salah satu tingkat keyakinan, misal hampir pasti ya.<br>
+					 5. Selanjutnya jika terdapat gejala lain anda dapat memilih kembali, dan mengisi seperti langkah 3 & 4.<br>
+					 6. Jika sudah tekan tombol proses (<i class="fa fa-search-plus"></i>) di bawah untuk melihat hasil diagnosis.<br>
+					 7. Hasil diagnosis akan ditampilkan dan jenis gangguan dapat diketahui beserta tingkat keyakinannya.</div>
                     </div>
                   </div>
                 </div>
@@ -78,9 +78,9 @@
 					<a href="animasi/bantuan/user/postme.gif" target="_blank"><img src="animasi/bantuan/user/postme.gif" alt="Mengakses Menu" /></a><br><br>
                      <div style="font-size: 16px;">
 					 1. Langkah pertama adalah mengarahkan kursor atau tangan ke bagian menu keterangan<br>
-					 2. Selanjutnya silahkan cari repair yang dilihat, akan ada tombol detail dan saran di bawahnya<br>
-					 3. Tekan tombol detail untuk melihat Detail pada repair, jika sudah anda dapat menutup dengan tanda(x) di atas, atau tombol Close di bawah<br>
-					 3. Tekan tombol saran untuk melihat Saran pada repair, jika sudah anda dapat menutup dengan tanda(x) di atas, atau tombol Close di bawah<br>
+					 2. Selanjutnya silahkan cari jenis gangguan yang ingin dilihat, akan ada tombol detail dan saran di bawahnya<br>
+					 3. Tekan tombol detail untuk melihat detail gangguan dan langkah diagnosis, jika sudah anda dapat menutup dengan tanda(x) di atas, atau tombol Close di bawah<br>
+					 4. Tekan tombol saran untuk melihat saran penanganan gangguan, jika sudah anda dapat menutup dengan tanda(x) di atas, atau tombol Close di bawah<br>
                     </div></div>
                   </div>
                 </div>
@@ -135,6 +135,6 @@
             <!-- /.tab-content -->
           </div>
 		 <script>
-var d = document.getElementById("pakarayam");
+var d = document.getElementById("dignet-indihome");
 d.className += " sidebar-collapse";
 </script>
