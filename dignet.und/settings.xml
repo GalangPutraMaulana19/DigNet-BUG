@@ -1,0 +1,408 @@
+<project>
+  <files
+    default_encoding="System"
+    readonly="false"
+    maxfilesize="10485760"
+    enforce_portability="false">
+    <dir
+      name=".">
+      <file
+        name=".gitattributes"/>
+      <file
+        name=".htaccess"/>
+      <file
+        name="Admin 1.png"/>
+      <file
+        name="Admin 2.png"/>
+      <file
+        name="Home 1.png"/>
+      <file
+        name="Home 2.png"/>
+      <file
+        name="Home 3.png"/>
+      <file
+        name="Home 5.png"/>
+      <file
+        name="README.md"/>
+      <dir
+        name="aset">
+        <file
+          name="AdminLTE.css"/>
+        <file
+          name="app.js"/>
+        <dir
+          name="banner">
+          <file
+            name="ayam.jpg"/>
+          <file
+            name="dignet.jpg"/>
+          <file
+            name="dignet2.png"/>
+          <file
+            name="dignet3.jpg"/>
+          <file
+            name="icon1.png"/>
+          <file
+            name="icon2.png"/>
+          <file
+            name="icon3.png"/>
+          <file
+            name="logo.png"/>
+          <file
+            name="logo_telkomsel.png"/>
+          <file
+            name="mini_logo.png"/>
+          <file
+            name="telur.jpg"/>
+        </dir>
+        <file
+          name="bootstrap.css"/>
+        <file
+          name="bootstrap.js"/>
+        <file
+          name="cinta.css"/>
+        <dir
+          name="ckeditor">
+          <file
+            name=".bower.json"/>
+          <file
+            name="CHANGES.md"/>
+          <file
+            name="LICENSE.md"/>
+          <file
+            name="README.md"/>
+          <file
+            name="bower.json"/>
+          <file
+            name="ckeditor.js"/>
+          <file
+            name="composer.json"/>
+          <file
+            name="config.js"/>
+          <file
+            name="contents.css"/>
+          <file
+            name="package.json"/>
+          <file
+            name="styles.js"/>
+        </dir>
+        <file
+          name="custom.css"/>
+        <file
+          name="font-awesome.css"/>
+        <file
+          name="jQuery-2.js"/>
+      </dir>
+      <dir
+        name="config">
+        <file
+          name="fungsi_alert.php"/>
+        <file
+          name="koneksi.php"/>
+      </dir>
+      <file
+        name="content.php"/>
+      <dir
+        name="css">
+        <file
+          name="easy-responsive-tabs.css"/>
+        <dir
+          name="font-awesome-4.2.0">
+          <dir
+            name="font-awesome-4.2.0">
+            <dir
+              name="css">
+              <file
+                name="font-awesome.css"/>
+              <file
+                name="font-awesome.min.css"/>
+            </dir>
+            <dir
+              name="fonts">
+              <file
+                name="FontAwesome.otf"/>
+              <file
+                name="fontawesome-webfont.eot"/>
+              <file
+                name="fontawesome-webfont.svg"/>
+              <file
+                name="fontawesome-webfont.ttf"/>
+              <file
+                name="fontawesome-webfont.woff"/>
+              <file
+                name="fontawesome-webfont.woff2"/>
+              <file
+                name="fontawesome-webfont78ce-2.html"/>
+              <file
+                name="fontawesome-webfont78ce-3.html"/>
+              <file
+                name="fontawesome-webfont78ce.html"/>
+              <file
+                name="fontawesome-webfont78ce.woff"/>
+              <file
+                name="fontawesome-webfontd41d.html"/>
+            </dir>
+          </dir>
+        </dir>
+        <file
+          name="font.css"/>
+        <file
+          name="fontello-ie7.css"/>
+        <file
+          name="fontello.css"/>
+        <file
+          name="magnific-popup.css"/>
+        <file
+          name="main.css"/>
+        <file
+          name="paging.css"/>
+        <file
+          name="style.css"/>
+      </dir>
+      <file
+        name="favicon.ico"/>
+      <file
+        name="index.php"/>
+      <file
+        name="kirim_form.php"/>
+      <file
+        name="login.php"/>
+      <file
+        name="logout.php"/>
+      <file
+        name="menu.php"/>
+      <dir
+        name="modul">
+        <dir
+          name="admin">
+          <file
+            name="admin.php"/>
+          <file
+            name="aksi_admin.php"/>
+        </dir>
+        <file
+          name="bantuan.php"/>
+        <dir
+          name="diagnosa">
+          <file
+            name="diagnosa.php"/>
+        </dir>
+        <file
+          name="form_content.php"/>
+        <file
+          name="formlogin.php"/>
+        <file
+          name="harga.php"/>
+        <dir
+          name="incident">
+          <file
+            name="aksi_incident.php"/>
+          <file
+            name="incident.php"/>
+        </dir>
+        <file
+          name="keterangan.php"/>
+        <dir
+          name="password">
+          <file
+            name="password.php"/>
+        </dir>
+        <dir
+          name="pengetahuan">
+          <file
+            name="aksi_pengetahuan.php"/>
+          <file
+            name="pengetahuan.php"/>
+        </dir>
+        <dir
+          name="post">
+          <file
+            name="aksi_post.php"/>
+          <file
+            name="post.php"/>
+        </dir>
+        <dir
+          name="repair">
+          <file
+            name="aksi_repair.php"/>
+          <file
+            name="repair.php"/>
+        </dir>
+        <dir
+          name="riwayat">
+          <file
+            name="detail.php"/>
+          <file
+            name="riwayat.php"/>
+        </dir>
+        <file
+          name="tentang.php"/>
+        <file
+          name="welcome.php"/>
+      </dir>
+      <file
+        name="simple_html_dom.php"/>
+      <file
+        name="spkayam(new).sql"/>
+      <file
+        name="spkayam.sql"/>
+      <file
+        name="test.php"/>
+    </dir>
+  </files>
+  <languages>
+    <language
+      name="Web"/>
+  </languages>
+  <file_types/>
+  <annotations_options/>
+  <comparison_options
+    comparison_db=""
+    git_repo=""
+    git_commit=""
+    diff_flags="1"/>
+  <dependency_options
+    exclude_standard="true"
+    use_includes="true"
+    mode="link"/>
+  <imports/>
+  <metrics
+    declared_in_file_display_mode="no_path"
+    file_display_mode="no_path"
+    show_declared_in_file="false"
+    show_function_parameter_types="false"
+    write_column_titles="true"
+    add_uniquename_column="false"
+    metric_filter="28532"/>
+  <reports
+    date_stamping="false"
+    display_parameters="false"
+    index_by_method="false"
+    group_by_directory="false"
+    filename_mode="short"
+    generation_status="needs_generation"
+    generation_time="0"
+    html_clear_directory="false"
+    html_generation="true"
+    html_mode="alpha"
+    headertext_mode="false"
+    headerusertext_mode="false"
+    headertext_text="Report generated by Understand"
+    headerusertext_text=""
+    html_size="250"
+    text_clear_directory="false"
+    text_generation="true"
+    text_mode="single">
+    <report
+      name="Data Dictionary"
+      enabled="true"/>
+    <report
+      name="File Contents"
+      enabled="true"/>
+    <report
+      name="Program Unit Cross Reference"
+      enabled="true"/>
+    <report
+      name="Object Cross Reference"
+      enabled="true"/>
+    <report
+      name="Type Cross Reference"
+      enabled="true"/>
+    <report
+      name="Macro Cross Reference"
+      enabled="true"/>
+    <report
+      name="Include File Cross Reference"
+      enabled="true"/>
+    <report
+      name="Declaration Tree"
+      enabled="true"/>
+    <report
+      name="Extend Tree"
+      enabled="false"/>
+    <report
+      name="Invocation Tree"
+      enabled="false"/>
+    <report
+      name="Simple Invocation Tree"
+      enabled="true"/>
+    <report
+      name="Imports"
+      enabled="true"/>
+    <report
+      name="With Tree"
+      enabled="true"/>
+    <report
+      name="Simple With Tree"
+      enabled="true"/>
+    <report
+      name="Generic Instantiation"
+      enabled="true"/>
+    <report
+      name="Exception Cross Reference"
+      enabled="true"/>
+    <report
+      name="Renames"
+      enabled="true"/>
+    <report
+      name="Program Unit Complexity"
+      enabled="true"/>
+    <report
+      name="Project Metrics"
+      enabled="true"/>
+    <report
+      name="Program Unit Metrics"
+      enabled="true"/>
+    <report
+      name="File Metrics"
+      enabled="true"/>
+    <report
+      name="File Average Metrics"
+      enabled="true"/>
+    <report
+      name="Fortran Extension Usage"
+      enabled="true"/>
+    <report
+      name="Class Metrics"
+      enabled="true"/>
+    <report
+      name="Class OO Metrics"
+      enabled="true"/>
+    <report
+      name="Implicitly Declared Objects"
+      enabled="true"/>
+    <report
+      name="Uninitialized Items"
+      enabled="true"/>
+    <report
+      name="Unused Objects and Functions"
+      enabled="true"/>
+    <report
+      name="Unused Objects"
+      enabled="true"/>
+    <report
+      name="Unused Types"
+      enabled="true"/>
+    <report
+      name="Unused Program Units"
+      enabled="true"/>
+    <report
+      name="Uses Not Needed"
+      enabled="true"/>
+    <report
+      name="Withs Not Needed"
+      enabled="true"/>
+  </reports>
+  <web_options
+    add_found_imported_js_files="true"
+    allow_asp_style_php_tags="false"
+    allow_jquery="false"
+    allow_node_js="false"
+    allow_short_php_tags="true"
+    js_module_search_path=""
+    node_js_predefined_config_file="$CONF:/understand/javascript/nodejs_predefined.txt"
+    node_js_search_path=""
+    save_php_comments="true"
+    search_strings_for_entity_names="false"
+    php_version="8.3"/>
+</project>

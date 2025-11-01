@@ -1,0 +1,20 @@
+{
+    "fileMetrics": "file,Code Lines\ndignet/aset/ckeditor/.bower.json,\ndignet/aset/ckeditor/README.md,\ndignet/modul/password/password.php,48\ndignet/config/koneksi.php,7\ndignet/modul/pengetahuan/pengetahuan.php,252\ndignet/aset/bootstrap.js,2\ndignet/config/fungsi_alert.php,24\ndignet/Admin 2.png,\ndignet/modul/incident/incident.php,170\ndignet/css/style.css,0\ndignet/css/magnific-popup.css,0\ndignet/Home 1.png,\ndignet/.htaccess,\ndignet/kirim_form.php,18\ndignet/aset/app.js,1\ndignet/css/easy-responsive-tabs.css,0\ndignet/aset/banner/icon3.png,\ndignet/modul/form_content.php,13\ndignet/aset/banner/logo_telkomsel.png,\ndignet/Home 5.png,\ndignet/menu.php,36\ndignet/Home 2.png,\ndignet/css/font.css,0\ndignet/css/paging.css,0\ndignet/aset/ckeditor/contents.css,0\ndignet/aset/banner/telur.jpg,\ndignet/aset/ckeditor/package.json,\ndignet/modul/admin/aksi_admin.php,37\ndignet/modul/riwayat/riwayat.php,166\ndignet/css/fontello-ie7.css,0\ndignet/aset/banner/ayam.jpg,\ndignet/test.php,0\ndignet/aset/ckeditor/ckeditor.js,1068\ndignet/aset/ckeditor/CHANGES.md,\ndignet/modul/keterangan.php,57\ndignet/aset/banner/logo.png,\ndignet/modul/admin/admin.php,189\ndignet/modul/post/post.php,205\ndignet/aset/banner/mini_logo.png,\ndignet/Home 3.png,\ndignet/aset/banner/icon1.png,\ndignet/modul/formlogin.php,58\ndignet/.gitattributes,\ndignet/login.php,53\ndignet/aset/bootstrap.css,0\ndignet/aset/custom.css,0\ndignet/index.php,197\ndignet/aset/ckeditor/composer.json,\ndignet/modul/riwayat/detail.php,84\ndignet/modul/post/aksi_post.php,44\ndignet/aset/cinta.css,0\ndignet/modul/pengetahuan/aksi_pengetahuan.php,42\ndignet/modul/repair/aksi_repair.php,52\ndignet/logout.php,6\ndignet/favicon.ico,\ndignet/aset/banner/icon2.png,\ndignet/aset/ckeditor/styles.js,66\ndignet/aset/banner/dignet3.jpg,\ndignet/css/main.css,0\ndignet/modul/tentang.php,43\ndignet/aset/font-awesome.css,0\ndignet/modul/harga.php,521\ndignet/modul/repair/repair.php,201\ndignet/aset/jQuery-2.js,3\ndignet/aset/banner/dignet2.png,\ndignet/css/fontello.css,0\ndignet/modul/welcome.php,122\ndignet/Admin 1.png,\ndignet/README.md,\ndignet/modul/diagnosa/diagnosa.php,181\ndignet/aset/ckeditor/bower.json,\ndignet/aset/ckeditor/LICENSE.md,\ndignet/modul/bantuan.php,140\ndignet/aset/AdminLTE.css,0\ndignet/content.php,33\ndignet/aset/banner/dignet.jpg,\ndignet/simple_html_dom.php,1696\ndignet/modul/incident/aksi_incident.php,28\ndignet/aset/ckeditor/config.js,21",
+    "funcTop10": "function,cyclomatic\nCKEDITOR.dom.range.prototype.enlarge,51\n(unnamed_function_1).(unnamed_function_183).w.(unnamed_function_217),42\n(unnamed_function_1).(unnamed_function_388).a.exec,34\nCKEDITOR.plugins.enterkey.enterBlock,33\n(unnamed_function_1).(unnamed_function_262).b,28\nf.prototype.exec,28\n(unnamed_function_1).(unnamed_function_88).v,28\n(unnamed_function_1).(unnamed_function_397).init.k,26\na.prototype.getNextParagraph,26\n(unnamed_function_1).(unnamed_function_63).a,23",
+    "languages": "Web,Pascal",
+    "metricsVersion": 3,
+    "parsetime": 1728473326,
+    "summaryMetric/CountAnalysisError": 0,
+    "summaryMetric/CountAnalysisWarning": 0,
+    "summaryMetric/CountDeclClass": 2,
+    "summaryMetric/CountDeclFile": 79,
+    "summaryMetric/CountDeclFunction": 3383,
+    "summaryMetric/CountLine": 20714,
+    "summaryMetric/CountLineBlank": 578,
+    "summaryMetric/CountLineCode": 5884,
+    "summaryMetric/CountLineComment": 544,
+    "summaryMetric/CountStmtDecl": 2513,
+    "summaryMetric/CountStmtExe": 14224,
+    "summaryMetric/RatioCommentToCode": 0.09,
+    "summaryMetrics": "Name,Value\nClasses,2\nFiles,79\nFunctions,3383\nLines,20714\nBlank Lines,578\nCode Lines,5884\nComment Lines,544\nDeclarative Statements,2513\nExecutable Statements,14224\nComment to Code Ratio,0.09\n"
+}
