@@ -1,0 +1,62 @@
+// DigNet Utility Classes
+
+// Smooth scroll
+html {
+  scroll-behavior: smooth;
+}
+
+// Loading animation
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// Fade in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Slide in animation
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+// Print styles
+@media print {
+  .no-print,
+  .sidebar,
+  .navbar,
+  .btn {
+    display: none !important;
+  }
+  
+  .content-wrapper {
+    margin: 0 !important;
+  }
+}
