@@ -1,36 +1,84 @@
 <?php
 $module = $_GET['module'] ?? '';
 ?>
-<li><a <?php if ($module == "") echo 'class="active"'; ?> href="./"><i class="fa fa-home"></i> <span>Beranda</span></a><li>
-  <div class="container"></div>
-  <?php
-  if (!empty($_SESSION['username']) && !empty($_SESSION['password'])) {
-      ?>
-    <li><a <?php if ($module == "admin") echo 'class="active"'; ?> href="admin"><i class="fa fa-user"></i> <span>Admin</span></a><li>
-      <div class="container"></div>	
-    <li><a <?php if ($module == "repair") echo 'class="active"'; ?> href="repair"><i class="fa fa-bug"></i> <span>Data Gangguan</span></a><li>
-      <div class="container"></div>	
-    <li><a <?php if ($module == "incident") echo 'class="active"'; ?> href="incident"><i class="fa fa-eyedropper"></i> <span>Data Gejala</span></a><li>
-      <div class="container"></div>
-    <li><a <?php if ($module == "pengetahuan") echo 'class="active"'; ?> href="pengetahuan"><i class="fa fa-flask"></i> <span>Basis Pengetahuan</span></a><li>
-      <div class="container"></div>
-    <li><a <?php if ($module == "post") echo 'class="active"'; ?> href="post"><i class="fa fa-file-text"></i> <span>Post Keterangan</span></a><li>
-      <div class="container"></div>
-    <li><a <?php if ($module == "password") echo 'class="active"'; ?> href="password"><i class="fa fa-edit"></i> <span>Ubah Password</span></a><li>
-      <div class="container"></div>
-      <?php
-  }else {
-      ?>
-    <li><a <?php if ($module == "diagnosa") echo 'class="active"'; ?> href="diagnosa"><i class="fa fa-search-plus"></i> <span>Diagnosa</span></a><li>
-      <div class="container"></div>
-    <li><a <?php if ($module == "riwayat") echo 'class="active"'; ?> href="riwayat"><i class="fa fa-clock-o"></i> <span>Riwayat</span></a><li>
-      <div class="container"></div>
-    <li><a <?php if ($module == "keterangan") echo 'class="active"'; ?> href="keterangan"><i class="fa fa-commenting-o"></i> <span>Keterangan</span></a><li>
-      <div class="container"></div>
-    <li><a <?php if ($module == "harga") echo 'class="active"'; ?> href="harga"><i class="fa fa-bookmark-o"></i> <span>Info Harga</span></a><li>
-      <div class="container"></div>
-      <?php
-  }
-  ?>
-<li><a <?php if ($module == "tentang") echo 'class="active"'; ?> href="tentang"><i class="fa fa-info-circle"></i> <span>Tentang</span></a><li>
-  <div class="container"></div>
+<!-- Home Menu -->
+<li class="nav-item">
+    <a href="./" class="nav-link <?php if ($module == "") echo 'active'; ?>">
+        <i class="nav-icon fa-solid fa-house"></i>
+        <p>Beranda</p>
+    </a>
+</li>
+
+<?php if (!empty($_SESSION['username']) && !empty($_SESSION['password'])) { ?>
+    <!-- Admin Menu (Logged In) -->
+    <li class="nav-item">
+        <a href="admin" class="nav-link <?php if ($module == "admin") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-user"></i>
+            <p>Admin</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="repair" class="nav-link <?php if ($module == "repair") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-bug"></i>
+            <p>Data Gangguan</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="incident" class="nav-link <?php if ($module == "incident") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-droplet"></i>
+            <p>Data Gejala</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="pengetahuan" class="nav-link <?php if ($module == "pengetahuan") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-flask"></i>
+            <p>Basis Pengetahuan</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="post" class="nav-link <?php if ($module == "post") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-file-lines"></i>
+            <p>Post Keterangan</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="password" class="nav-link <?php if ($module == "password") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-key"></i>
+            <p>Ubah Password</p>
+        </a>
+    </li>
+<?php } else { ?>
+    <!-- User Menu (Not Logged In) -->
+    <li class="nav-item">
+        <a href="diagnosa" class="nav-link <?php if ($module == "diagnosa") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-magnifying-glass-plus"></i>
+            <p>Diagnosa</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="riwayat" class="nav-link <?php if ($module == "riwayat") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-clock-rotate-left"></i>
+            <p>Riwayat</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="keterangan" class="nav-link <?php if ($module == "keterangan") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-comment"></i>
+            <p>Keterangan</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="harga" class="nav-link <?php if ($module == "harga") echo 'active'; ?>">
+            <i class="nav-icon fa-solid fa-bookmark"></i>
+            <p>Info Harga</p>
+        </a>
+    </li>
+<?php } ?>
+
+<!-- Common Menu -->
+<li class="nav-item">
+    <a href="tentang" class="nav-link <?php if ($module == "tentang") echo 'active'; ?>">
+        <i class="nav-icon fa-solid fa-circle-info"></i>
+        <p>Tentang</p>
+    </a>
+</li>
