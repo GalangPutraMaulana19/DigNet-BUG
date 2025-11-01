@@ -1,4 +1,4 @@
-<title>Pengetahuan - Dignets 1.0</title>
+<title>Basis Pengetahuan - DigNet 1.0</title>
 <?php
 
 session_start();
@@ -12,13 +12,13 @@ function Blank_TextField_Validator()
 {
 if (document.text_form.kode_repair.value == "")
 {
-   alert("Pilih dulu repair !");
+   alert("Pilih dulu gangguan !");
    document.text_form.kode_repair.focus();
    return (false);
 }
 if (document.text_form.kode_incident.value == "")
 {
-   alert("Pilih dulu incident !");
+   alert("Pilih dulu gejala !");
    document.text_form.kode_incident.focus();
    return (false);
 }
@@ -75,8 +75,8 @@ switch($act){
           <thead>
             <tr>
               <th>No</th>
-              <th>Repair</th>
-              <th>Incident</th>
+              <th>Gangguan</th>
+              <th>Gejala</th>
               <th>MB</th>
               <th>MD</th>
               <th width='21%'>Aksi</th>
@@ -118,8 +118,8 @@ switch($act){
           <thead>
             <tr>
               <th>No</th>
-              <th>Repair</th>
-              <th>Incident</th>
+              <th>Gangguan</th>
+              <th>Gejala</th>
               <th>MB</th>
               <th>MD</th>
               <th width='21%'>Aksi</th>
@@ -215,13 +215,13 @@ switch($act){
               </div>
           <form name=text_form method=POST action='$aksi?module=pengetahuan&act=input' onsubmit='return Blank_TextField_Validator()'>
           <br><br><table class='table table-bordered'>
-		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair'  id='kode_repair'><option value=''>- Pilih Repair -</option>";
+		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair'  id='kode_repair'><option value=''>- Pilih Gangguan -</option>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM repair order by nama_repair");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_repair']."'>".$r4['nama_repair']."</option>";
 		}
 		echo	"</select></td></tr>
-		<tr><td>Incident</td><td><select class='form-control' name='kode_incident' id='kode_incident'><option value=''>- Pilih Incident -</option>";
+		<tr><td>Gejala</td><td><select class='form-control' name='kode_incident' id='kode_incident'><option value=''>- Pilih Gejala -</option>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM incident order by nama_incident");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_incident']."'>".$r4['nama_incident']."</option>";
@@ -250,7 +250,7 @@ switch($act){
 			echo ">$r4[nama_repair]</option>";
 		}
 		echo	"</select></td></tr>
-		<tr><td>Incident</td><td><select class='form-control' name='kode_incident' id='kode_incident'>";
+		<tr><td>Gejala</td><td><select class='form-control' name='kode_incident' id='kode_incident'>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM incident order by nama_incident");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_incident']."'"; if($r['kode_incident'] == $r4['kode_incident']) echo "selected";

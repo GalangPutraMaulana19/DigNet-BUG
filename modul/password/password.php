@@ -1,4 +1,4 @@
-<title>Ubah Password - Dignets 1.0</title>
+<title>Ubah Password - DigNet 1.0</title>
 <?php
 if (!empty($_SESSION['username']) && !empty($_SESSION['password'])) {
     $act = $_GET['act'] ?? '';

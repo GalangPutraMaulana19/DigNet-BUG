@@ -1,4 +1,4 @@
-<title>Repair - Dignets 1.0</title>
+<title>Data Gangguan - DigNet 1.0</title>
 <?php
 
 session_start();
@@ -12,7 +12,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
     {
       if (text_form.nama_repair.value == "")
       {
-        alert("Nama Repair tidak boleh kosong !");
+        alert("Nama Gangguan tidak boleh kosong !");
         text_form.nama_repair.focus();
         return (false);
       }
@@ -43,7 +43,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
       $tampil = mysqli_query($conn,"SELECT * FROM repair ORDER BY kode_repair");
       echo "<form method=POST action='?module=repair' name=text_form onsubmit='return Blank_TextField_Validator_Cari()'>
           <br><br><table class='table table-bordered'>
-		  <tr><td><input class='btn bg-olive margin' type=button name=tambah value='Tambah Repair' onclick=\"window.location.href='repair/tambahrepair';\"><input type=text name='keyword' style='margin-left: 10px;' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' /> <input class='btn bg-olive margin' type=submit value='   Cari   ' name=Go></td> </tr>
+		  <tr><td><input class='btn bg-olive margin' type=button name=tambah value='Tambah Gangguan' onclick=\"window.location.href='repair/tambahrepair';\"><input type=text name='keyword' style='margin-left: 10px;' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' /> <input class='btn bg-olive margin' type=submit value='   Cari   ' name=Go></td> </tr>
           </table></form>";
       $baris = mysqli_num_rows($tampil);
       if ($_POST['Go'] ?? false) {
@@ -58,9 +58,9 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
           <thead>
             <tr>
               <th>No</th>
-              <th>Nama Repair</th>
-			  <th>Detail Repair</th>
-			  <th>Saran Repair</th>
+              <th>Nama Gangguan</th>
+			  <th>Detail Gangguan</th>
+			  <th>Saran Penanganan</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -86,7 +86,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
         else {
           echo "<div class='alert alert-danger alert-dismissible'>
                 <h4><i class='icon fa fa-ban'></i> Gagal!</h4>
-                Maaf, Repair yang anda cari tidak ditemukan , silahkan inputkan dengan benar dan cari kembali.
+                Maaf, Gangguan yang anda cari tidak ditemukan , silahkan inputkan dengan benar dan cari kembali.
               </div>";
         }
       } else {
@@ -96,9 +96,9 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
           <thead>
             <tr>
               <th>No</th>
-              <th>Nama Repair</th>
-			  <th>Detail Repair</th>
-			  <th>Saran Repair</th>
+              <th>Nama Gangguan</th>
+			  <th>Detail Gangguan</th>
+			  <th>Saran Penanganan</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -168,9 +168,9 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
     case "tambahrepair":
       echo "<form name=text_form method=POST action='$aksi?module=repair&act=input' onsubmit='return Blank_TextField_Validator()' enctype='multipart/form-data'>
           <br><br><table class='table table-bordered'>
-		  <tr><td width=120>Nama Repair</td><td><input autocomplete='off' type=text placeholder='Masukkan repair baru...' class='form-control' name='nama_repair' size=30></td></tr>
-		  <tr><td width=120>Detail Repair</td><td> <textarea rows='4' cols='50' class='form-control' name='det_repair'type=text placeholder='Masukkan detail repair baru...'></textarea></td></tr>
-		  <tr><td width=120>Saran Repair</td><td><textarea rows='4' cols='50' class='form-control' name='srn_repair'type=text placeholder='Masukkan saran repair baru...'></textarea></td></tr>
+		  <tr><td width=120>Nama Gangguan</td><td><input autocomplete='off' type=text placeholder='Masukkan repair baru...' class='form-control' name='nama_repair' size=30></td></tr>
+		  <tr><td width=120>Detail Gangguan</td><td> <textarea rows='4' cols='50' class='form-control' name='det_repair'type=text placeholder='Masukkan detail repair baru...'></textarea></td></tr>
+		  <tr><td width=120>Saran Penanganan</td><td><textarea rows='4' cols='50' class='form-control' name='srn_repair'type=text placeholder='Masukkan saran repair baru...'></textarea></td></tr>
           <tr><td width=120>Gambar Post</td><td>Upload Gambar (Ukuran Maks = 1 MB) : <input type='file' class='form-control' name='gambar' required /></td></tr>		  
           <tr><td></td><td><input class='btn btn-success' type=submit name=submit value='Simpan' >
 		  <input class='btn btn-danger' type=button name=batal value='Batal' onclick=\"window.location.href='?module=repair';\"></td></tr>
@@ -189,9 +189,9 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
       echo "<form name=text_form method=POST action='$aksi?module=repair&act=update' onsubmit='return Blank_TextField_Validator()' enctype='multipart/form-data'>
           <input type=hidden name=id value='{$r['kode_repair']}'>
           <br><br><table class='table table-bordered'>
-		  <tr><td width=120>Nama Repair</td><td><input autocomplete='off' type=text class='form-control' name='nama_repair' size=30 value=\"{$r['nama_repair']}\"></td></tr>
-		  <tr><td width=120>Detail Repair</td><td><textarea rows='4' cols='50' type=text class='form-control' name='det_repair'>{$r['det_repair']}</textarea></td></tr>
-		  <tr><td width=120>Saran Repair</td><td><textarea rows='4' cols='50' type=text class='form-control' name='srn_repair'>{$r['srn_repair']}</textarea></td></tr>
+		  <tr><td width=120>Nama Gangguan</td><td><input autocomplete='off' type=text class='form-control' name='nama_repair' size=30 value=\"{$r['nama_repair']}\"></td></tr>
+		  <tr><td width=120>Detail Gangguan</td><td><textarea rows='4' cols='50' type=text class='form-control' name='det_repair'>{$r['det_repair']}</textarea></td></tr>
+		  <tr><td width=120>Saran Penanganan</td><td><textarea rows='4' cols='50' type=text class='form-control' name='srn_repair'>{$r['srn_repair']}</textarea></td></tr>
           <tr><td width=120>Gambar Post</td><td>Upload Gambar (Ukuran Maks = 1 MB) : <input id='upload' type='file' class='form-control' name='gambar' required /></td></tr>
           <tr><td></td><td><img id='preview' src='$gambar' width=200></td></tr>          
           <tr><td></td><td><input class='btn btn-success' type=submit name=submit value='Simpan' >

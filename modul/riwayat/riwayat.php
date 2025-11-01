@@ -1,4 +1,4 @@
-<title>Riwayat - Dignets 1.0</title>
+<title>Riwayat - DigNet 1.0</title>
 <h2 class='text text-primary'>Riwayat Konsultasi</h2>
 <hr>
 <?php

@@ -1,4 +1,4 @@
-<title>Post - Dignets 1.0</title>
+<title>Post - DigNet 1.0</title>
 <script type="text/javascript">
     function Blank_TextField_Validator()
     {

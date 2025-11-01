@@ -1,4 +1,4 @@
-<title>Detail Riwayat - Dignets 1.0</title>
+<title>Detail Riwayat - DigNet 1.0</title>
 <?php
 
 if (isset($_GET['id'])) {
