@@ -96,7 +96,7 @@ switch ($_GET['act'] ?? '') {
 // --------------------- END -------------------------
 
       echo "<div class='content'>
-	<h2 class='text text-primary'>Hasil Diagnosis &nbsp;&nbsp;<button id='print' onClick='window.print();' data-toggle='tooltip' data-placement='right' title='Klik tombol ini untuk mencetak hasil diagnosa'><i class='fa fa-print'></i> Cetak</button> </h2>
+	<h2 class='text-primary'>Hasil Diagnosis &nbsp;&nbsp;<button id='print' onClick='window.print();' data-bs-toggle='tooltip' data-bs-placement='right' title='Klik tombol ini untuk mencetak hasil diagnosa' class='btn btn-secondary'><i class='fa-solid fa-print'></i> Cetak</button> </h2>
 	          <hr><table class='table table-bordered table-striped diagnosa'> 
           <th width=8%>No</th>
           <th width=10%>Kode</th>
@@ -127,27 +127,27 @@ switch ($_GET['act'] ?? '') {
       } else {
         $gambar = 'gambar/noimage.png';
       }
-      echo "</table><div class='well well-small'><img class='card-img-top img-bordered-sm' style='float:right; margin-left:15px;' src='" . $gambar . "' height=200><h3>Hasil Diagnosa</h3>";
-      echo "<div class='callout callout-default'>Jenis repair yang diderita adalah <b><h3 class='text text-success'>" . $nmpkt[1] . "</b> / " . round($vlpkt[1], 2) . " % (" . $vlpkt[1] . ")<br></h3>";
-      echo "</div></div><div class='box box-info box-solid'><div class='box-header with-border'><h3 class='box-title'>Detail</h3></div><div class='box-body'><h4>";
+      echo "</table><div class='card'><div class='card-body'><img class='img-fluid rounded float-end' style='margin-left:15px; max-width: 200px;' src='" . $gambar . "'><h3>Hasil Diagnosa</h3>";
+      echo "<div class='alert alert-success'>Jenis gangguan yang terdeteksi adalah <b><h3 class='text-success'>" . $nmpkt[1] . "</b> / " . round($vlpkt[1], 2) . " % (" . $vlpkt[1] . ")<br></h3>";
+      echo "</div></div></div><div class='card card-info card-outline mt-3'><div class='card-header'><h3 class='card-title'><i class='fa-solid fa-circle-info'></i> Detail</h3></div><div class='card-body'><h4>";
       echo $ardpkt[$idpkt[1]];
       echo "</h4></div></div>
-          <div class='box box-warning box-solid'><div class='box-header with-border'><h3 class='box-title'>Saran</h3></div><div class='box-body'><h4>";
+          <div class='card card-warning card-outline mt-3'><div class='card-header'><h3 class='card-title'><i class='fa-solid fa-lightbulb'></i> Saran Penanganan</h3></div><div class='card-body'><h4>";
       echo $arspkt[$idpkt[1]];
       echo "</h4></div></div>
-          <div class='box box-danger box-solid'><div class='box-header with-border'><h3 class='box-title'>Kemungkinan lain:</h3></div><div class='box-body'><h4>";
+          <div class='card card-danger card-outline mt-3'><div class='card-header'><h3 class='card-title'><i class='fa-solid fa-list'></i> Kemungkinan lain:</h3></div><div class='card-body'><h4>";
       for ($ipl = 2; $ipl < count($idpkt); $ipl++) {
-        echo " <h4><i class='fa fa-caret-square-o-right'></i> " . $nmpkt[$ipl] . "</b> / " . round($vlpkt[$ipl], 2) . " % (" . $vlpkt[$ipl] . ")<br></h4>";
+        echo " <h4><i class='fa-solid fa-caret-right'></i> " . $nmpkt[$ipl] . "</b> / " . round($vlpkt[$ipl], 2) . " % (" . $vlpkt[$ipl] . ")<br></h4>";
       }
       echo "</div></div>
 		  </div>";
     } else {
       echo "
-	 <h2 class='text text-primary'>Diagnosa Gangguan IndiHome</h2>  <hr>
-	 <div class='alert alert-success alert-dismissible'>
-                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
-                <h4><i class='icon fa fa-exclamation-triangle'></i>Perhatian !</h4>
-                Silahkan memilih gejala sesuai dengan kondisi perangkat IndiHome (ODP, ONT, STB, Telepon). Anda dapat memilih tingkat kepastian gejala dari pasti tidak sampai pasti ya. Setelah selesai, tekan tombol proses (<i class='fa fa-search-plus'></i>) di bawah untuk melihat hasil diagnosis.
+	 <h2 class='text-primary'>Diagnosa Gangguan IndiHome</h2>  <hr>
+	 <div class='alert alert-success alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='fa-solid fa-triangle-exclamation'></i> Perhatian !</h4>
+                Silahkan memilih gejala sesuai dengan kondisi perangkat IndiHome (ODP, ONT, STB, Telepon). Anda dapat memilih tingkat kepastian gejala dari pasti tidak sampai pasti ya. Setelah selesai, tekan tombol proses (<i class='fa-solid fa-magnifying-glass-plus'></i>) di bawah untuk melihat hasil diagnosis.
               </div>
 		<form name=text_form method=POST action='diagnosa' >
            <table class='table table-bordered table-striped konsultasi'><tbody class='pilihkondisi'>
@@ -171,26 +171,28 @@ switch ($_GET['act'] ?? '') {
         echo '</select></td>';
         ?>
         <script type="text/javascript">
-          $(document).ready(function () {
-            var arcolor = new Array('#ffffff', '#cc66ff', '#019AFF', '#00CBFD', '#00FEFE', '#A4F804', '#FFFC00', '#FDCD01', '#FD9A01', '#FB6700');
-            setColor();
-            $('.pilihkondisi').on('change', 'tr td select#sl<?php echo $i; ?>', function () {
-              setColor();
-            });
-            function setColor()
-            {
-              var selectedItem = $('tr td select#sl<?php echo $i; ?> :selected');
-              var color = arcolor[selectedItem.data("id")];
-              $('tr td select#sl<?php echo $i; ?>.opsikondisi').css('background-color', color);
-              console.log(color);
+          (function() {
+            const arcolor = ['#ffffff', '#cc66ff', '#019AFF', '#00CBFD', '#00FEFE', '#A4F804', '#FFFC00', '#FDCD01', '#FD9A01', '#FB6700'];
+            const selectEl = document.getElementById('sl<?php echo $i; ?>');
+            
+            function setColor() {
+              const selectedOption = selectEl.options[selectEl.selectedIndex];
+              const colorId = selectedOption.getAttribute('data-id');
+              const color = arcolor[colorId] || '#ffffff';
+              selectEl.style.backgroundColor = color;
             }
-          });
+            
+            if (selectEl) {
+              setColor();
+              selectEl.addEventListener('change', setColor);
+            }
+          })();
         </script>
         <?php
         echo "</tr>";
       }
       echo "
-		  <input class='float' type=submit data-toggle='tooltip' data-placement='top' title='Klik disini untuk melihat hasil diagnosa' name=submit value='&#xf00e;' style='font-family:Arial, FontAwesome'>
+		  <input class='float' type=submit data-bs-toggle='tooltip' data-bs-placement='top' title='Klik disini untuk melihat hasil diagnosa' name=submit value='&#xf00e;' style='font-family:Arial, FontAwesome'>
           </tbody></table></form>";
     }
     break;
