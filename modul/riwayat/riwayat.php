@@ -77,9 +77,7 @@ switch ($_GET['act'] ?? '') {
                   </div>
                 </div>
                 <div class="card-body">
-                  <div id="donut-chart" class="chart" style="width:100%;height:250px;"></div>
-                  <hr>
-                  <div id="legend-container"></div>
+                  <canvas id="donutChart" style="height:250px;"></canvas>
                 </div>
                 <!-- /.card-body-->
               </div>
@@ -129,66 +127,88 @@ switch ($_GET['act'] ?? '') {
 ?>
 
 <script>
-    $(function () {
-
+// Chart.js v4 - Modern Doughnut Chart
+document.addEventListener('DOMContentLoaded', function() {
 <?php
-//$arr[] = array();
+// Prepare data for Chart.js
+$chartLabels = [];
+$chartData = [];
+$chartColors = [
+    '#E21E2C', // IndiHome red
+    '#00AED6', // Telkom blue
+    '#00C853', // Success green
+    '#FF6F00', // Orange
+    '#9C27B0', // Purple
+    '#F44336', // Red
+    '#2196F3', // Blue
+    '#4CAF50', // Green
+    '#FFC107', // Amber
+    '#795548'  // Brown
+];
 
 $hasilg = mysqli_query($conn,"SELECT hasil_id, count(hasil_id) jlh_id FROM hasil group by hasil_id ORDER BY jlh_id desc");
+$index = 0;
 while ($rg = mysqli_fetch_array($hasilg)) {
   if ($rg['hasil_id'] > 0) {
-    $arr[] = array('label' => '&nbsp;' . $arpkt[$rg['hasil_id']], 'data' => array(array('Repair ' . $rg['hasil_id'], $rg['jlh_id'])));
+    $chartLabels[] = $arpkt[$rg['hasil_id']];
+    $chartData[] = $rg['jlh_id'];
+    $index++;
   }
 }
 ?>
-      var donutData = <?php echo json_encode($arr); ?>
-//      var donutData = [
-//        {label: 'Series2', data: 30, color: '#3c8dbc'},
-//        {label: 'Series3', data: 20, color: '#0073b7'},
-//        {label: 'Series4', data: 50, color: '#00c0ef'}
-//      ]
 
-      function legendFormatter(label, series) {
-        return '<div class="text text-primary margin4">' + label + ' ' + Math.round(series.percent) + '%';
-      };
+const chartData = {
+    labels: <?php echo json_encode($chartLabels); ?>,
+    datasets: [{
+        data: <?php echo json_encode($chartData); ?>,
+        backgroundColor: <?php echo json_encode(array_slice($chartColors, 0, count($chartLabels))); ?>,
+        borderWidth: 2,
+        borderColor: '#fff'
+    }]
+};
 
-      $.plot('#donut-chart', donutData, {
-        series: {
-          pie: {
-            show: true,
-            radius: 1,
-            innerRadius: 0.3,
-            label: {
-              show: true,
-              radius: 2/3,
-              formatter: function (label, series) {
-                return '<div class="badge bg-navy color-pallete">' + Math.round(series.percent) + '%</div>';
-              },
-              threshold: 0.01
+const config = {
+    type: 'doughnut',
+    data: chartData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    padding: 15,
+                    font: {
+                        size: 12
+                    },
+                    usePointStyle: true,
+                    pointStyle: 'circle'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const value = context.parsed || 0;
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return label + ': ' + value + ' (' + percentage + '%)';
+                    }
+                }
             }
-
-          }
         },
-        legend: {
-          show: true,
-          container: $("#legend-container"),
-          labelFormatter: legendFormatter,
+        cutout: '60%', // Creates the donut hole
+        animation: {
+            animateRotate: true,
+            animateScale: true
         }
-      })
-      /*
-       * END DONUT CHART
-       */
-
-    })
-
-    /*
-     * Custom Label formatter
-     * ----------------------
-     */
-    function labelFormatter(label, series) {
-      return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
-              + label
-              + '<br>'
-              + Math.round(series.percent) + '%</div>'
     }
+};
+
+const ctx = document.getElementById('donutChart');
+if (ctx) {
+    new Chart(ctx, config);
+}
+});
 </script>
