@@ -31,6 +31,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
     <link rel="stylesheet" href="aset/custom.css"> <!-- Custom CSS -->
     <link rel="stylesheet" href="aset/icheck/green.css"> <!-- iCheck -->
     <link rel="stylesheet" href="css/style.css"> <!-- Style CSS -->
+    <link rel="stylesheet" href="css/dignet-modern.css"> <!-- Modern CSS 2025 -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> <!-- Shortcut Icon -->
     <script src="aset/jQuery-2.js"></script> <!-- jQuery -->
     <script src="aset/bootstrap.js"></script> <!-- Bootstrap -->

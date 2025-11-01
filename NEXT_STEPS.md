@@ -11,34 +11,41 @@ Sistem telah berhasil diadaptasi dari sistem pakar diagnosis penyakit ayam menja
 4. ✅ Panel admin diperbarui dengan label yang sesuai
 5. ✅ File CHANGELOG.md dibuat untuk dokumentasi
 6. ✅ File .gitignore ditambahkan
+7. ✅ **BARU:** Dokumentasi BAB 3 lengkap (ERD, UML, Flowchart, Tabel CF)
+8. ✅ **BARU:** SQL database IndiHome (dignet_indihome.sql)
+9. ✅ **BARU:** Modern CSS 2025 (dignet-modern.css)
 
 ## 📝 Yang Perlu Dilakukan Selanjutnya / What Needs To Be Done Next
 
 ### 1. Update Data di Database
 
-Saat ini database masih berisi data contoh tentang penyakit ayam. Anda perlu menggantinya dengan data IndiHome:
+✅ **SUDAH TERSEDIA**: File `dignet_indihome.sql` sudah berisi data IndiHome yang Anda berikan!
 
-**Tabel `incident` (sekarang untuk Gejala IndiHome):**
-Contoh gejala yang perlu ditambahkan:
-- Lampu PON berkedip merah
-- Tidak ada koneksi internet
-- STB tidak menyala
-- Lampu power ONT mati
-- Telepon tidak berfungsi
-- Kecepatan internet lambat
-- dll.
+Untuk menggunakan:
 
-**Tabel `repair` (sekarang untuk Gangguan IndiHome):**
-Contoh gangguan yang perlu ditambahkan:
-- Gangguan redaman tinggi
-- Kabel fiber putus
-- ONT rusak
-- STB error
-- Masalah konfigurasi
-- dll.
+```bash
+# 1. Backup database lama (jika ada)
+mysqldump -u root -p dignet > backup_old.sql
 
-**Tabel `basis_pengetahuan`:**
-Perlu disesuaikan dengan aturan IF-THEN baru berdasarkan pengetahuan teknisi assurance.
+# 2. Import database baru
+mysql -u root -p dignet < dignet_indihome.sql
+
+# Atau via phpMyAdmin:
+# - Buka phpMyAdmin
+# - Pilih database 'dignet'
+# - Import file 'dignet_indihome.sql'
+```
+
+**Database sudah berisi:**
+- ✅ 14 Gejala IndiHome (Telepon tidak dapat digunakan, Internet tidak terhubung, dll.)
+- ✅ 17 Jenis Gangguan (Create Ulang ONT, Restart ONT, Ganti STB, dll.)
+- ✅ 30 Aturan Basis Pengetahuan dengan nilai MB dan MD
+- ✅ Contoh data hasil diagnosis
+
+**Yang perlu Anda lakukan:**
+- Validasi aturan dengan teknisi assurance
+- Sesuaikan nilai MB/MD berdasarkan expert knowledge
+- Tambah gejala/gangguan baru jika diperlukan
 
 ### 2. Sesuaikan Halaman "Tentang" (modul/tentang.php)
 
@@ -67,14 +74,27 @@ Ganti gambar-gambar yang masih terkait ayam:
    - Test diagnosis
    - Test riwayat
 
-### 5. Dokumentasi Tambahan
+### 5. Dokumentasi BAB 3 (SUDAH TERSEDIA! ✅)
 
-Untuk melengkapi skripsi, pertimbangkan menambahkan:
-- Screenshot hasil testing
-- Diagram alur sistem
-- ERD database
-- Flowchart forward chaining
-- Tabel perhitungan CF
+**Folder `docs/` sudah berisi semua dokumentasi untuk BAB 3 skripsi Anda:**
+
+📁 **docs/README.md** - Panduan lengkap dokumentasi
+📊 **docs/BAB3_ERD_DATABASE.md** - Entity Relationship Diagram
+📐 **docs/BAB3_UML_DIAGRAM.md** - Use Case, Activity, Sequence, Class, Component Diagram
+🔄 **docs/BAB3_FLOWCHART_FORWARD_CHAINING.md** - Flowchart algoritma forward chaining
+📈 **docs/BAB3_TABEL_PERHITUNGAN_CF.md** - Contoh perhitungan CF lengkap
+
+**Cara menggunakan:**
+1. Buka folder `docs/`
+2. Baca `README.md` untuk panduan
+3. Render diagram Mermaid menjadi gambar:
+   - Online: https://mermaid.live
+   - VS Code: Install extension "Markdown Preview Mermaid Support"
+   - CLI: `npm install -g @mermaid-js/mermaid-cli`
+4. Copy diagram ke skripsi Anda
+5. Sesuaikan jika perlu
+
+**Semua diagram siap pakai untuk BAB 3!** 🎉
 
 ### 6. Pengisian Data Real
 
