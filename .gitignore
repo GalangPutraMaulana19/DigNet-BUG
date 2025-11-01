@@ -1,0 +1,52 @@
+# PHP
+*.log
+*.cache
+composer.phar
+vendor/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Database
+*.sql.gz
+*.sql.zip
+
+# Config files with sensitive data (keep template versions)
+# Uncomment if you have sensitive configs:
+# config/koneksi.php
+
+# Dependencies
+node_modules/
+bower_components/
+
+# Build artifacts
+dist/
+build/
+
+# OS specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Session and cache
+dignet.und/
+sessions/
+cache/
+
+# Uploaded files (if applicable)
+uploads/
+files/
+
+# Backups
+*.bak
+*.backup
