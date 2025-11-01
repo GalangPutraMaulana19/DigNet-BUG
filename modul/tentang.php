@@ -28,19 +28,19 @@
 		<img class="br-100" src="gambar/admin/favicon.png" alt="Logo DigNet" />
       <h1 class="f3 lh-title mv2 dark-gray">DigNet 1.0</h1>
 	  <p class="f6 silver mt2 mb0">
-        <a class="link dim silver"><button style="margin-bottom: 10px;" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Peneliti"><i class="fa fa-user" aria-hidden="true"></i> Galang Putra Maulana</button></a>
-        <a class="link dim silver"><button style="margin-bottom: 10px;" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Pakar Domain"><i class="fa fa-user-md" aria-hidden="true"></i> PT Mutiara Sentosa</button></a>
-	    <a class="link dim silver"><button style="margin-bottom: 10px;" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Dosen Pembimbing"><i class="fa fa-user-plus" aria-hidden="true"></i> [Nama Dosen]</button></a>
+        <a class="link dim silver"><button style="margin-bottom: 10px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peneliti"><i class="fa-solid fa-user" aria-hidden="true"></i> Galang Putra Maulana</button></a>
+        <a class="link dim silver"><button style="margin-bottom: 10px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pakar Domain"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i> PT Mutiara Sentosa</button></a>
+	    <a class="link dim silver"><button style="margin-bottom: 10px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dosen Pembimbing"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> [Nama Dosen]</button></a>
       </p>
 	   <br>
 	   <h2 class="f5 silver mt2 mb1">Sistem Pakar Diagnosis Gangguan IndiHome</h2>
        <h2 class="f5 silver mt2 mb1">Berbasis Forward Chaining dan Certainty Factor</h2>
 	   <h2 class="f5 silver mt2 mb1">Copyright © 2025, <a class="link dim silver">[Nama Universitas]</a></h2>
 	  <br>
-      <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa fa-chrome" aria-hidden="true"></i></a>
-      <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa fa-firefox" aria-hidden="true"></i></a>
-      <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa fa-edge" aria-hidden="true"></i></a>
-	  <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa fa-safari" aria-hidden="true"></i></a>
+      <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa-brands fa-chrome" aria-hidden="true"></i></a>
+      <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa-brands fa-firefox" aria-hidden="true"></i></a>
+      <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa-brands fa-edge" aria-hidden="true"></i></a>
+	  <a class="link dim light-silver"  style="font-size: 40px;"><i class="fa-brands fa-safari" aria-hidden="true"></i></a>
     </header>
     <div class="f6 tl lh-copy silver" style="margin: 20px;">
       <p><strong>Latar Belakang:</strong></p>

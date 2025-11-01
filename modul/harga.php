@@ -14,18 +14,18 @@ img {display: none;}
 <h2 class="text text-primary">Informasi Harga Perangkat IndiHome</h2>
 <hr>
 <div class="alert alert-info">
-  <h4><i class="fa fa-info-circle"></i> Informasi</h4>
+  <h4><i class="fa-solid fa-circle-info"></i> Informasi</h4>
   <p>Halaman ini dapat digunakan untuk menampilkan referensi harga perangkat IndiHome seperti ONT, STB, kabel fiber optik, dan aksesoris lainnya.</p>
   <p><strong>Catatan:</strong> Fitur ini dapat dikustomisasi sesuai kebutuhan dengan menambahkan data harga dari sumber resmi Telkom atau supplier.</p>
 </div>
 
 <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-			<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><i class="fa fa-home" aria-hidden="true"></i> Info Harga</a></li>
-              <li><a href="#tab_2" data-toggle="tab" aria-expanded="false"><i class="fa fa-wifi" aria-hidden="true"></i> ONT & Router</a></li>
-              <li><a href="#tab_3" data-toggle="tab"><i class="fa fa-television" aria-hidden="true"></i> STB (Set-Top Box)</a></li>
-			  <li><a href="#tab_4" data-toggle="tab"><i class="fa fa-phone" aria-hidden="true"></i> Telepon & Aksesoris</a></li>
-			  <li><a href="#tab_5" data-toggle="tab"><i class="fa fa-cog" aria-hidden="true"></i> Perangkat Pendukung</a></li>
+			<li class="active"><a href="#tab_1" data-bs-toggle="tab" aria-expanded="true"><i class="fa-solid fa-house" aria-hidden="true"></i> Info Harga</a></li>
+              <li><a href="#tab_2" data-bs-toggle="tab" aria-expanded="false"><i class="fa-solid fa-wifi" aria-hidden="true"></i> ONT & Router</a></li>
+              <li><a href="#tab_3" data-bs-toggle="tab"><i class="fa-solid fa-tv" aria-hidden="true"></i> STB (Set-Top Box)</a></li>
+			  <li><a href="#tab_4" data-bs-toggle="tab"><i class="fa-solid fa-phone" aria-hidden="true"></i> Telepon & Aksesoris</a></li>
+			  <li><a href="#tab_5" data-bs-toggle="tab"><i class="fa-solid fa-gear" aria-hidden="true"></i> Perangkat Pendukung</a></li>
             </ul>
             <div class="tab-content">
               <!-- /.tab-pane -->
@@ -36,7 +36,7 @@ img {display: none;}
 <div class="error-page">
         <h2 class="headline text-red" style="font-weight: 500;color: #16a085 !important;">Info</h2>
         <div class="error-content">
-          <h3 style="font-weight: 500;color: #16a085 !important;"><i class="fa fa-info-circle text-red" style="color: #16a085 !important;"></i> Referensi Harga Perangkat IndiHome</h3>
+          <h3 style="font-weight: 500;color: #16a085 !important;"><i class="fa-solid fa-circle-info text-red" style="color: #16a085 !important;"></i> Referensi Harga Perangkat IndiHome</h3>
           <p>
             Halaman ini menyediakan informasi referensi harga perangkat IndiHome. Silakan <b>pilih salah satu tab</b> di atas untuk melihat kategori harga: ONT & Router, STB, Telepon & Aksesoris, atau Perangkat Pendukung.
           </p>
