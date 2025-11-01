@@ -55,5 +55,7 @@ $('input[type="password"]').on('focus', () => {
 </script>
 <script>
 var d = document.getElementById("dignet-indihome");
-d.className += " sidebar-collapse";
+if (d) {
+  d.className += " sidebar-collapse";
+}
 </script>

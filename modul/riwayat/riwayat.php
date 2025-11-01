@@ -48,13 +48,13 @@ switch ($_GET['act'] ?? '') {
                     $warna = "dark";
                 else
                     $warna = "light";
-                echo "<tr class='" . $warna . "'>
-			 <td align=center>$no</td>
+                echo "<tr>
+			 <td class='text-center'>$no</td>
 			 <td>$r[tanggal]</td>
 			 <td>" . $arpkt[$r['hasil_id']] . "</td>
-			 <td><span class='label label-default'>" . $r['hasil_nilai'] . "</span></td>
-			 <td align=center>
-			 <a type='button' class='btn btn-default btn-xs' target='_blank' href=riwayat-detail/$r[id_hasil]><i class='fa fa-eye' aria-hidden='true'></i> Detail </a> &nbsp;
+			 <td><span class='badge bg-secondary'>" . $r['hasil_nilai'] . "</span></td>
+			 <td class='text-center'>
+			 <a type='button' class='btn btn-secondary btn-sm' target='_blank' href=riwayat-detail/$r[id_hasil]><i class='fa-solid fa-eye' aria-hidden='true'></i> Detail </a> &nbsp;
 	         </td></tr>";
                 $no++;
                 $counter++;
@@ -64,24 +64,24 @@ switch ($_GET['act'] ?? '') {
             ?>
 
             <div class="col-md-4">
-              <div class="box box-success box-solid">
-                <div class="box-header with-border">
-                  <i class="fa fa-pie-chart"></i>
+              <div class="card card-success card-outline">
+                <div class="card-header">
+                  <i class="fa-solid fa-chart-pie"></i>
 
-                  <h3 class="box-title">Grafik</h3>
+                  <h3 class="card-title">Grafik</h3>
 
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  <div class="card-tools float-end">
+                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa-solid fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa-solid fa-xmark"></i></button>
                   </div>
                 </div>
-                <div class="box-body">
+                <div class="card-body">
                   <div id="donut-chart" class="chart" style="width:100%;height:250px;"></div>
                   <hr>
                   <div id="legend-container"></div>
                 </div>
-                <!-- /.box-body-->
+                <!-- /.card-body-->
               </div>
             </div>
 

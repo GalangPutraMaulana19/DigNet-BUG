@@ -47,16 +47,32 @@ switch($act){
 	//jumlah data yang ditampilkan perpage
 	$limit = 10;
   $tampil = mysqli_query($conn, "SELECT * FROM admin ORDER BY username");
-	echo "<br><form method=POST action='?module=admin' name=text_form onsubmit='return Blank_TextField_Validator_Cari()'>
-          <br><table class='table table-bordered'>
-		  <tr><td><input class='btn bg-olive margin' type=button name=tambah value='Tambah Admin' onclick=\"window.location.href='admin/tambahadmin';\"><input type=text name='keyword' style='margin-left: 10px;' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' /> <input class='btn bg-olive margin' type=submit value='   Cari   ' name=Go></td> </tr>
-          </table></form>";
+	echo "<br><div class='card'>
+          <div class='card-body'>
+            <form method=POST action='?module=admin' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
+              <div class='col-auto'>
+                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='admin/tambahadmin';\">
+                  <i class='fa-solid fa-user-plus'></i> Tambah Admin
+                </button>
+              </div>
+              <div class='col'>
+                <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' />
+              </div>
+              <div class='col-auto'>
+                <button class='btn btn-primary' type=submit name=Go>
+                  <i class='fa-solid fa-magnifying-glass'></i> Cari
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>";
 		  	$baris = mysqli_num_rows($tampil);
 	if (isset($_POST['Go'])){
 			$numrows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM admin where username like '%" . $_POST['keyword'] . "%'"));
 			if ($numrows > 0){
-				echo "<div class='alert alert-success alert-dismissible'>
-                <h4><i class='icon fa fa-check'></i> Sukses!</h4>
+				echo "<div class='alert alert-success alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='icon fa-solid fa-check'></i> Sukses!</h4>
                 Admin yang anda cari di temukan.
               </div>";
 				$i = 1;
@@ -74,14 +90,12 @@ switch($act){
 	$no = 1;
 	$counter = 1;
     while ($r = mysqli_fetch_array($hasil)){
-	if ($counter % 2 == 0) $warna = "light";
-	else $warna = "dark";
-       echo "<tr class='".$warna."'>
-			 <td align=center>$no</td>
+       echo "<tr>
+			 <td class='text-center'>$no</td>
 	         <td>$r[username]</td>
 	         <td>$r[nama_lengkap]</td>
-			 <td align=center><a type='button' class='btn btn-success margin' href=admin/editadmin/$r[username]><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubah </a> &nbsp;
-	          <a type='button' class='btn btn-danger margin' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=admin&act=hapus&id=$r[username]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
+			 <td class='text-center'><a type='button' class='btn btn-success btn-sm' href=admin/editadmin/$r[username]><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
+	          <a type='button' class='btn btn-danger btn-sm' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=admin&act=hapus&id=$r[username]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa-solid fa-trash' aria-hidden='true'></i> Hapus</a>
              </td></tr>";
       $no++;
 	  $counter++;
@@ -89,8 +103,9 @@ switch($act){
     echo "</tbody></table>";
 			}
 			else{
-				echo "<div class='alert alert-danger alert-dismissible'>
-                <h4><i class='icon fa fa-ban'></i> Gagal!</h4>
+				echo "<div class='alert alert-danger alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='icon fa-solid fa-ban'></i> Gagal!</h4>
                 Maaf, Admin yang anda cari tidak ditemukan , silahkan inputkan dengan benar dan cari kembali.
               </div>";
 			}
@@ -113,15 +128,13 @@ switch($act){
 	$no = 1 + $offset;
 	$counter = 1;
     while ($r = mysqli_fetch_array($hasil)){
-	if ($counter % 2 == 0) $warna = "dark";
-	else $warna = "light";
-       echo "<tr class='".$warna."'>
-			 <td align=center>$no</td>
+       echo "<tr>
+			 <td class='text-center'>$no</td>
 	         <td>$r[username]</td>
 	         <td>$r[nama_lengkap]</td>
-			 <td align=center>
-			 <a type='button' class='btn btn-success margin' href=admin/editadmin/$r[username]><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubah </a> &nbsp;
-	          <a type='button' class='btn btn-danger margin' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=admin&act=hapus&id=$r[username]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
+			 <td class='text-center'>
+			 <a type='button' class='btn btn-success btn-sm' href=admin/editadmin/$r[username]><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
+	          <a type='button' class='btn btn-danger btn-sm' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=admin&act=hapus&id=$r[username]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa-solid fa-trash' aria-hidden='true'></i> Hapus</a>
              </td></tr>";
       $no++;
 	  $counter++;

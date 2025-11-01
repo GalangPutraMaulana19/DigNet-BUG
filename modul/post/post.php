@@ -32,16 +32,32 @@ switch ($act) {
         //jumlah data yang ditampilkan perpage
         $limit = 15;
         $tampil = mysqli_query($conn,"SELECT * FROM post ORDER BY kode_post");
-        echo "<form method=POST action='?module=post' name=text_form onsubmit='return Blank_TextField_Validator_Cari()'>
-          <br><br><table class='table table-bordered'>
-		  <tr><td><input class='btn bg-olive margin' type=button name=tambah value='Tambah Post' onclick=\"window.location.href='post/tambahpost';\"><input type=text name='keyword' style='margin-left: 10px;' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' /> <input class='btn bg-olive margin' type=submit value='   Cari   ' name=Go></td> </tr>
-          </table></form>";
+        echo "<br><div class='card'>
+          <div class='card-body'>
+            <form method=POST action='?module=post' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
+              <div class='col-auto'>
+                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='post/tambahpost';\">
+                  <i class='fa-solid fa-plus'></i> Tambah Post
+                </button>
+              </div>
+              <div class='col'>
+                <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' />
+              </div>
+              <div class='col-auto'>
+                <button class='btn btn-primary' type=submit name=Go>
+                  <i class='fa-solid fa-magnifying-glass'></i> Cari
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>";
         $baris = mysqli_num_rows($tampil);
         if ($_POST['Go'] ?? false) {
             $numrows = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM post where nama_post like '%$_POST[keyword]%'"));
             if ($numrows > 0) {
-                echo "<div class='alert alert-success alert-dismissible'>
-                <h4><i class='icon fa fa-check'></i> Sukses!</h4>
+                echo "<div class='alert alert-success alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='icon fa-solid fa-check'></i> Sukses!</h4>
                 Post yang anda cari di temukan.
               </div>";
                 $i = 1;
@@ -60,14 +76,13 @@ switch ($act) {
                 $no = 1;
                 $counter = 1;
                 while ($r = mysqli_fetch_array($hasil)) {
-                    $warna = ($counter % 2 == 0) ? "dark" : "light";
-                    echo "<tr class='" . $warna . "'>
-			 <td align=center>$no</td>
+                    echo "<tr>
+			 <td class='text-center'>$no</td>
 			 <td>$r[nama_post]</td>
 			 <td>$r[det_post]</td>
 			 <td>$r[srn_post]</td>
-			 <td align=center><a type='button' class='btn btn-success margin' href=post/editpost/$r[kode_post]><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubahx </a> &nbsp;
-	          <a type='button' class='btn btn-danger margin' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=post&act=hapus&id=$r[kode_post]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"> <i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
+			 <td class='text-center'><a type='button' class='btn btn-success btn-sm' href=post/editpost/$r[kode_post]><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
+	          <a type='button' class='btn btn-danger btn-sm' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=post&act=hapus&id=$r[kode_post]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"> <i class='fa-solid fa-trash' aria-hidden='true'></i> Hapus</a>
              </td></tr>";
                     $no++;
                     $counter++;
@@ -75,8 +90,9 @@ switch ($act) {
                 echo "</tbody></table>";
             }
             else {
-                echo "<div class='alert alert-danger alert-dismissible'>
-                <h4><i class='icon fa fa-ban'></i> Gagal!</h4>
+                echo "<div class='alert alert-danger alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='icon fa-solid fa-ban'></i> Gagal!</h4>
                 Maaf, Post yang anda cari tidak ditemukan , silahkan inputkan dengan benar dan cari kembali.
               </div>";
             }
