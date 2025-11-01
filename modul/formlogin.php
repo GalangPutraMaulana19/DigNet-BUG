@@ -1,21 +1,23 @@
 <script type="text/javascript">
-function Blank_TextField_Validator()
-{
-if (text_form.username.value == "")
-{
-   alert("Isi dulu username !");
-   text_form.username.focus();
-   return (false);
+// Modern form validation - vanilla JavaScript
+function Blank_TextField_Validator() {
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+  
+  if (username.value.trim() === '') {
+    alert('Isi dulu username!');
+    username.focus();
+    return false;
+  }
+  
+  if (password.value.trim() === '') {
+    alert('Isi dulu password!');
+    password.focus();
+    return false;
+  }
+  
+  return true;
 }
-if (text_form.password.value == "")
-{
-   alert("Isi dulu password !");
-   text_form.password.focus();
-   return (false);
-}
-return (true);
-}
--->
 </script>
 <!DOCTYPE html>
 <html lang="en" >
@@ -47,13 +49,18 @@ return (true);
 </body>
 
 </html><script>
-$('input[type="password"]').on('focus', () => {
-  $('*').addClass('password');
-}).on('focusout', () => {
-  $('*').removeClass('password');
-});;
-</script>
-<script>
+// Password field animation - vanilla JavaScript
+const passwordInput = document.querySelector('input[type="password"]');
+if (passwordInput) {
+  passwordInput.addEventListener('focus', function() {
+    document.body.classList.add('password');
+  });
+  passwordInput.addEventListener('blur', function() {
+    document.body.classList.remove('password');
+  });
+}
+
+// Sidebar collapse for login page
 var d = document.getElementById("dignet-indihome");
 if (d) {
   d.className += " sidebar-collapse";
