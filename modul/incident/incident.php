@@ -40,18 +40,34 @@ switch($act){
 	//jumlah data yang ditampilkan perpage
 	$limit = 15;
   $tampil = mysqli_query($conn, "SELECT * FROM incident ORDER BY kode_incident");
-	echo "<form method=POST action='?module=incident' name=text_form onsubmit='return Blank_TextField_Validator_Cari()'>
-          <br><br><table class='table table-bordered'>
-		  <tr><td><input class='btn bg-olive margin' type=button name=tambah value='Tambah Gejala' onclick=\"window.location.href='incident/tambahincident';\"><input type=text name='keyword' style='margin-left: 10px;' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' /> <input class='btn bg-olive margin' type=submit value='   Cari   ' name=Go></td> </tr>
-          </table></form>";
+	echo "<div class='card'>
+        <div class='card-body'>
+          <form method=POST action='?module=incident' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
+            <div class='col-auto'>
+              <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='incident/tambahincident';\">
+                <i class='fa-solid fa-plus'></i> Tambah Gejala
+              </button>
+            </div>
+            <div class='col'>
+              <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' />
+            </div>
+            <div class='col-auto'>
+              <button class='btn btn-primary' type=submit name=Go>
+                <i class='fa-solid fa-magnifying-glass'></i> Cari
+              </button>
+            </div>
+          </form>
+        </div>
+      </div><br>";
 		  $baris = mysqli_num_rows($tampil);
 		  
 	if (isset($_POST['Go'])){
 			$numrows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM incident where nama_incident like '%$_POST[keyword]%'"));
 			if ($numrows > 0){
-				echo "<div class='alert alert-success alert-dismissible'>
-                <h4><i class='icon fa fa-check'></i> Sukses!</h4>
-                Incident yang anda cari di temukan.
+				echo "<div class='alert alert-success alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='fa-solid fa-check'></i> Sukses!</h4>
+                Gejala yang anda cari ditemukan.
               </div>";
 				$i = 1;
 	echo" <table class='table table-bordered' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
@@ -67,13 +83,16 @@ switch($act){
 	$no = 1;
 	$counter = 1;
     while ($r = mysqli_fetch_array($hasil)){
-	if ($counter % 2 == 0) $warna = "dark";
-	else $warna = "light";
-       echo "<tr class='".$warna."'>
-			 <td align=center>$no</td>
+       echo "<tr>
+			 <td class='text-center'>$no</td>
 			 <td>$r[nama_incident]</td>
-			 <td align=center><a type='button' class='btn btn-success margin' href=incident/editincident/$r[kode_incident]><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubah </a> &nbsp;
-	          <a type='button' class='btn btn-danger margin' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=incident&act=hapus&id=$r[kode_incident]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
+			 <td class='text-center'>
+               <a class='btn btn-sm btn-success' href=incident/editincident/$r[kode_incident]>
+                 <i class='fa-solid fa-pen-to-square'></i> Ubah
+               </a>
+               <a class='btn btn-sm btn-danger' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=incident&act=hapus&id=$r[kode_incident]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">
+                 <i class='fa-solid fa-trash'></i> Hapus
+               </a>
              </td></tr>";
       $no++;
 	  $counter++;
@@ -81,9 +100,10 @@ switch($act){
     echo "</tbody></table>";
 			}
 			else{
-				echo "<div class='alert alert-danger alert-dismissible'>
-                <h4><i class='icon fa fa-ban'></i> Gagal!</h4>
-                Maaf, Incident yang anda cari tidak ditemukan , silahkan inputkan dengan benar dan cari kembali.
+				echo "<div class='alert alert-danger alert-dismissible fade show'>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                <h4><i class='fa-solid fa-ban'></i> Gagal!</h4>
+                Maaf, Gejala yang anda cari tidak ditemukan, silahkan inputkan dengan benar dan cari kembali.
               </div>";
 			}
 		}else{
@@ -104,14 +124,16 @@ switch($act){
 	$no = 1 + $offset;
 	$counter = 1;
     while ($r = mysqli_fetch_array($hasil)){
-	if ($counter % 2 == 0) $warna = "dark";
-	else $warna = "light";
-       echo "<tr class='".$warna."'>
-			 <td align=center>$no</td>
+       echo "<tr>
+			 <td class='text-center'>$no</td>
 			 <td>$r[nama_incident]</td>
-			 <td align=center>
-			 <a type='button' class='btn btn-success margin' href=incident/editincident/$r[kode_incident]><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubah </a> &nbsp;
-	          <a type='button' class='btn btn-danger margin' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=incident&act=hapus&id=$r[kode_incident]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
+			 <td class='text-center'>
+               <a class='btn btn-sm btn-success' href=incident/editincident/$r[kode_incident]>
+                 <i class='fa-solid fa-pen-to-square'></i> Ubah
+               </a>
+               <a class='btn btn-sm btn-danger' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=incident&act=hapus&id=$r[kode_incident]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">
+                 <i class='fa-solid fa-trash'></i> Hapus
+               </a>
              </td></tr>";
       $no++;
 	  $counter++;
