@@ -1,4 +1,16 @@
 <title>Post - DigNet 1.0</title>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-newspaper me-3"></i>
+        Manajemen Post
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Kelola konten artikel dan informasi yang ditampilkan di halaman keterangan
+    </p>
+</div>
+
 <script type="text/javascript">
     function Blank_TextField_Validator()
     {

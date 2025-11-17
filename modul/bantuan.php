@@ -6,7 +6,17 @@
     }
 }
 </style>
-<h2 class="page-header">Bantuan Penggunaan Sistem Pakar</h2>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="page-header">
+        <i class="fa-solid fa-circle-question me-3"></i>
+        Bantuan Penggunaan Sistem Pakar
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Panduan lengkap menggunakan DigNet untuk diagnosis gangguan IndiHome
+    </p>
+</div>
 <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class=""><a href="#tab_1" data-bs-toggle="tab" aria-expanded="false"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Bantuan Pakar</a></li>

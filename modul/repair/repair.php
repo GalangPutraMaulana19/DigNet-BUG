@@ -1,4 +1,16 @@
 <title>Data Gangguan - DigNet 1.0</title>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-circle-exclamation me-3"></i>
+        Data Gangguan IndiHome
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Kelola daftar jenis gangguan beserta detail dan saran penanganannya
+    </p>
+</div>
+
 <?php
 
 session_start();

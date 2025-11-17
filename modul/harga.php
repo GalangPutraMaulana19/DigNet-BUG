@@ -11,10 +11,20 @@ a {color: #000; text-decoration: none;}
 img {display: none;}
 </style>
 <link rel="stylesheet" href="animasi/harga/css.css">
-<h2 class="text text-primary">Informasi Harga Perangkat IndiHome</h2>
-<hr>
-<div class="alert alert-info">
-  <h4><i class="fa-solid fa-circle-info"></i> Informasi</h4>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-tags me-3"></i>
+        Informasi Harga Perangkat IndiHome
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Referensi harga perangkat dan aksesoris IndiHome untuk kebutuhan teknisi
+    </p>
+</div>
+
+<div class="alert alert-info premium-shadow">
+  <h4><i class="fa-solid fa-circle-info me-2"></i> Informasi</h4>
   <p>Halaman ini dapat digunakan untuk menampilkan referensi harga perangkat IndiHome seperti ONT, STB, kabel fiber optik, dan aksesoris lainnya.</p>
   <p><strong>Catatan:</strong> Fitur ini dapat dikustomisasi sesuai kebutuhan dengan menambahkan data harga dari sumber resmi Telkom atau supplier.</p>
 </div>

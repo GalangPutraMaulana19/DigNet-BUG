@@ -1,4 +1,16 @@
 <title>Basis Pengetahuan - DigNet 1.0</title>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-brain me-3"></i>
+        Basis Pengetahuan
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Kelola aturan IF-THEN dengan nilai MB (Measure of Belief) dan MD (Measure of Disbelief) untuk setiap kombinasi gejala-gangguan
+    </p>
+</div>
+
 <?php
 
 session_start();

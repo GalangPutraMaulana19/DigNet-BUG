@@ -1,6 +1,16 @@
 <title>Riwayat - DigNet 1.0</title>
-<h2 class='text text-primary'>Riwayat Konsultasi</h2>
-<hr>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-clock-rotate-left me-3"></i>
+        Riwayat Konsultasi
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Daftar riwayat diagnosis gangguan IndiHome yang telah dilakukan
+    </p>
+</div>
+
 <?php
 include "config/fungsi_alert.php";
 $aksi = "modul/riwayat/aksi_hasil.php";

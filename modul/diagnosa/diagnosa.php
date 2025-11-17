@@ -1,4 +1,16 @@
 <title>Diagnosa - DigNet 1.0</title>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-stethoscope me-3"></i>
+        Diagnosis Gangguan IndiHome
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Sistem pakar untuk mendiagnosis gangguan perangkat IndiHome dengan metode Forward Chaining dan Certainty Factor
+    </p>
+</div>
+
 <?php
 switch ($_GET['act'] ?? '') {
 

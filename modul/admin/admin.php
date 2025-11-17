@@ -1,4 +1,16 @@
 <title>Admin - DigNet 1.0</title>
+
+<!-- Premium Page Header -->
+<div class="mb-5">
+    <h2 class="text text-primary">
+        <i class="fa-solid fa-user-shield me-3"></i>
+        Manajemen Admin Pakar
+    </h2>
+    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+        Kelola akun administrator sistem pakar DigNet
+    </p>
+</div>
+
 <?php
 session_start();
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
