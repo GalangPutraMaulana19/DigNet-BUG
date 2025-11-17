@@ -123,7 +123,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="#" onclick="if(confirm('Anda yakin akan logout?')) window.location.href='logout.php'; return false;">
+                            <a class="dropdown-item" href="logout.php" onclick="return confirm('Anda yakin akan logout?');">
                                 <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
                             </a>
                         </li>
