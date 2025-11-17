@@ -42,7 +42,7 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header detail-ket">
-              <h4 class="modal-title text text-ket"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Detail Untuk <?php echo $r['nama_post']; ?></h4>
+              <h4 class="modal-title text text-ket"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Detail Untuk <?php echo $r['nama_post']; ?></h4>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align: justify;text-justify: inter-word;">
@@ -63,7 +63,7 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header saran-ket">
-              <h4 class="modal-title text text-ket"><i class="fa fa-quote-right" aria-hidden="true"></i> Saran Untuk <?php echo $r['nama_post']; ?></h4>
+              <h4 class="modal-title text text-ket"><i class="fa-solid fa-quote-right" aria-hidden="true"></i> Saran Untuk <?php echo $r['nama_post']; ?></h4>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align: justify;text-justify: inter-word;">

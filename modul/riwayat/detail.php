@@ -46,7 +46,7 @@ if (isset($_GET['id'])) {
 // --------------------- END -------------------------
 
   echo "<div class='content'>
-	<h2 class='text text-primary'>Hasil Diagnosis &nbsp;&nbsp;<button id='print' onClick='window.print();' data-toggle='tooltip' data-placement='right' title='Klik tombol ini untuk mencetak hasil diagnosa'><i class='fa fa-print'></i> Cetak</button> </h2>
+	<h2 class='text text-primary'>Hasil Diagnosis &nbsp;&nbsp;<button id='print' onClick='window.print();' data-bs-toggle='tooltip' data-bs-placement='right' title='Klik tombol ini untuk mencetak hasil diagnosa' class='btn btn-secondary'><i class='fa-solid fa-print'></i> Cetak</button> </h2>
 		  <hr><table class='table table-bordered table-striped diagnosa'> 
           <th width=8%>No</th>
           <th width=10%>Kode</th>

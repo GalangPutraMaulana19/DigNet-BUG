@@ -499,7 +499,7 @@ img {display: none;}
 			  </div>
               <!-- /.tab-pane -->
 			  <div class="tab-pane" id="tab_2">
-			  <?php if (!$sock = @fsockopen('www.google.com', 80, $num, $error, 5)) echo '<h1 style="font-weight: 500;color: #16a085 !important;text-align: center;margin: 180px;"> <i class="fa fa-warning text-red" style="color: #16a085 !important;"></i> Internet Anda Offline</h1>'; ?>
+			  <?php if (!$sock = @fsockopen('www.google.com', 80, $num, $error, 5)) echo '<h1 style="font-weight: 500;color: #16a085 !important;text-align: center;margin: 180px;"> <i class="fa-solid fa-triangle-exclamation text-red" style="color: #16a085 !important;"></i> Internet Anda Offline</h1>'; ?>
                <?php
 				include_once 'simple_html_dom.php';
 

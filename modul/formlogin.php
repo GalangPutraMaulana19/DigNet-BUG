@@ -37,11 +37,11 @@ function Blank_TextField_Validator() {
 </div>
 <div class="formku">
    <div class="info">
-    <h4><i class="fa fa-paper-plane"></i> Login Pakar</h4><br>
+    <h4><i class="fa-solid fa-paper-plane"></i> Login Pakar</h4><br>
   </div>
   <form class="login-form" action="login.php" method="post" name="text_form" onsubmit="return Blank_TextField_Validator()">
-<input type="text" name="username" id="username" placeHolder="&#xf007;  Username" style="font-family:Arial, FontAwesome" />
-<input type="password" name="password" id="password" placeHolder="&#xf023;  Password" style="font-family:Arial, FontAwesome" />
+<input type="text" name="username" id="username" placeHolder="&#xf007;  Username" style="font-family:Arial, 'Font Awesome 6 Free'" />
+<input type="password" name="password" id="password" placeHolder="&#xf023;  Password" style="font-family:Arial, 'Font Awesome 6 Free'" />
 <input type="submit" name="submit" id="submitku" value="   Login   " /><br>
  <p class="message">Ingin mendaftar? <a href="https://goo.gl/forms/OlZywbPBrBcG2nSy1" target="_blank">Ajukan Permohonan</a></p>
   </form>
