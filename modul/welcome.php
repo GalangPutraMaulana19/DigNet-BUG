@@ -15,35 +15,22 @@
   $dtadmin=mysqli_fetch_assoc($htadmin);
 ?>
 
-<!-- Premium Hero Section with Carousel -->
-<section class="hero-section" id="carousel-example-generic" data-bs-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-bs-target="#carousel-example-generic" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#carousel-example-generic" data-bs-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="aset/banner/dignet.jpg" alt="DigNet - Sistem Pakar IndiHome">
-        </div>
-        <div class="carousel-item">
-            <img src="aset/banner/dignet3.jpg" alt="DigNet - Diagnosis Gangguan">
-        </div>
-    </div>
-    
-    <!-- Hero Content Overlay -->
-    <div class="hero-content">
-        <div class="hero-badge">
+<!-- Premium Hero Section (Static - No Carousel) -->
+<section class="hero-section-static" style="background: var(--gradient-primary); padding: 4rem 2rem; border-radius: var(--radius-2xl); margin-bottom: var(--space-8); box-shadow: var(--shadow-2xl); position: relative; overflow: hidden;">
+    <!-- Hero Content -->
+    <div class="hero-content" style="position: relative; z-index: 2; text-align: center; color: white; max-width: 900px; margin: 0 auto;">
+        <div class="hero-badge" style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-5);">
             <i class="fa-solid fa-star"></i>
             <span>Sistem Pakar Diagnosis Gangguan IndiHome</span>
         </div>
-        <h1 class="hero-title">
+        <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: var(--space-4); text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
             Solusi Cepat & Akurat untuk<br>
-            <span class="text-gradient">Diagnosis Gangguan IndiHome</span>
+            <span style="background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Diagnosis Gangguan IndiHome</span>
         </h1>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle" style="font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; line-height: 1.6; margin-bottom: var(--space-6); opacity: 0.95; max-width: 700px; margin-left: auto; margin-right: auto;">
             Sistem pakar berbasis Forward Chaining dan Certainty Factor untuk membantu teknisi provisioning mendiagnosis gangguan IndiHome selama masa retensi 60 hari dengan akurasi tinggi.
         </p>
-        <div class="hero-cta">
+        <div class="hero-cta" style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
             <a href="?module=diagnosa" class="btn btn-hero-primary">
                 <i class="fa-solid fa-stethoscope me-2"></i>
                 Mulai Diagnosis
@@ -54,15 +41,6 @@
             </a>
         </div>
     </div>
-    
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel-example-generic" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </section>
 
 <!-- Premium Statistics Section -->
