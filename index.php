@@ -237,8 +237,60 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-JJUFkVbeZ4z/F4FxlpNlPRVaLd+E8KlLNlBsI1p3xAYTslp4jZ8fl2/AMtnqGmUb" crossorigin="anonymous"></script>
-        <script src="aset/app.js"></script>
     <?php endif; ?>
+    
+    <!-- AdminLTE v4 Compatible Sidebar Toggle Script -->
+    <script>
+    // Modern sidebar toggle for AdminLTE v4 / Bootstrap 5
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle functionality
+        const pushMenuBtn = document.querySelector('[data-widget="pushmenu"]');
+        const body = document.body;
+        
+        if (pushMenuBtn) {
+            pushMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Toggle sidebar collapse class
+                if (body.classList.contains('sidebar-collapse')) {
+                    body.classList.remove('sidebar-collapse');
+                    body.classList.add('sidebar-open');
+                    localStorage.setItem('sidebar-state', 'open');
+                } else {
+                    body.classList.add('sidebar-collapse');
+                    body.classList.remove('sidebar-open');
+                    localStorage.setItem('sidebar-state', 'collapsed');
+                }
+            });
+        }
+        
+        // Restore sidebar state from localStorage
+        const sidebarState = localStorage.getItem('sidebar-state');
+        if (sidebarState === 'collapsed') {
+            body.classList.add('sidebar-collapse');
+        } else if (sidebarState === 'open') {
+            body.classList.add('sidebar-open');
+        }
+        
+        // On mobile, hide sidebar by default
+        if (window.innerWidth <= 991) {
+            body.classList.add('sidebar-collapse');
+        }
+        
+        // Initialize Bootstrap tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Debug Chart.js availability
+        if (typeof Chart !== 'undefined') {
+            console.log('Chart.js loaded successfully');
+        } else {
+            console.error('Chart.js not loaded - pie chart will not render');
+        }
+    });
+    </script>
     
     <!-- Contact Form Handler (Vanilla JS - No jQuery) -->
     <script>
