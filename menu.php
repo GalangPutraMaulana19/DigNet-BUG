@@ -13,31 +13,31 @@ $module = $_GET['module'] ?? '';
     <!-- Admin Menu (Logged In) -->
     <li class="nav-item">
         <a href="?module=admin" class="nav-link <?php if ($module == "admin") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-user"></i>
+            <i class="nav-icon fa-solid fa-user-shield"></i>
             <p>Admin</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="?module=repair" class="nav-link <?php if ($module == "repair") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-bug"></i>
+            <i class="nav-icon fa-solid fa-screwdriver-wrench"></i>
             <p>Data Gangguan</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="?module=incident" class="nav-link <?php if ($module == "incident") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-droplet"></i>
+            <i class="nav-icon fa-solid fa-triangle-exclamation"></i>
             <p>Data Gejala</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="?module=pengetahuan" class="nav-link <?php if ($module == "pengetahuan") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-flask"></i>
+            <i class="nav-icon fa-solid fa-brain"></i>
             <p>Basis Pengetahuan</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="?module=post" class="nav-link <?php if ($module == "post") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-file-lines"></i>
+            <i class="nav-icon fa-solid fa-newspaper"></i>
             <p>Post Keterangan</p>
         </a>
     </li>
@@ -51,7 +51,7 @@ $module = $_GET['module'] ?? '';
     <!-- User Menu (Not Logged In) -->
     <li class="nav-item">
         <a href="?module=diagnosa" class="nav-link <?php if ($module == "diagnosa") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-magnifying-glass-plus"></i>
+            <i class="nav-icon fa-solid fa-stethoscope"></i>
             <p>Diagnosa</p>
         </a>
     </li>
@@ -63,13 +63,13 @@ $module = $_GET['module'] ?? '';
     </li>
     <li class="nav-item">
         <a href="?module=keterangan" class="nav-link <?php if ($module == "keterangan") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-comment"></i>
+            <i class="nav-icon fa-solid fa-book-open"></i>
             <p>Keterangan</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="?module=harga" class="nav-link <?php if ($module == "harga") echo 'active'; ?>">
-            <i class="nav-icon fa-solid fa-bookmark"></i>
+            <i class="nav-icon fa-solid fa-tags"></i>
             <p>Info Harga</p>
         </a>
     </li>

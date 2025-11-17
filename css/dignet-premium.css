@@ -1294,4 +1294,84 @@ html {
     background: var(--brand-primary);
 }
 
+/* ==================== Layout Fixes ==================== */
+/* Fix overlapping and ensure proper spacing */
+.wrapper {
+    min-height: 100vh;
+    position: relative;
+}
+
+.content-wrapper {
+    min-height: calc(100vh - 57px - 57px); /* viewport - navbar - footer */
+    background: var(--neutral-50);
+}
+
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1038; /* Below navbar but above content */
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px; /* Sidebar width */
+    z-index: 1039; /* Above sidebar */
+    transition: left 0.3s ease-in-out;
+}
+
+/* When sidebar is collapsed */
+.sidebar-collapse .main-header {
+    left: 0;
+}
+
+.main-footer {
+    position: relative;
+    padding: var(--space-4) var(--space-5);
+    background: white;
+    border-top: 1px solid var(--neutral-200);
+    margin-top: auto;
+}
+
+/* Ensure content doesn't overlap with fixed elements */
+body:not(.sidebar-collapse) .content-wrapper {
+    margin-left: 250px;
+    margin-top: 57px; /* Navbar height */
+}
+
+body.sidebar-collapse .content-wrapper {
+    margin-left: 0;
+    margin-top: 57px;
+}
+
+/* Fix modal z-index to appear above everything */
+.modal {
+    z-index: 1060 !important;
+}
+
+.modal-backdrop {
+    z-index: 1055 !important;
+}
+
+/* Ensure hero section doesn't cause overflow */
+.hero-section-static {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Fix row spacing in stats section */
+.stats-section .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+.stats-section .row > [class*="col-"] {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
 /* ==================== END ==================== */
