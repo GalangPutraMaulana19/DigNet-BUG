@@ -1374,4 +1374,174 @@ body.sidebar-collapse .content-wrapper {
     padding-right: 0.5rem;
 }
 
+/* ==================== Mobile Responsive Fixes ==================== */
+/* Mobile and Tablet devices */
+@media (max-width: 991.98px) {
+    /* On mobile, sidebar should be hidden by default */
+    .main-sidebar {
+        transform: translateX(-250px);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    /* Show sidebar when toggled */
+    body:not(.sidebar-collapse) .main-sidebar {
+        transform: translateX(0);
+    }
+    
+    /* Header should span full width on mobile */
+    .main-header {
+        left: 0 !important;
+        right: 0;
+    }
+    
+    /* Content should have no left margin on mobile */
+    .content-wrapper {
+        margin-left: 0 !important;
+        margin-top: 57px;
+        padding: var(--space-3);
+    }
+    
+    /* Hero section padding adjustment for mobile */
+    .hero-section-static {
+        padding: 2rem 1rem !important;
+        margin-bottom: var(--space-4) !important;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    /* Stats boxes full width on small mobile */
+    .premium-info-box {
+        margin-bottom: var(--space-3);
+    }
+    
+    /* Footer padding adjustment */
+    .main-footer {
+        padding: var(--space-3) var(--space-4);
+        font-size: 0.875rem;
+    }
+    
+    /* Table responsive wrapper */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Cards spacing on mobile */
+    .card {
+        margin-bottom: var(--space-3);
+    }
+    
+    /* Button sizing on mobile */
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 575.98px) {
+    /* Even smaller text on tiny screens */
+    .hero-title {
+        font-size: 1.5rem !important;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+    }
+    
+    .hero-section-static {
+        padding: 1.5rem 0.75rem !important;
+    }
+    
+    /* Hero CTA buttons stack vertically on tiny screens */
+    .hero-cta {
+        flex-direction: column !important;
+        gap: var(--space-2) !important;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+    }
+    
+    /* Content wrapper padding */
+    .content-wrapper {
+        padding: var(--space-2);
+    }
+    
+    /* Info boxes */
+    .info-number {
+        font-size: 2rem;
+    }
+    
+    .info-label {
+        font-size: 0.85rem;
+    }
+    
+    /* Page headers */
+    h2.text-primary {
+        font-size: 1.5rem;
+    }
+    
+    /* Smaller spacing for mobile */
+    .mb-5 {
+        margin-bottom: var(--space-3) !important;
+    }
+    
+    /* Footer stacking */
+    .main-footer .float-end {
+        float: none !important;
+        display: block;
+        margin-bottom: var(--space-2);
+        text-align: center;
+    }
+    
+    .main-footer strong {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 991.98px) and (orientation: landscape) {
+    .hero-section-static {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .content-wrapper {
+        min-height: auto;
+    }
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal scroll */
+body {
+    overflow-x: hidden;
+}
+
+.wrapper,
+.content-wrapper,
+.hero-section-static,
+.container-fluid {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* ==================== END ==================== */
