@@ -1393,11 +1393,18 @@ body.sidebar-collapse .content-wrapper {
     .main-sidebar {
         transform: translateX(-250px);
         transition: transform 0.3s ease-in-out;
+        position: fixed;
+        left: 0;
     }
     
     /* Show sidebar when toggled */
     body:not(.sidebar-collapse) .main-sidebar {
         transform: translateX(0);
+    }
+    
+    /* Sidebar collapsed state on mobile should also hide */
+    body.sidebar-collapse .main-sidebar {
+        transform: translateX(-250px);
     }
     
     /* Header should span full width on mobile */
@@ -1407,13 +1414,21 @@ body.sidebar-collapse .content-wrapper {
         width: 100%;
     }
     
-    /* Content should have no left margin on mobile */
+    /* Content should have no left margin on mobile - FULL WIDTH */
     .content-wrapper {
         margin-left: 0 !important;
         margin-top: 57px;
         padding: var(--space-3);
-        width: 100%;
-        max-width: 100vw;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
+    body.sidebar-collapse .content-wrapper {
+        margin-left: 0 !important;
+    }
+    
+    body:not(.sidebar-collapse) .content-wrapper {
+        margin-left: 0 !important;
     }
     
     /* Hero section padding adjustment for mobile */
@@ -1703,17 +1718,25 @@ body.sidebar-collapse .main-sidebar {
 }
 
 body.sidebar-collapse .main-sidebar .brand-link {
-    padding: 0.8125rem 0.5rem;
+    padding: 0.5rem;
     text-align: center;
+    overflow: hidden;
 }
 
 body.sidebar-collapse .main-sidebar .brand-link .brand-image {
     float: none;
     margin: 0 auto;
+    display: block;
+    width: 2.5rem !important; /* Smaller logo when collapsed */
+    height: 2.5rem !important;
+    transition: all 0.3s ease-in-out;
 }
 
 body.sidebar-collapse .main-sidebar .brand-link .brand-text {
     display: none; /* Hide text when collapsed */
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 body.sidebar-collapse .main-sidebar .nav-link p {
@@ -1735,6 +1758,25 @@ body.sidebar-collapse .main-sidebar .nav-item > .nav-link {
 /* Expanded sidebar */
 body:not(.sidebar-collapse) .main-sidebar {
     width: 250px; /* Full width when expanded */
+}
+
+body:not(.sidebar-collapse) .main-sidebar .brand-link {
+    padding: 0.8rem 1rem;
+}
+
+body:not(.sidebar-collapse) .main-sidebar .brand-link .brand-image {
+    width: 2.1rem !important; /* Standard size when expanded */
+    height: 2.1rem !important;
+    margin-right: 0.5rem;
+    display: inline-block;
+    float: left;
+    transition: all 0.3s ease-in-out;
+}
+
+body:not(.sidebar-collapse) .main-sidebar .brand-link .brand-text {
+    display: inline;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 }
 
 body:not(.sidebar-collapse) .main-sidebar .nav-link p {

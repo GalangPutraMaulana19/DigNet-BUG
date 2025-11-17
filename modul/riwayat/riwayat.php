@@ -36,7 +36,7 @@ switch ($_GET['act'] ?? '') {
         $tampil = mysqli_query($conn,"SELECT * FROM hasil ORDER BY id_hasil");
         $baris = mysqli_num_rows($tampil);
         if ($baris > 0) {
-            echo"<div class='row'><div class='col-md-8'><table class='table table-bordered table-striped riwayat' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+            echo"<div class='row'><div class='col-md-12'><table class='table table-bordered table-striped riwayat' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -74,7 +74,8 @@ switch ($_GET['act'] ?? '') {
             ?>
 
             <div class="col-md-4">
-              <div class="card card-success card-outline">
+              <!-- Pie chart temporarily hidden as per user request -->
+              <div class="card card-success card-outline" style="display: none;">
                 <div class="card-header">
                   <i class="fa-solid fa-chart-pie"></i>
 
