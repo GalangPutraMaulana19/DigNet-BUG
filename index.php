@@ -112,7 +112,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="bantuan">
+                            <a class="dropdown-item" href="?module=bantuan">
                                 <i class="fa-solid fa-circle-question me-2"></i> Bantuan
                             </a>
                         </li>
@@ -132,12 +132,12 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
                 <?php } else { ?>
                 <!-- Guest Menu (Not Logged In) -->
                 <li class="nav-item">
-                    <a class="nav-link" href="bantuan" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bantuan penggunaan aplikasi">
+                    <a class="nav-link" href="?module=bantuan" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Bantuan penggunaan aplikasi">
                         <i class="fa-solid fa-circle-question"></i> <span class="d-none d-md-inline">Bantuan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="formlogin">
+                    <a class="nav-link" href="?module=formlogin">
                         <i class="fa-solid fa-right-to-bracket"></i> <span class="d-none d-md-inline">Login</span>
                     </a>
                 </li>
@@ -149,7 +149,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="./" class="brand-link">
-                <img src="aset/banner/mini_logo.png" alt="DigNet Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="gambar/admin/favicon.png" alt="DigNet Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">DigNet 2.0</span>
             </a>
 
