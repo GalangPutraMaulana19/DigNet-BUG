@@ -137,7 +137,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="formlogin">
+                    <a class="nav-link" href="login.php">
                         <i class="fa-solid fa-right-to-bracket"></i> <span class="d-none d-md-inline">Login</span>
                     </a>
                 </li>
