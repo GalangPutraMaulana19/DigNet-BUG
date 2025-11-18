@@ -94,6 +94,14 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
                     <a href="./" class="nav-link">Home</a>
                 </li>
             </ul>
+            
+            <!-- Center Brand Logo & Text (Modern SaaS Style) -->
+            <div class="navbar-brand-wrapper d-flex align-items-center justify-content-center flex-grow-1">
+                <a href="./" class="navbar-brand d-flex align-items-center text-decoration-none">
+                    <img src="gambar/admin/dignet-logo.svg" alt="DigNet Logo" class="brand-image-navbar" style="width: 2.5rem; height: 2.5rem; margin-right: 0.75rem; border-radius: 8px;">
+                    <span class="brand-text-navbar fw-bold" style="font-size: 1.25rem; color: #E21E2C; letter-spacing: 0.5px;">DigNet<span style="font-weight: 400; color: #666; margin-left: 0.25rem;">2.0</span></span>
+                </a>
+            </div>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ms-auto">
@@ -147,12 +155,6 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
 
         <!-- Main Sidebar (AdminLTE v4 / Bootstrap 5) -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="./" class="brand-link">
-                <img src="gambar/admin/dignet-logo.svg" alt="DigNet Logo" class="brand-image elevation-3" style="opacity: .95">
-                <span class="brand-text font-weight-light">DigNet 2.0</span>
-            </a>
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->

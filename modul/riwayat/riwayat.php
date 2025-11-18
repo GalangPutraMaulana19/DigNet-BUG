@@ -36,7 +36,28 @@ switch ($_GET['act'] ?? '') {
         $tampil = mysqli_query($conn,"SELECT * FROM hasil ORDER BY id_hasil");
         $baris = mysqli_num_rows($tampil);
         if ($baris > 0) {
-            echo"<div class='row'><div class='col-md-12'><table class='table table-bordered table-striped riwayat' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+            echo"<div class='row'>
+            
+            <!-- Pie Chart Card (First, Left Side) -->
+            <div class='col-md-4 mb-4'>
+              <div class='card card-danger card-outline shadow-sm'>
+                <div class='card-header bg-gradient-danger text-white'>
+                  <i class='fa-solid fa-chart-pie me-2'></i>
+                  <h3 class='card-title mb-0'>Statistik Diagnosis</h3>
+                  <div class='card-tools'>
+                    <button type='button' class='btn btn-tool text-white' data-bs-toggle='collapse' data-bs-target='#chartCollapse' aria-expanded='true'>
+                      <i class='fa-solid fa-minus'></i>
+                    </button>
+                  </div>
+                </div>
+                <div class='card-body collapse show' id='chartCollapse'>
+                  <canvas id='donutChart' style='height:300px; max-height:300px;'></canvas>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Table (Right Side) -->
+            <div class='col-md-8'><table class='table table-bordered table-striped riwayat' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -70,33 +91,11 @@ switch ($_GET['act'] ?? '') {
                 $counter++;
             }
             }
-            echo "</tbody></table></div>";
+            echo "</tbody></table></div></div>";
             ?>
 
-            <div class="col-md-4">
-              <!-- Pie chart temporarily hidden as per user request -->
-              <div class="card card-success card-outline" style="display: none;">
-                <div class="card-header">
-                  <i class="fa-solid fa-chart-pie"></i>
-
-                  <h3 class="card-title">Grafik</h3>
-
-                  <div class="card-tools float-end">
-                    <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa-solid fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa-solid fa-xmark"></i></button>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <canvas id="donutChart" style="height:250px;"></canvas>
-                </div>
-                <!-- /.card-body-->
-              </div>
-            </div>
-
-
             <?php
-            echo "</div><div class='col-md-12'><div class='row'><div class=paging>";
+            echo "<div class='col-md-12'><div class='row'><div class=paging>";
 
             if ($offset != 0) {
                 $prevoffset = $offset - $limit;
