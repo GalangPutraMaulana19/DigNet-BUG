@@ -149,7 +149,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="./" class="brand-link">
-                <img src="gambar/admin/favicon.png" alt="DigNet Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="gambar/admin/dignet-logo.svg" alt="DigNet Logo" class="brand-image elevation-3" style="opacity: .95">
                 <span class="brand-text font-weight-light">DigNet 2.0</span>
             </a>
 
