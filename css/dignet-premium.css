@@ -1737,17 +1737,22 @@ html, body {
 
 .modal-backdrop {
     z-index: 1055 !important;
+    pointer-events: auto !important;
 }
 
-/* Make sure footer button is clickable */
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+
+/* Make sure footer button is clickable and above backdrop */
 .main-footer {
-    z-index: 1000;
+    z-index: 1056;
     position: relative;
 }
 
 .main-footer .btn {
     position: relative;
-    z-index: 1001;
+    z-index: 1057;
     pointer-events: auto;
 }
 
