@@ -1365,6 +1365,13 @@ html {
     background: white;
     border-top: 1px solid var(--neutral-200);
     margin-top: auto;
+    margin-left: 250px; /* Match sidebar width */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* When sidebar is collapsed */
+.sidebar-collapse .main-footer {
+    margin-left: 0;
 }
 
 /* Ensure content doesn't overlap with fixed elements */
@@ -1642,6 +1649,7 @@ body.sidebar-collapse .content-wrapper {
     /* Footer stacking */
     .main-footer {
         padding: var(--space-3) !important;
+        margin-left: 0 !important; /* Full width on mobile */
     }
     
     .main-footer .float-end {
