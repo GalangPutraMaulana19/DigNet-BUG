@@ -16,9 +16,9 @@
 ?>
 
 <!-- Premium Hero Section (Static - No Carousel) -->
-<section class="hero-section-static" style="background: var(--gradient-primary); padding: 4rem 2rem; border-radius: var(--radius-2xl); margin-bottom: var(--space-8); box-shadow: var(--shadow-2xl); position: relative; overflow: hidden;">
+<section class="hero-section-static" style="background: var(--gradient-primary); padding: 5rem 2rem 4rem; border-radius: var(--radius-2xl); margin-bottom: var(--space-8); box-shadow: var(--shadow-2xl); position: relative; overflow: hidden; align-self: flex-start; width: 100%;">
     <!-- Hero Content -->
-    <div class="hero-content" style="position: relative; z-index: 2; text-align: center; color: white; max-width: 900px; margin: 0 auto;">
+    <div class="hero-content">
         <div class="hero-badge" style="display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-5);">
             <i class="fa-solid fa-star"></i>
             <span>Sistem Pakar Diagnosis Gangguan IndiHome</span>
