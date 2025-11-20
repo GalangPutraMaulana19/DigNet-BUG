@@ -36,7 +36,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
     <?php else: ?>
         <!-- Development Fallback: Bootstrap 5 + AdminLTE v4 from CDN -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="aset/AdminLTE.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta2/dist/css/adminlte.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="css/dignet-modern.css">
     <?php endif; ?>
     
@@ -253,14 +253,12 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
             pushMenuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Toggle sidebar collapse class
+                // Toggle sidebar collapse class (AdminLTE v4 compatible)
                 if (body.classList.contains('sidebar-collapse')) {
                     body.classList.remove('sidebar-collapse');
-                    body.classList.add('sidebar-open');
                     localStorage.setItem('sidebar-state', 'open');
                 } else {
                     body.classList.add('sidebar-collapse');
-                    body.classList.remove('sidebar-open');
                     localStorage.setItem('sidebar-state', 'collapsed');
                 }
             });
@@ -270,9 +268,8 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
         const sidebarState = localStorage.getItem('sidebar-state');
         if (sidebarState === 'collapsed') {
             body.classList.add('sidebar-collapse');
-        } else if (sidebarState === 'open') {
-            body.classList.add('sidebar-open');
         }
+        // No need to add 'sidebar-open' class - AdminLTE v4 uses only 'sidebar-collapse'
         
         // On mobile, hide sidebar by default
         if (window.innerWidth <= 991) {
