@@ -238,7 +238,7 @@ include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
         <!-- Development Fallback: Bootstrap 5 + Dependencies from CDN -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" integrity="sha384-JJUFkVbeZ4z/F4FxlpNlPRVaLd+E8KlLNlBsI1p3xAYTslp4jZ8fl2/AMtnqGmUb" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" crossorigin="anonymous"></script>
     <?php endif; ?>
     
     <!-- AdminLTE v4 Compatible Sidebar Toggle Script -->
