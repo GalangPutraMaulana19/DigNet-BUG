@@ -127,6 +127,40 @@
 
 ## 2. Framework dan Library
 
+### Overview: Framework Stack Summary
+
+The system uses a modern, layered framework architecture:
+
+**CSS Framework Layer:**
+- **Bootstrap 5.3.3** - Primary responsive CSS framework
+  - Mobile-first grid system
+  - Pre-built UI components
+  - Utility classes
+  - No jQuery dependency
+
+**Admin Template Layer:**
+- **AdminLTE 4.0.0-beta.2** - Admin dashboard template
+  - Built on Bootstrap 5
+  - Professional admin layouts
+  - Dashboard components
+
+**JavaScript Libraries:**
+- **Vanilla JavaScript (ES6+)** - Primary scripting (no framework)
+- **jQuery 1.11.3/3.x** - Legacy support for plugins
+- **Chart.js 4.4.7** - Data visualization
+- **Font Awesome 6.6.0** - Icon library
+
+**CSS Preprocessing:**
+- **Sass/SCSS 1.81.0** - CSS preprocessor
+
+**Build Pipeline:**
+- **Vite.js 5.4.11** - Modern build tool and dev server
+- **npm** - Package management
+
+**Important Note**: This system does **NOT** use JavaScript frameworks like React, Vue, or Angular. It uses **Vanilla JavaScript (ES6+)** with supporting libraries.
+
+---
+
 ### 2.1 Bootstrap 5
 - **Versi**: 5.3.3
 - **Jenis**: Frontend CSS Framework
@@ -365,30 +399,121 @@ RewriteRule ^riwayat-detail/([0-9]+)/?$ index.php?module=riwayat-detail&id=$1 [N
 
 ---
 
-### 6.2 Vite
+### 6.2 Vite.js
 - **Versi**: 5.4.11
-- **Jenis**: Build Tool & Development Server
-- **Fungsi**:
-  - Fast development server with Hot Module Replacement (HMR)
-  - Production build optimization
-  - Asset bundling
-  - SCSS/Sass compilation
+- **Jenis**: Modern Build Tool & Development Server
+- **Developer**: Evan You (creator of Vue.js)
 
-**Konfigurasi**:
+**Fungsi dalam Sistem**:
+1. **Lightning Fast Development Server**
+   - Instant server startup (under 1 second)
+   - Hot Module Replacement (HMR) with instant feedback
+   - Native ES modules support - no bundling during dev
+   - Preserves application state during updates
+
+2. **Asset Bundling & Optimization**
+   - Bundle JavaScript modules (ES6+)
+   - Compile SCSS/Sass to CSS
+   - Optimize images and static assets
+   - Generate hashed filenames for cache busting
+
+3. **Production Build**
+   - Uses Rollup for optimized bundling
+   - Automatic code splitting
+   - Tree shaking to eliminate dead code
+   - Aggressive minification
+   - Optimal bundle size
+
+**Key Features**:
+- **Native ES Modules**: Leverages browser's native `import` capability
+- **Plugin System**: Compatible with Rollup plugins
+- **Framework Agnostic**: Works with any framework or vanilla JS
+- **Simple Configuration**: Minimal config with powerful defaults
+- **Rich Ecosystem**: Large community and plugin support
+
+**Konfigurasi dalam Sistem**:
 ```javascript
+// vite.config.js
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
 export default defineConfig({
   root: '.',
   base: '/dignet/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    manifest: true
+    manifest: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'src/js/app.js'),
+        styles: resolve(__dirname, 'src/scss/app.scss')
+      },
+      output: {
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    }
+  },
+  server: {
+    port: 3000,
+    proxy: {
+      '/dignet': {
+        target: 'http://localhost',
+        changeOrigin: true
+      }
+    }
   }
 });
 ```
 
+**Development Workflow**:
+```bash
+# Start development server
+npm run dev
+# → Vite dev server starts at http://localhost:3000
+# → HMR active, changes reflect instantly
+
+# Build for production
+npm run build
+# → Compiles and optimizes all assets
+# → Output: dist/assets/app.[hash].css, app.[hash].js
+
+# Preview production build
+npm run preview
+# → Test production build locally
+```
+
+**Integration dengan Teknologi Lain**:
+- **npm**: Package manager for dependencies
+- **Sass**: CSS preprocessing
+- **Bootstrap 5**: Imported as npm package
+- **AdminLTE 4**: Imported as npm package
+- **Chart.js**: Imported as npm package
+- **Rollup**: Production bundler
+- **ES6+ JavaScript**: Native support without transpilation
+
+**Keuntungan Menggunakan Vite**:
+1. **Performance**: 10-100x faster than Webpack
+2. **Developer Experience**: Instant feedback loop
+3. **Modern**: Embraces ES modules and modern browser features
+4. **Simple**: Minimal configuration, works out of the box
+5. **Optimized**: Best practices for production builds built-in
+6. **Future-proof**: Architecture aligned with web standards
+
+**Alasan Pemilihan**:
+- Dramatically improves development experience
+- No waiting for slow rebuilds
+- Modern approach using native ES modules
+- Excellent production optimization
+- Simple yet powerful configuration
+- Growing ecosystem and community
+- Better than older tools (Webpack, Parcel, Gulp)
+
 **Referensi untuk Skripsi**:
 - Evan You & Vite Team. (2024). "Vite - Next Generation Frontend Tooling". https://vitejs.dev/
+- Osmani, A. (2023). "Modern Web Development with Vite". Web.dev.
 
 ---
 
@@ -726,22 +851,28 @@ Semua library dan framework yang digunakan adalah open source:
 | Category | Technology | Version | Purpose |
 |----------|-----------|---------|---------|
 | **Backend** | PHP | 7.4+ / 8.x | Server-side logic, FC & CF algorithms |
-| **Frontend** | HTML5/CSS3 | Latest | Markup & styling |
-| **Framework** | Bootstrap | 5.3.3 | Responsive UI framework |
-| **Admin UI** | AdminLTE | 4.0.0-beta.2 | Admin dashboard template |
-| **JavaScript** | Vanilla JS | ES6+ | Client-side interactivity |
-| **Library** | jQuery | 3.x | Legacy support, plugins |
-| **Charts** | Chart.js | 4.4.7 | Data visualization |
+| **Frontend** | HTML5/CSS3/JS | Latest / ES6+ | Markup, styling & interactivity |
+| **CSS Framework** | Bootstrap | 5.3.3 | Responsive UI framework |
+| **Admin Template** | AdminLTE | 4.0.0-beta.2 | Admin dashboard template |
+| **JavaScript** | Vanilla JS | ES6+ | Client-side scripting (primary) |
+| **JS Library** | jQuery | 1.11.3 / 3.x | Legacy support, plugins |
+| **Visualization** | Chart.js | 4.4.7 | Data visualization charts |
 | **Icons** | Font Awesome | 6.6.0 | Icon library |
-| **Database** | MySQL/MariaDB | 5.7+ / 10.4.14+ | Data persistence |
-| **Web Server** | Apache | 2.4+ | HTTP server |
-| **Preprocessor** | Sass/SCSS | 1.81.0 | CSS preprocessing |
-| **Build Tool** | Vite | 5.4.11 | Development & build |
+| **CSS Preprocessor** | Sass/SCSS | 1.81.0 | CSS preprocessing |
+| **Build Tool** | Vite.js | 5.4.11 | Dev server, HMR, bundling |
 | **Package Manager** | npm | Latest | Dependency management |
-| **Version Control** | Git | Latest | Source control |
-| **Diagram** | Mermaid | Latest | Documentation diagrams |
+| **Database** | MySQL/MariaDB | 5.7+ / 10.4.14+ | Data persistence (RDBMS) |
+| **Web Server** | Apache | 2.4+ | HTTP server |
+| **Version Control** | Git & GitHub | Latest | Source control & collaboration |
+| **Documentation** | Mermaid | Latest | Diagram generation |
 | **Algorithm** | Forward Chaining | - | Inference engine |
 | **Algorithm** | Certainty Factor | - | Uncertainty handling |
+
+**Framework Classification:**
+- **CSS Framework**: Bootstrap 5.3.3
+- **Admin Framework**: AdminLTE 4.0.0-beta.2
+- **JavaScript**: Vanilla JS (no framework like React/Vue/Angular)
+- **Build Tool**: Vite.js 5.4.11
 
 ---
 

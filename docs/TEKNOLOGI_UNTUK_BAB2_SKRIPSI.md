@@ -27,12 +27,14 @@ Sistem Pakar Diagnosis Gangguan IndiHome ini dibangun menggunakan kombinasi tekn
 |----------|-----------|-------|--------------|
 | **Backend Language** | PHP | 7.4+ / 8.x | Logika bisnis, algoritma FC & CF |
 | **Frontend Language** | HTML5, CSS3, JavaScript | Latest / ES6+ | Antarmuka pengguna |
-| **CSS Framework** | Bootstrap | 5.3.3 | Responsive design |
-| **Admin Template** | AdminLTE | 4.0.0-beta2 | Dashboard admin |
+| **CSS Framework** | Bootstrap | 5.3.3 | Responsive design framework |
+| **Admin Template** | AdminLTE | 4.0.0-beta2 | Dashboard admin template |
+| **JS Libraries** | Chart.js, jQuery, Font Awesome | 4.4.7, 3.x, 6.6.0 | Visualisasi, DOM, Icons |
+| **CSS Preprocessor** | Sass/SCSS | 1.81.0 | CSS preprocessing |
+| **Build Tool** | Vite.js | 5.4.11 | Dev server, HMR, bundling |
+| **Package Manager** | npm | Latest | Manajemen dependensi |
 | **Database** | MySQL / MariaDB | 5.7+ / 10.4.14+ | Penyimpanan data |
 | **Web Server** | Apache | 2.4+ | HTTP Server |
-| **Build Tool** | Vite | 5.4.11 | Asset bundling |
-| **Package Manager** | npm | Latest | Manajemen dependensi |
 
 ### 1.2 Alasan Pemilihan Teknologi
 
@@ -62,6 +64,75 @@ Sistem Pakar Diagnosis Gangguan IndiHome ini dibangun menggunakan kombinasi tekn
 - Sudah terintegrasi dengan Bootstrap
 - Menyediakan layout dashboard yang modern
 - Mempercepat pengembangan interface admin
+
+**1.2.5 Vite.js**
+- Build tool modern dengan HMR instant
+- Development server yang sangat cepat
+- Optimized production build dengan Rollup
+- Native ES modules support
+- Meningkatkan development experience secara signifikan
+
+### 1.3 Ringkasan Framework dan Library yang Digunakan
+
+Sistem ini menggunakan kombinasi framework dan library berikut:
+
+**Framework CSS:**
+- **Bootstrap 5.3.3** - Framework CSS utama untuk responsive design
+  - Grid system 12-column
+  - Pre-built UI components (buttons, forms, cards, modals, tables)
+  - Mobile-first approach
+  - Utility classes
+  - No jQuery dependency (Bootstrap 5+)
+
+**Framework Admin:**
+- **AdminLTE 4.0.0-beta.2** - Template dashboard admin
+  - Built on top of Bootstrap 5
+  - Ready-to-use admin layouts
+  - Sidebar navigation
+  - Dashboard components
+  - Modern ES6+ JavaScript
+
+**JavaScript Libraries:**
+- **jQuery 1.11.3 / 3.x** - JavaScript library (legacy support)
+  - DOM manipulation
+  - AJAX requests
+  - Plugin ecosystem (Owl Carousel, Magnific Popup)
+  - Note: Sistem sedang migrasi ke Vanilla JS modern
+
+- **Chart.js 4.4.7** - Data visualization library
+  - Interactive charts dan graphs
+  - Responsive charts
+  - Multiple chart types (bar, line, pie, doughnut)
+  - Canvas-based rendering
+
+- **Font Awesome 6.6.0** - Icon library
+  - 10,000+ icons
+  - Solid, regular, dan brands icon sets
+  - Vector icons (scalable)
+  - CSS-based implementation
+
+**CSS Preprocessor:**
+- **Sass/SCSS 1.81.0** - CSS preprocessor
+  - Nested rules
+  - Variables dan mixins
+  - Modular CSS architecture
+  - Import management
+
+**Build Tool:**
+- **Vite.js 5.4.11** - Modern build tool
+  - Development server dengan HMR
+  - Asset bundling dan optimization
+  - Sass/SCSS compilation
+  - Production build dengan Rollup
+
+**Package Manager:**
+- **npm** - Node Package Manager
+  - Dependency management
+  - Script runner
+  - Package installation
+
+**Catatan Penting:**
+Sistem ini **TIDAK menggunakan** framework JavaScript seperti React, Vue, atau Angular. Sistem menggunakan **Vanilla JavaScript (ES6+)** untuk client-side scripting dengan bantuan library seperti Bootstrap JS, Chart.js, dan jQuery (legacy).
 
 ---
 
@@ -1228,15 +1299,172 @@ Sistem pakar ini memiliki komponen standar:
 
 ---
 
-### 7.4 Vite
+### 7.4 Vite.js
 
-**Jenis**: Build tool dan dev server
-**Versi**: 5.4.11
+**7.4.1 Definisi**
 
-**Fungsi**:
-- Fast HMR (Hot Module Replacement)
-- Asset bundling
-- CSS preprocessing (Sass)
+Vite.js adalah modern build tool dan development server yang dikembangkan oleh Evan You (creator Vue.js). Vite memberikan pengalaman development yang sangat cepat dengan memanfaatkan native ES modules dan Hot Module Replacement (HMR) yang instant.
+
+**7.4.2 Versi yang Digunakan**
+
+**Vite 5.4.11** - versi stabil terbaru dengan performa optimal
+
+**7.4.3 Karakteristik Vite**
+
+1. **Lightning Fast HMR (Hot Module Replacement)**
+   - Update instan saat development tanpa perlu reload full page
+   - Preserves application state selama development
+   - Feedback loop yang sangat cepat untuk developer
+
+2. **Native ES Modules**
+   - Memanfaatkan native `import` dan `export` dari browser
+   - No bundling during development
+   - Startup yang sangat cepat bahkan untuk project besar
+
+3. **Optimized Build**
+   - Production build menggunakan Rollup
+   - Code splitting otomatis
+   - Asset optimization
+   - Tree shaking untuk menghilangkan dead code
+
+4. **Universal Plugin Interface**
+   - Compatible dengan Rollup plugins
+   - Extensible architecture
+   - Support untuk berbagai framework
+
+**7.4.4 Fungsi dalam Sistem**
+
+Dalam sistem DigNet, Vite.js berperan sebagai:
+
+1. **Development Server**
+   - Menyediakan development server dengan port 3000
+   - Auto-reload saat file berubah
+   - Fast HMR untuk instant feedback
+   - Proxy configuration untuk PHP backend
+
+2. **Asset Bundling**
+   - Bundle JavaScript modules (ES6+)
+   - Compile SCSS/Sass ke CSS
+   - Optimize images dan static assets
+   - Generate hashed filenames untuk cache busting
+
+3. **Build Tool untuk Production**
+   - Minifikasi JavaScript dan CSS
+   - Code splitting untuk optimal loading
+   - Generate production-ready assets di folder `dist/`
+   - Create manifest file untuk asset tracking
+
+**7.4.5 Konfigurasi dalam Sistem**
+
+File konfigurasi: `vite.config.js`
+
+```javascript
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+export default defineConfig({
+  root: '.',
+  base: '/dignet/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    manifest: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'src/js/app.js'),
+        styles: resolve(__dirname, 'src/scss/app.scss')
+      },
+      output: {
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    }
+  },
+  server: {
+    port: 3000,
+    proxy: {
+      '/dignet': {
+        target: 'http://localhost',
+        changeOrigin: true
+      }
+    }
+  }
+});
+```
+
+**Penjelasan Konfigurasi**:
+
+- **root**: Base directory untuk project
+- **base**: Base public path untuk production
+- **build.outDir**: Output directory untuk production build (`dist/`)
+- **build.manifest**: Generate manifest.json untuk asset mapping
+- **rollupOptions.input**: Entry points untuk bundling (app.js dan app.scss)
+- **rollupOptions.output**: Pattern untuk generated filenames dengan hash
+- **server.port**: Development server berjalan di port 3000
+- **server.proxy**: Proxy requests `/dignet` ke Apache server di localhost
+
+**7.4.6 Workflow Development dengan Vite**
+
+**Development Mode**:
+```bash
+npm run dev
+# Vite starts dev server di http://localhost:3000
+# HMR aktif, perubahan langsung terlihat
+```
+
+**Production Build**:
+```bash
+npm run build
+# Vite compile dan optimize semua assets
+# Output: dist/assets/app.[hash].css dan app.[hash].js
+```
+
+**7.4.7 Keuntungan Menggunakan Vite**
+
+1. **Development Experience**
+   - Startup server instant (<1 detik)
+   - HMR yang sangat cepat
+   - No waiting untuk rebuild
+
+2. **Modern JavaScript**
+   - Native ES modules support
+   - ES6+ features out of the box
+   - No transpilation needed in development
+
+3. **Optimized Production**
+   - Tree shaking otomatis
+   - Code splitting
+   - Minifikasi aggressive
+   - Optimal bundle size
+
+4. **Developer Friendly**
+   - Clear error messages
+   - Built-in support untuk CSS preprocessors (Sass)
+   - Simple configuration
+   - Rich plugin ecosystem
+
+**7.4.8 Integrasi dengan Teknologi Lain**
+
+Vite.js terintegrasi dengan:
+- **npm**: Package manager untuk dependencies
+- **Sass**: CSS preprocessing
+- **Bootstrap 5**: CSS framework (imported via npm)
+- **AdminLTE 4**: Admin template (imported via npm)
+- **Chart.js**: Visualization library (imported via npm)
+- **Rollup**: Production bundler
+
+**7.4.9 Alasan Pemilihan Vite**
+
+1. **Performance**: Jauh lebih cepat dibanding Webpack atau Parcel
+2. **Modern**: Memanfaatkan fitur browser modern (ES modules)
+3. **Simple Configuration**: Config minimal tapi powerful
+4. **Future-proof**: Arsitektur yang modern dan sustainable
+5. **Developer Experience**: Instant feedback loop meningkatkan produktivitas
+
+**Referensi**:
+- Evan You & Vite Team. (2024). "Vite - Next Generation Frontend Tooling". https://vitejs.dev/
+- Osmani, A. (2023). "Modern Web Development with Vite". Web.dev.
 
 ---
 
