@@ -1,6 +1,13 @@
 <?php
 if ($module == ""){
-include "modul/welcome.php";
+    // Check if user is logged in as admin
+    if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+        // Admin user - show dashboard
+        include "modul/dashboard.php";
+    } else {
+        // Regular user - show welcome page
+        include "modul/welcome.php";
+    }
 }elseif ($module == "tentang"){
 include "modul/tentang.php";
 }elseif ($module == "bantuan"){
