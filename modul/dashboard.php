@@ -1,7 +1,6 @@
 <title>Dashboard Admin - DigNet 2.0</title>
 
 <?php 
-session_start();
 // Check if user is logged in as admin
 if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
     header('location:index.php');
