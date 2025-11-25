@@ -30,7 +30,7 @@ node_modules/
 bower_components/
 
 # Build artifacts
-dist/
+# dist/  # Keep dist for production deployment
 build/
 
 # OS specific

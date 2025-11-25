@@ -1,16 +1,24 @@
-// AdminLTE v4 + Bootstrap 5 Main Styles
-// Import order matters!
+// DigNet v2.0 - Modern SCSS Architecture
+// AdminLTE v4 + Bootstrap 5 + Optimized Builds
 
-// 1. Bootstrap 5
+// ========================================
+// 1. Bootstrap 5 (with custom config)
+// ========================================
 @import 'bootstrap/scss/bootstrap';
 
-// 2. AdminLTE v4
+// ========================================
+// 2. AdminLTE v4 CSS
+// ========================================
 @import 'admin-lte/dist/css/adminlte.css';
 
-// 3. Font Awesome 6
+// ========================================
+// 3. Font Awesome 6 Icons
+// ========================================
 @import '@fortawesome/fontawesome-free/css/all.css';
 
-// 4. Custom DigNet styles
+// ========================================
+// 4. Custom DigNet Styles
+// ========================================
 @import 'custom/variables';
 @import 'custom/components';
 @import 'custom/utilities';
