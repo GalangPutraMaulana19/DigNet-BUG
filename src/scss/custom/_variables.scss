@@ -1,58 +1,160 @@
-// DigNet IndiHome Custom Variables
-// Override Bootstrap 5 and AdminLTE v4 defaults
+// DigNet Premium Variables
+// Modern SaaS-style design with glassmorphism
 // This file is forwarded as a module with `@use`
 
-// IndiHome Telkom Branding Colors
-$primary: #E21E2C !default;        // Telkom Red
-$secondary: #424242 !default;
-$success: #4CAF50 !default;
-$info: #2196F3 !default;
-$warning: #FF9800 !default;
-$danger: #F44336 !default;
+// ================================================
+// PREMIUM SAAS COLOR PALETTE
+// Purple-Blue Gradient Theme
+// ================================================
 
-// Grays
-$gray-100: #f5f5f5 !default;
-$gray-200: #eeeeee !default;
-$gray-300: #e0e0e0 !default;
-$gray-600: #757575 !default;
-$gray-900: #212121 !default;
+// Primary Gradient Colors (Purple-Blue)
+$primary: #667eea !default;              // Primary Purple
+$primary-light: #818cf8 !default;        // Lighter Purple
+$primary-dark: #5b4cdb !default;         // Darker Purple
+$secondary: #764ba2 !default;            // Secondary Purple
+$secondary-light: #9f7aea !default;      // Lighter
+$secondary-dark: #553c9a !default;       // Darker
 
-// Typography
-$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
+// Accent Colors
+$accent: #f093fb !default;               // Pink accent
+$accent-light: #f5a8fc !default;
+$success: #10b981 !default;              // Modern Emerald
+$info: #06b6d4 !default;                 // Modern Cyan
+$warning: #f59e0b !default;              // Modern Amber
+$danger: #ef4444 !default;               // Modern Red
+
+// Neutral Colors
+$gray-50: #f9fafb !default;
+$gray-100: #f3f4f6 !default;
+$gray-200: #e5e7eb !default;
+$gray-300: #d1d5db !default;
+$gray-400: #9ca3af !default;
+$gray-500: #6b7280 !default;
+$gray-600: #4b5563 !default;
+$gray-700: #374151 !default;
+$gray-800: #1f2937 !default;
+$gray-900: #111827 !default;
+
+// Dark Theme Base
+$dark-bg: #0f0f23 !default;
+$dark-surface: #1a1a2e !default;
+$dark-card: #16213e !default;
+
+// ================================================
+// PREMIUM GRADIENTS
+// ================================================
+$gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !default;
+$gradient-primary-reverse: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !default;
+$gradient-accent: linear-gradient(135deg, #667eea 0%, #f093fb 100%) !default;
+$gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !default;
+$gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !default;
+$gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%) !default;
+$gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%) !default;
+$gradient-info: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%) !default;
+$gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%) !default;
+$gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !default;
+
+// ================================================
+// TYPOGRAPHY
+// ================================================
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !default;
+$font-family-heading: 'Space Grotesk', 'Inter', -apple-system, sans-serif !default;
 $font-size-base: 1rem !default;
-$line-height-base: 1.5 !default;
+$line-height-base: 1.6 !default;
 
-// Border Radius
-$border-radius: 0.5rem !default;
-$border-radius-sm: 0.25rem !default;
-$border-radius-lg: 0.75rem !default;
+// ================================================
+// BORDER RADIUS (Modern, Larger)
+// ================================================
+$border-radius-sm: 0.5rem !default;
+$border-radius: 0.75rem !default;
+$border-radius-lg: 1rem !default;
+$border-radius-xl: 1.5rem !default;
+$border-radius-2xl: 2rem !default;
+$border-radius-full: 9999px !default;
 
-// Shadows
-$box-shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !default;
-$box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !default;
-$box-shadow-lg: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !default;
+// ================================================
+// SHADOWS (Layered for depth)
+// ================================================
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !default;
+$box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !default;
+$box-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !default;
+$box-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !default;
+$box-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !default;
+$box-shadow-glow: 0 0 30px rgba(102, 126, 234, 0.4) !default;
+$box-shadow-glow-accent: 0 0 30px rgba(240, 147, 251, 0.4) !default;
 
-// Transitions
-$transition-base: all 0.3s ease !default;
-$transition-fast: all 0.2s ease !default;
+// ================================================
+// GLASSMORPHISM
+// ================================================
+$glass-bg: rgba(255, 255, 255, 0.1) !default;
+$glass-bg-light: rgba(255, 255, 255, 0.15) !default;
+$glass-bg-dark: rgba(0, 0, 0, 0.2) !default;
+$glass-border: rgba(255, 255, 255, 0.2) !default;
+$glass-blur: blur(20px) !default;
+$glass-blur-sm: blur(10px) !default;
+$glass-blur-lg: blur(30px) !default;
 
-// Performance: CSS Custom Properties (cascading)
+// ================================================
+// TRANSITIONS
+// ================================================
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) !default;
+
+// ================================================
+// SPACING
+// ================================================
+$space-1: 0.25rem !default;
+$space-2: 0.5rem !default;
+$space-3: 0.75rem !default;
+$space-4: 1rem !default;
+$space-5: 1.25rem !default;
+$space-6: 1.5rem !default;
+$space-8: 2rem !default;
+$space-10: 2.5rem !default;
+$space-12: 3rem !default;
+$space-16: 4rem !default;
+
+// ================================================
+// CSS CUSTOM PROPERTIES
+// ================================================
 :root {
+  // Colors
   --dignet-primary: #{$primary};
+  --dignet-primary-light: #{$primary-light};
+  --dignet-primary-dark: #{$primary-dark};
   --dignet-secondary: #{$secondary};
+  --dignet-accent: #{$accent};
   --dignet-success: #{$success};
   --dignet-info: #{$info};
   --dignet-warning: #{$warning};
   --dignet-danger: #{$danger};
   
-  --dignet-shadow-sm: #{$box-shadow-sm};
-  --dignet-shadow: #{$box-shadow};
-  --dignet-shadow-lg: #{$box-shadow-lg};
+  // Gradients
+  --gradient-primary: #{$gradient-primary};
+  --gradient-accent: #{$gradient-accent};
+  --gradient-hero: #{$gradient-hero};
   
-  --dignet-radius: #{$border-radius};
-  --dignet-radius-sm: #{$border-radius-sm};
-  --dignet-radius-lg: #{$border-radius-lg};
+  // Glassmorphism
+  --glass-bg: #{$glass-bg};
+  --glass-border: #{$glass-border};
+  --glass-blur: #{$glass-blur};
   
-  --dignet-transition: #{$transition-base};
-  --dignet-transition-fast: #{$transition-fast};
+  // Shadows
+  --shadow-sm: #{$box-shadow-sm};
+  --shadow: #{$box-shadow};
+  --shadow-lg: #{$box-shadow-lg};
+  --shadow-glow: #{$box-shadow-glow};
+  
+  // Radius
+  --radius-sm: #{$border-radius-sm};
+  --radius: #{$border-radius};
+  --radius-lg: #{$border-radius-lg};
+  --radius-xl: #{$border-radius-xl};
+  --radius-2xl: #{$border-radius-2xl};
+  
+  // Transitions
+  --transition: #{$transition-base};
+  --transition-fast: #{$transition-fast};
 }
