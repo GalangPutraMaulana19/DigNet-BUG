@@ -543,4 +543,870 @@ const kondisiColors = {
 
 ---
 
+## 📐 UML & Flowcharts (Text-Based Diagrams)
+
+### Entity Relationship Diagram (ERD)
+
+```
+┌─────────────────┐       ┌────────────────────────┐       ┌─────────────────┐
+│     ADMIN       │       │   BASIS_PENGETAHUAN    │       │    INCIDENT     │
+├─────────────────┤       ├────────────────────────┤       ├─────────────────┤
+│ PK username     │       │ PK kode_pengetahuan    │       │ PK kode_incident│
+│    password     │       │ FK kode_repair    ─────┼───┐   │    nama_incident│
+│    nama_lengkap │       │ FK kode_incident  ─────┼───┼───┤                 │
+└─────────────────┘       │    mb                  │   │   └─────────────────┘
+                          │    md                  │   │
+┌─────────────────┐       └────────────────────────┘   │   ┌─────────────────┐
+│     HASIL       │                                    │   │    KONDISI      │
+├─────────────────┤       ┌────────────────────────┐   │   ├─────────────────┤
+│ PK id_hasil     │       │       REPAIR           │   │   │ PK id           │
+│    tanggal      │       ├────────────────────────┤   │   │    kondisi      │
+│    repair (ser) │       │ PK kode_repair    ─────┼───┘   │    ket          │
+│    incident(ser)│       │    nama_repair         │       └─────────────────┘
+│ FK hasil_id ────┼──────▶│    det_repair          │
+│    hasil_nilai  │       │    srn_repair          │       ┌─────────────────┐
+└─────────────────┘       │    gambar              │       │      POST       │
+                          └────────────────────────┘       ├─────────────────┤
+                                                           │ PK kode_post    │
+                                                           │    nama_post    │
+                                                           │    det_post     │
+                                                           │    srn_post     │
+                                                           │    gambar       │
+                                                           └─────────────────┘
+
+Relasi:
+- BASIS_PENGETAHUAN.kode_repair → REPAIR.kode_repair (Many-to-One)
+- BASIS_PENGETAHUAN.kode_incident → INCIDENT.kode_incident (Many-to-One)
+- HASIL.hasil_id → REPAIR.kode_repair (Many-to-One)
+```
+
+---
+
+### Use Case Diagram
+
+```
+                    ┌─────────────────────────────────────────────────────────┐
+                    │                    SISTEM DIGNET                         │
+                    │                                                          │
+    ┌───────┐       │  ┌──────────────────┐    ┌──────────────────────┐       │
+    │       │       │  │ Diagnosa Gangguan│    │ Lihat Riwayat       │        │
+    │ GUEST │───────┼──│                  │    │ Diagnosis           │        │
+    │ USER  │       │  └──────────────────┘    └──────────────────────┘       │
+    │       │───────┼──│                  │    ┌──────────────────────┐       │
+    └───────┘       │  │ Lihat Keterangan │    │ Lihat Info Harga    │        │
+                    │  │ Gangguan         │    │                     │        │
+                    │  └──────────────────┘    └──────────────────────┘       │
+                    │                                                          │
+                    │  ═══════════════════════════════════════════════════════│
+                    │                                                          │
+    ┌───────┐       │  ┌──────────────────┐    ┌──────────────────────┐       │
+    │       │       │  │ Login            │───▶│ Logout               │       │
+    │ ADMIN │───────┼──│                  │    │                      │       │
+    │ PAKAR │       │  └──────────────────┘    └──────────────────────┘       │
+    │       │       │                                                          │
+    │       │───────┼──┌──────────────────┐    ┌──────────────────────┐       │
+    │       │       │  │ CRUD Gangguan    │    │ CRUD Gejala          │       │
+    │       │       │  │ (Repair)         │    │ (Incident)           │       │
+    │       │       │  └──────────────────┘    └──────────────────────┘       │
+    │       │       │                                                          │
+    │       │───────┼──┌──────────────────┐    ┌──────────────────────┐       │
+    │       │       │  │ CRUD Basis       │    │ CRUD Admin           │       │
+    │       │       │  │ Pengetahuan      │    │                      │       │
+    │       │       │  └──────────────────┘    └──────────────────────┘       │
+    │       │       │                                                          │
+    │       │───────┼──┌──────────────────┐    ┌──────────────────────┐       │
+    └───────┘       │  │ CRUD Post        │    │ Ubah Password        │       │
+                    │  │ Keterangan       │    │                      │       │
+                    │  └──────────────────┘    └──────────────────────┘       │
+                    │                                                          │
+                    │  ┌──────────────────┐                                    │
+                    │  │ Dashboard        │                                    │
+                    │  │ Statistik        │                                    │
+                    │  └──────────────────┘                                    │
+                    └─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Sequence Diagram - Proses Diagnosis
+
+```
+┌─────┐          ┌─────────┐          ┌────────────┐          ┌──────────┐          ┌─────────┐
+│User │          │diagnosa │          │basis_penge-│          │  repair  │          │ hasil   │
+│     │          │  .php   │          │  tahuan    │          │  table   │          │ table   │
+└──┬──┘          └────┬────┘          └─────┬──────┘          └────┬─────┘          └────┬────┘
+   │                  │                     │                      │                     │
+   │ 1. GET ?module=  │                     │                      │                     │
+   │    diagnosa      │                     │                      │                     │
+   │─────────────────▶│                     │                      │                     │
+   │                  │                     │                      │                     │
+   │                  │ 2. SELECT * FROM    │                      │                     │
+   │                  │    incident         │                      │                     │
+   │                  │────────────────────▶│                      │                     │
+   │                  │                     │                      │                     │
+   │                  │◀───────────────────┤│ return all incidents │                     │
+   │                  │                     │                      │                     │
+   │◀─────────────────│ 3. Render form     │                      │                     │
+   │  Form + gejala   │    with symptoms   │                      │                     │
+   │                  │                     │                      │                     │
+   │ 4. POST kondisi[]│                     │                      │                     │
+   │   (gejala+bobot) │                     │                      │                     │
+   │─────────────────▶│                     │                      │                     │
+   │                  │                     │                      │                     │
+   │                  │ 5. SELECT * FROM repair                    │                     │
+   │                  │────────────────────────────────────────────▶                     │
+   │                  │                     │                      │                     │
+   │                  │◀───────────────────────────────────────────│ return all repairs  │
+   │                  │                     │                      │                     │
+   │                  │ 6. FOR EACH repair: │                      │                     │
+   │                  │    SELECT FROM      │                      │                     │
+   │                  │    basis_pengetahuan│                      │                     │
+   │                  │    WHERE kode_repair│                      │                     │
+   │                  │────────────────────▶│                      │                     │
+   │                  │                     │                      │                     │
+   │                  │◀────────────────────│ return MB, MD rules  │                     │
+   │                  │                     │                      │                     │
+   │                  │ 7. CALCULATE CF     │                      │                     │
+   │                  │    (Certainty       │                      │                     │
+   │                  │     Factor)         │                      │                     │
+   │                  │                     │                      │                     │
+   │                  │ 8. INSERT INTO hasil│                      │                     │
+   │                  │────────────────────────────────────────────────────────────────▶│
+   │                  │                     │                      │                     │
+   │                  │◀───────────────────────────────────────────────────────────────│
+   │                  │                     │                      │                     │
+   │◀─────────────────│ 9. Return hasil    │                      │                     │
+   │  Hasil Diagnosis │    diagnosis        │                      │                     │
+   │  + Rekomendasi   │                     │                      │                     │
+   │                  │                     │                      │                     │
+```
+
+---
+
+### Sequence Diagram - Login Admin
+
+```
+┌─────┐          ┌─────────┐          ┌─────────┐          ┌─────────┐
+│User │          │formlogin│          │login.php│          │ admin   │
+│     │          │  .php   │          │ (POST)  │          │ table   │
+└──┬──┘          └────┬────┘          └────┬────┘          └────┬────┘
+   │                  │                    │                    │
+   │ 1. GET ?module=  │                    │                    │
+   │    formlogin     │                    │                    │
+   │─────────────────▶│                    │                    │
+   │                  │                    │                    │
+   │◀─────────────────│ Render login form  │                    │
+   │                  │                    │                    │
+   │ 2. POST username │                    │                    │
+   │    + password    │                    │                    │
+   │─────────────────────────────────────▶│                    │
+   │                  │                    │                    │
+   │                  │                    │ 3. SELECT * FROM   │
+   │                  │                    │    admin WHERE     │
+   │                  │                    │    username AND    │
+   │                  │                    │    MD5(password)   │
+   │                  │                    │───────────────────▶│
+   │                  │                    │                    │
+   │                  │                    │◀───────────────────│
+   │                  │                    │    result row      │
+   │                  │                    │                    │
+   │                  │    ┌───────────────┴───────────────┐    │
+   │                  │    │ IF found:                     │    │
+   │                  │    │   session_start()             │    │
+   │                  │    │   $_SESSION['username'] = ... │    │
+   │                  │    │   $_SESSION['password'] = ... │    │
+   │                  │    │   redirect → index.php        │    │
+   │                  │    │ ELSE:                         │    │
+   │                  │    │   show error page             │    │
+   │                  │    └───────────────────────────────┘    │
+   │                  │                    │                    │
+   │◀─────────────────────────────────────│                    │
+   │  Redirect to     │                    │                    │
+   │  index.php OR    │                    │                    │
+   │  Error page      │                    │                    │
+```
+
+---
+
+### Sequence Diagram - CRUD Operation (Create Repair)
+
+```
+┌─────┐          ┌─────────┐          ┌───────────┐          ┌─────────┐
+│Admin│          │repair   │          │aksi_repair│          │ repair  │
+│     │          │  .php   │          │   .php    │          │ table   │
+└──┬──┘          └────┬────┘          └─────┬─────┘          └────┬────┘
+   │                  │                     │                     │
+   │ 1. GET ?module=  │                     │                     │
+   │    repair        │                     │                     │
+   │─────────────────▶│                     │                     │
+   │                  │                     │                     │
+   │◀─────────────────│ Render data list   │                     │
+   │                  │ + buttons           │                     │
+   │                  │                     │                     │
+   │ 2. CLICK "Tambah │                     │                     │
+   │    Gangguan"     │                     │                     │
+   │─────────────────▶│                     │                     │
+   │                  │                     │                     │
+   │◀─────────────────│ Render add form    │                     │
+   │  ?module=repair  │ (nama, detail,     │                     │
+   │  &act=tambahrepair│  saran, gambar)   │                     │
+   │                  │                     │                     │
+   │ 3. POST form data│                     │                     │
+   │   (nama_repair,  │                     │                     │
+   │    det_repair,   │                     │                     │
+   │    srn_repair,   │                     │                     │
+   │    gambar)       │                     │                     │
+   │──────────────────────────────────────▶│                     │
+   │                  │                     │                     │
+   │                  │                     │ 4. Upload gambar   │
+   │                  │                     │    to gambar/repair/│
+   │                  │                     │                     │
+   │                  │                     │ 5. INSERT INTO     │
+   │                  │                     │    repair          │
+   │                  │                     │    (nama, det, srn,│
+   │                  │                     │     gambar)        │
+   │                  │                     │────────────────────▶
+   │                  │                     │                     │
+   │                  │                     │◀────────────────────│
+   │                  │                     │    insert success  │
+   │                  │                     │                     │
+   │◀─────────────────────────────────────│                     │
+   │  Redirect to     │ 6. redirect to     │                     │
+   │  ?module=repair  │    list + alert    │                     │
+   │  + success alert │    "Berhasil"      │                     │
+```
+
+---
+
+### Activity Diagram - Diagnosis Flow
+
+```
+                              ┌─────────────────┐
+                              │     START       │
+                              └────────┬────────┘
+                                       │
+                                       ▼
+                          ┌────────────────────────┐
+                          │ User buka halaman      │
+                          │ ?module=diagnosa       │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ Load semua gejala      │
+                          │ dari tabel incident    │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ Tampilkan form dengan  │
+                          │ list gejala + dropdown │
+                          │ tingkat kepastian      │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ User memilih gejala    │
+                          │ dan tingkat kepastian  │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ User klik tombol       │
+                          │ "Proses"               │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ Parse input kondisi[]  │
+                          │ Format: incident_id_   │
+                          │         kondisi_id     │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │ FOR EACH repair di database         │
+                    └────────────────┬────────────────────┘
+                                     │
+                    ┌────────────────┴────────────────┐
+                    ▼                                 │
+        ┌─────────────────────┐                      │
+        │ Ambil rules dari    │                      │
+        │ basis_pengetahuan   │                      │
+        │ untuk repair ini    │                      │
+        └──────────┬──────────┘                      │
+                   │                                 │
+                   ▼                                 │
+        ┌─────────────────────┐                      │
+        │ FOR EACH gejala     │◀─────────────────────┤
+        │ yang dipilih user   │                      │
+        └──────────┬──────────┘                      │
+                   │                                 │
+                   ▼                                 │
+        ┌─────────────────────┐                      │
+        │ Jika gejala ada di  │                      │
+        │ rules repair ini:   │                      │
+        │ CF = (MB-MD)*bobot  │                      │
+        └──────────┬──────────┘                      │
+                   │                                 │
+                   ▼                                 │
+        ┌─────────────────────┐                      │
+        │ Kombinasi CF:       │                      │
+        │ ├─ CF>=0 & CFold>=0 │                      │
+        │ │  → CF + CF*(1-CF) │                      │
+        │ ├─ CF*CFold < 0     │                      │
+        │ │  → (CF+CFold)/    │                      │
+        │ │    (1-min(|CF|))  │                      │
+        │ └─ CF<0 & CFold>=0  │                      │
+        │    → CF + CF*(1+CF) │                      │
+        └──────────┬──────────┘                      │
+                   │                                 │
+                   └─────────────────────────────────┘
+                                     │
+                                     ▼
+                    ┌─────────────────────────────────────┐
+                    │ Sort hasil CF descending            │
+                    └────────────────┬────────────────────┘
+                                     │
+                                     ▼
+                    ┌─────────────────────────────────────┐
+                    │ Simpan ke tabel hasil:              │
+                    │ - tanggal (datetime)                │
+                    │ - incident (serialized array)       │
+                    │ - repair (serialized array)         │
+                    │ - hasil_id (repair tertinggi)       │
+                    │ - hasil_nilai (CF tertinggi)        │
+                    └────────────────┬────────────────────┘
+                                     │
+                                     ▼
+                    ┌─────────────────────────────────────┐
+                    │ Tampilkan hasil:                    │
+                    │ - Gejala yang dipilih               │
+                    │ - Diagnosis utama + detail          │
+                    │ - Saran penanganan                  │
+                    │ - Kemungkinan lain                  │
+                    │ - Tombol cetak                      │
+                    └────────────────┬────────────────────┘
+                                     │
+                                     ▼
+                              ┌─────────────────┐
+                              │      END        │
+                              └─────────────────┘
+```
+
+---
+
+### State Diagram - Session State
+
+```
+                         ┌─────────────────┐
+                         │  NO SESSION     │
+                         │  (Guest Mode)   │
+                         └────────┬────────┘
+                                  │
+          ┌───────────────────────┴───────────────────────┐
+          │                                               │
+          ▼                                               ▼
+┌─────────────────────┐                      ┌─────────────────────┐
+│ Can Access:         │                      │ Cannot Access:      │
+│ - welcome.php       │                      │ - dashboard.php     │
+│ - diagnosa          │    LOGIN SUCCESS     │ - repair CRUD       │
+│ - riwayat           │─────────────────────▶│ - incident CRUD     │
+│ - keterangan        │                      │ - pengetahuan CRUD  │
+│ - harga             │                      │ - admin CRUD        │
+│ - tentang           │                      │ - post CRUD         │
+│ - bantuan           │                      │ - password change   │
+│ - formlogin         │                      │                     │
+└─────────────────────┘                      └─────────────────────┘
+                                                        │
+                                                        │
+                                                        ▼
+                                             ┌─────────────────────┐
+                                             │   HAS SESSION       │
+                                             │   (Admin Mode)      │
+                                             └────────┬────────────┘
+                                                      │
+          ┌───────────────────────────────────────────┴─────────────────────┐
+          │                                                                 │
+          ▼                                                                 ▼
+┌─────────────────────┐                                        ┌─────────────────────┐
+│ Session Variables:  │                                        │ Can Access:         │
+│ ─────────────────── │                                        │ - dashboard.php     │
+│ username: "admin"   │              LOGOUT                    │ - repair CRUD       │
+│ password: "hash..." │◀────────────────────────────────────── │ - incident CRUD     │
+│ nama_lengkap: "..." │                                        │ - pengetahuan CRUD  │
+└─────────────────────┘                                        │ - admin CRUD        │
+          │                                                    │ - post CRUD         │
+          │                                                    │ - password change   │
+          │ session_destroy()                                  │ + ALL guest pages   │
+          │                                                    └─────────────────────┘
+          ▼
+┌─────────────────────┐
+│  NO SESSION         │
+│  (Back to Guest)    │
+└─────────────────────┘
+```
+
+---
+
+### Component Diagram - System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              BROWSER (CLIENT)                                    │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐               │
+│  │   HTML/CSS/JS    │  │  Bootstrap 5     │  │   AdminLTE v4    │               │
+│  │   (Rendered)     │  │  (UI Framework)  │  │   (Theme)        │               │
+│  └──────────────────┘  └──────────────────┘  └──────────────────┘               │
+│             │                    │                    │                          │
+│             └────────────────────┴────────────────────┘                          │
+│                                  │                                               │
+│                          HTTP Request/Response                                   │
+└──────────────────────────────────┼───────────────────────────────────────────────┘
+                                   │
+                                   ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                              WEB SERVER (Apache/Nginx)                           │
+│                                                                                  │
+│  ┌─────────────────────────────────────────────────────────────────────────┐    │
+│  │                         PHP APPLICATION LAYER                            │    │
+│  │                                                                          │    │
+│  │  ┌───────────────┐                                                      │    │
+│  │  │   index.php   │◀─── Main Entry Point                                 │    │
+│  │  │   (Router)    │                                                      │    │
+│  │  └───────┬───────┘                                                      │    │
+│  │          │                                                              │    │
+│  │          ▼                                                              │    │
+│  │  ┌───────────────┐     ┌───────────────┐     ┌───────────────┐         │    │
+│  │  │  content.php  │────▶│   menu.php    │     │  login.php    │         │    │
+│  │  │(Content Route)│     │ (Navigation)  │     │ (Auth Handler)│         │    │
+│  │  └───────┬───────┘     └───────────────┘     └───────────────┘         │    │
+│  │          │                                                              │    │
+│  │          ▼                                                              │    │
+│  │  ┌────────────────────────────────────────────────────────────────┐    │    │
+│  │  │                      MODUL LAYER                                │    │    │
+│  │  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │    │    │
+│  │  │  │ welcome  │  │ diagnosa │  │ riwayat  │  │keterangan│       │    │    │
+│  │  │  │   .php   │  │   .php   │  │   .php   │  │   .php   │       │    │    │
+│  │  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘       │    │    │
+│  │  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │    │    │
+│  │  │  │dashboard │  │  repair  │  │ incident │  │pengetahu-│       │    │    │
+│  │  │  │   .php   │  │   .php   │  │   .php   │  │  an.php  │       │    │    │
+│  │  │  └──────────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘       │    │    │
+│  │  │                     │             │             │              │    │    │
+│  │  │                     ▼             ▼             ▼              │    │    │
+│  │  │              ┌────────────────────────────────────────┐       │    │    │
+│  │  │              │           aksi_*.php                   │       │    │    │
+│  │  │              │  (CRUD Action Handlers)                │       │    │    │
+│  │  │              │  - input, update, hapus                │       │    │    │
+│  │  │              └────────────────────────────────────────┘       │    │    │
+│  │  └────────────────────────────────────────────────────────────────┘    │    │
+│  │                                                                          │    │
+│  │  ┌────────────────────────────────────────────────────────────────┐    │    │
+│  │  │                      CONFIG LAYER                               │    │    │
+│  │  │  ┌───────────────────┐     ┌───────────────────┐              │    │    │
+│  │  │  │    koneksi.php    │     │  fungsi_alert.php │              │    │    │
+│  │  │  │ (DB Connection)   │     │  (Alert/Confirm)  │              │    │    │
+│  │  │  └─────────┬─────────┘     └───────────────────┘              │    │    │
+│  │  │            │                                                    │    │    │
+│  │  └────────────┼────────────────────────────────────────────────────┘    │    │
+│  │               │                                                          │    │
+│  └───────────────┼──────────────────────────────────────────────────────────┘    │
+│                  │                                                               │
+└──────────────────┼───────────────────────────────────────────────────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                              DATABASE SERVER (MySQL)                             │
+│                                                                                  │
+│  ┌─────────────────────────────────────────────────────────────────────────┐    │
+│  │                         DATABASE: dignet                                 │    │
+│  │                                                                          │    │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────────────┐            │    │
+│  │  │  admin  │  │incident │  │ repair  │  │basis_pengetahuan│            │    │
+│  │  └─────────┘  └─────────┘  └─────────┘  └─────────────────┘            │    │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐                                 │    │
+│  │  │ kondisi │  │  hasil  │  │  post   │                                 │    │
+│  │  └─────────┘  └─────────┘  └─────────┘                                 │    │
+│  │                                                                          │    │
+│  └─────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                              FILE STORAGE                                        │
+│                                                                                  │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                  │
+│  │  gambar/admin/  │  │  gambar/repair/ │  │  gambar/post/   │                  │
+│  │  (Logo, icons)  │  │  (Repair imgs)  │  │  (Article imgs) │                  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘                  │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Class Diagram (Conceptual - PHP tidak OOP tapi ini struktur logisnya)
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            SISTEM PAKAR DIGNET                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────┐         ┌─────────────────────┐
+│      <<entity>>     │         │      <<entity>>     │
+│       Admin         │         │      Incident       │
+├─────────────────────┤         ├─────────────────────┤
+│ - username: string  │         │ - kode: int (PK)    │
+│ - password: string  │         │ - nama: string      │
+│ - nama_lengkap: str │         ├─────────────────────┤
+├─────────────────────┤         │ + getAll(): array   │
+│ + login(): bool     │         │ + getById(): obj    │
+│ + logout(): void    │         │ + create(): bool    │
+│ + getAll(): array   │         │ + update(): bool    │
+│ + create(): bool    │         │ + delete(): bool    │
+│ + update(): bool    │         └─────────────────────┘
+│ + delete(): bool    │                   △
+└─────────────────────┘                   │
+                                          │ has many
+┌─────────────────────┐                   │
+│      <<entity>>     │         ┌─────────────────────┐
+│       Repair        │         │      <<entity>>     │
+├─────────────────────┤         │  BasisPengetahuan   │
+│ - kode: int (PK)    │◀────────┤─────────────────────┤
+│ - nama: string      │ belongs │ - kode: int (PK)    │
+│ - detail: text      │ to      │ - kode_repair: int  │
+│ - saran: text       │         │ - kode_incident: int│
+│ - gambar: string    │         │ - mb: float         │
+├─────────────────────┤         │ - md: float         │
+│ + getAll(): array   │         ├─────────────────────┤
+│ + getById(): obj    │         │ + getAll(): array   │
+│ + create(): bool    │         │ + getByRepair(): arr│
+│ + update(): bool    │         │ + create(): bool    │
+│ + delete(): bool    │         │ + update(): bool    │
+└─────────────────────┘         │ + delete(): bool    │
+         △                      │ + getCF(): float    │
+         │                      └─────────────────────┘
+         │ hasil_id FK
+┌─────────────────────┐         ┌─────────────────────┐
+│      <<entity>>     │         │      <<entity>>     │
+│       Hasil         │         │       Kondisi       │
+├─────────────────────┤         ├─────────────────────┤
+│ - id: int (PK)      │         │ - id: int (PK)      │
+│ - tanggal: datetime │         │ - kondisi: string   │
+│ - repair: text      │         │ - ket: string       │
+│ - incident: text    │         ├─────────────────────┤
+│ - hasil_id: int     │         │ + getAll(): array   │
+│ - hasil_nilai: str  │         │ + getBobot(): float │
+├─────────────────────┤         └─────────────────────┘
+│ + getAll(): array   │
+│ + getById(): obj    │         ┌─────────────────────┐
+│ + create(): bool    │         │      <<entity>>     │
+│ + delete(): bool    │         │        Post         │
+└─────────────────────┘         ├─────────────────────┤
+                                │ - kode: int (PK)    │
+┌─────────────────────┐         │ - nama: string      │
+│     <<service>>     │         │ - detail: text      │
+│   DiagnosisEngine   │         │ - saran: text       │
+├─────────────────────┤         │ - gambar: string    │
+│ - incidents: array  │         ├─────────────────────┤
+│ - repairs: array    │         │ + getAll(): array   │
+│ - rules: array      │         │ + getById(): obj    │
+├─────────────────────┤         │ + create(): bool    │
+│ + loadData(): void  │         │ + update(): bool    │
+│ + processInput()    │         │ + delete(): bool    │
+│ + calculateCF()     │         └─────────────────────┘
+│ + combineCF()       │
+│ + sortResults()     │
+│ + saveResult()      │
+│ + getResult(): obj  │
+└─────────────────────┘
+```
+
+---
+
+### Data Flow Diagram (DFD) Level 0
+
+```
+                    ┌────────────────────────────────────┐
+                    │                                    │
+        ┌───────────┤         SISTEM DIGNET              ├───────────┐
+        │           │    (Expert System IndiHome)        │           │
+        │           │                                    │           │
+        │           └────────────────────────────────────┘           │
+        │                           │                                │
+        │                           │                                │
+        ▼                           ▼                                ▼
+┌───────────────┐         ┌───────────────┐              ┌───────────────┐
+│               │         │               │              │               │
+│  GUEST USER   │         │  ADMIN/PAKAR  │              │   DATABASE    │
+│               │         │               │              │               │
+└───────┬───────┘         └───────┬───────┘              └───────┬───────┘
+        │                         │                              │
+        │ Input:                  │ Input:                       │ Data:
+        │ - Pilih gejala          │ - Login credentials          │ - admin
+        │ - Tingkat kepastian     │ - CRUD data                  │ - incident
+        │                         │ - Management ops             │ - repair
+        │                         │                              │ - basis_pngt
+        │                         │                              │ - kondisi
+        │                         │                              │ - hasil
+        │                         │                              │ - post
+        │                         │                              │
+        │ Output:                 │ Output:                      │
+        │ - Hasil diagnosis       │ - Dashboard stats            │
+        │ - Saran penanganan      │ - Data lists                 │
+        │ - Riwayat               │ - CRUD feedback              │
+        │                         │                              │
+        └─────────────────────────┴──────────────────────────────┘
+```
+
+---
+
+### Data Flow Diagram (DFD) Level 1
+
+```
+                                 ┌─────────────┐
+                                 │ GUEST USER  │
+                                 └──────┬──────┘
+                                        │
+            ┌───────────────────────────┼───────────────────────────┐
+            │                           │                           │
+            ▼                           ▼                           ▼
+    ┌───────────────┐           ┌───────────────┐           ┌───────────────┐
+    │               │           │               │           │               │
+    │  1.0 PROSES   │           │  2.0 PROSES   │           │  3.0 PROSES   │
+    │  DIAGNOSA     │           │  RIWAYAT      │           │  INFO         │
+    │               │           │               │           │               │
+    └───────┬───────┘           └───────┬───────┘           └───────────────┘
+            │                           │                           │
+            │ R/W                       │ Read                      │ Read
+            ▼                           ▼                           ▼
+    ┌───────────────┐           ┌───────────────┐           ┌───────────────┐
+    │  D1 incident  │           │   D4 hasil    │           │   D5 post     │
+    │  D2 repair    │           │               │           │               │
+    │  D3 basis_pn  │           │               │           │               │
+    │  D4 hasil     │           │               │           │               │
+    │  D6 kondisi   │           │               │           │               │
+    └───────────────┘           └───────────────┘           └───────────────┘
+
+
+                                 ┌─────────────┐
+                                 │ ADMIN USER  │
+                                 └──────┬──────┘
+                                        │
+    ┌───────────────┬───────────────────┼───────────────────┬───────────────┐
+    │               │                   │                   │               │
+    ▼               ▼                   ▼                   ▼               ▼
+┌────────┐    ┌────────┐          ┌────────┐          ┌────────┐    ┌────────┐
+│  4.0   │    │  5.0   │          │  6.0   │          │  7.0   │    │  8.0   │
+│ KELOLA │    │ KELOLA │          │ KELOLA │          │ KELOLA │    │ KELOLA │
+│ REPAIR │    │INCIDENT│          │ BASIS  │          │ ADMIN  │    │ POST   │
+│        │    │        │          │PENGETH.│          │        │    │        │
+└───┬────┘    └───┬────┘          └───┬────┘          └───┬────┘    └───┬────┘
+    │             │                   │                   │             │
+    │ CRUD        │ CRUD              │ CRUD              │ CRUD        │ CRUD
+    ▼             ▼                   ▼                   ▼             ▼
+┌────────┐    ┌────────┐          ┌────────┐          ┌────────┐    ┌────────┐
+│   D2   │    │   D1   │          │   D3   │          │   D0   │    │   D5   │
+│ repair │    │incident│          │basis_pn│          │ admin  │    │  post  │
+└────────┘    └────────┘          └────────┘          └────────┘    └────────┘
+```
+
+---
+
+### Flowchart - Certainty Factor Calculation
+
+```
+                              ┌─────────────────┐
+                              │     START       │
+                              └────────┬────────┘
+                                       │
+                                       ▼
+                          ┌────────────────────────┐
+                          │ INPUT: Selected        │
+                          │ incidents + kondisi    │
+                          │ (user_cf values)       │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ Initialize:            │
+                          │ results = {}           │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │   FOR each repair in database       │
+                    └────────────────┬────────────────────┘
+                                     │
+                                     ▼
+                          ┌────────────────────────┐
+                          │ cf_combined = 0        │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │   FOR each selected incident        │
+                    └────────────────┬────────────────────┘
+                                     │
+                                     ▼
+                          ┌────────────────────────┐
+                          │ Get rule from          │
+                          │ basis_pengetahuan      │
+                          │ WHERE repair & incident│
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                            ┌─────────────────┐
+                            │ Rule exists?    │
+                            └────────┬────────┘
+                                     │
+                    ┌────────────────┴────────────────┐
+                    │ NO                              │ YES
+                    ▼                                 ▼
+          ┌──────────────────┐            ┌──────────────────────┐
+          │ Skip to next     │            │ cf_pakar = MB - MD   │
+          │ incident         │            │ user_bobot = kondisi │
+          └────────┬─────────┘            │ cf = cf_pakar *      │
+                   │                      │     user_bobot       │
+                   │                      └───────────┬──────────┘
+                   │                                  │
+                   │                                  ▼
+                   │                      ┌──────────────────────┐
+                   │                      │ cf >= 0 AND          │
+                   │                      │ cf_combined >= 0?    │
+                   │                      └───────────┬──────────┘
+                   │                                  │
+                   │              ┌───────────────────┴───────────────────┐
+                   │              │ YES                                   │ NO
+                   │              ▼                                       ▼
+                   │  ┌────────────────────────┐           ┌──────────────────────┐
+                   │  │ cf_combined =          │           │ cf * cf_combined     │
+                   │  │   cf_combined +        │           │ < 0?                 │
+                   │  │   (cf * (1-cf_combined))│           └───────────┬──────────┘
+                   │  └───────────┬────────────┘                       │
+                   │              │                    ┌────────────────┴────────────────┐
+                   │              │                    │ YES                             │ NO
+                   │              │                    ▼                                 ▼
+                   │              │        ┌────────────────────────┐     ┌────────────────────────┐
+                   │              │        │ cf_combined =          │     │ cf_combined =          │
+                   │              │        │   (cf_combined + cf) / │     │   cf_combined +        │
+                   │              │        │   (1 - min(|cf_comb|,  │     │   (cf * (1+cf_combined))│
+                   │              │        │          |cf|))        │     │                        │
+                   │              │        └───────────┬────────────┘     └───────────┬────────────┘
+                   │              │                    │                              │
+                   │              └────────────────────┴──────────────────────────────┘
+                   │                                   │
+                   └───────────────────────────────────┘
+                                     │
+                                     ▼
+                          ┌────────────────────────┐
+                          │ cf_combined > 0?       │
+                          └───────────┬────────────┘
+                                      │
+                    ┌─────────────────┴─────────────────┐
+                    │ YES                               │ NO
+                    ▼                                   ▼
+          ┌────────────────────────┐        ┌────────────────────────┐
+          │ results[repair_id] =   │        │ Skip (not relevant     │
+          │   cf_combined          │        │ repair)                │
+          └───────────┬────────────┘        └───────────┬────────────┘
+                      │                                 │
+                      └─────────────────────────────────┘
+                                     │
+                                     ▼
+                          ┌────────────────────────┐
+                          │ Sort results DESC      │
+                          │ by cf value            │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                          ┌────────────────────────┐
+                          │ OUTPUT:                │
+                          │ - Top result = diagnosis│
+                          │ - Other results =      │
+                          │   alternatives         │
+                          └───────────┬────────────┘
+                                      │
+                                      ▼
+                              ┌─────────────────┐
+                              │      END        │
+                              └─────────────────┘
+```
+
+---
+
+### Navigation Flow (Sitemap)
+
+```
+                                    ┌─────────────────┐
+                                    │   index.php     │
+                                    │   (Homepage)    │
+                                    └────────┬────────┘
+                                             │
+                    ┌────────────────────────┴────────────────────────┐
+                    │                                                  │
+                    ▼                                                  ▼
+        ┌───────────────────────┐                          ┌───────────────────────┐
+        │     GUEST USER        │                          │     ADMIN USER        │
+        │     (No Session)      │                          │     (Has Session)     │
+        └───────────┬───────────┘                          └───────────┬───────────┘
+                    │                                                  │
+    ┌───────────────┴───────────────┐              ┌───────────────────┴───────────────┐
+    │                               │              │                                   │
+    ▼                               ▼              ▼                                   ▼
+┌─────────┐                   ┌─────────┐    ┌─────────┐                         ┌─────────┐
+│welcome  │                   │formlogin│    │dashboard│                         │ logout  │
+│  .php   │                   │  .php   │    │  .php   │                         │  .php   │
+│(Landing)│                   │(Login)  │    │(Admin   │                         │         │
+└────┬────┘                   └────┬────┘    │ Home)   │                         └─────────┘
+     │                             │         └────┬────┘
+     ▼                             ▼              │
+┌──────────────────────┐    ┌──────────────┐      │
+│ diagnosa.php         │    │  login.php   │      ├─────────────────────────────────────────┐
+│ ├─ Form pilih gejala │    │  (POST Auth) │      │                                         │
+│ └─ Hasil diagnosis   │    └──────────────┘      ▼                                         │
+└──────────────────────┘                    ┌──────────────────────┐                        │
+                                            │     CRUD MODULES     │                        │
+┌──────────────────────┐                    ├──────────────────────┤                        │
+│ riwayat.php          │                    │                      │                        │
+│ ├─ List riwayat      │                    │  ┌───────────────┐   │                        │
+│ └─ detail.php        │                    │  │ repair.php    │   │                        │
+└──────────────────────┘                    │  │ ├─ List       │   │                        │
+                                            │  │ ├─ Add form   │   │                        │
+┌──────────────────────┐                    │  │ ├─ Edit form  │   │                        │
+│ keterangan.php       │                    │  │ └─aksi_repair │   │                        │
+│ (Articles/Post list) │                    │  └───────────────┘   │                        │
+└──────────────────────┘                    │                      │                        │
+                                            │  ┌───────────────┐   │                        │
+┌──────────────────────┐                    │  │ incident.php  │   │                        │
+│ harga.php            │                    │  │ (Same pattern)│   │                        │
+│ (Pricing Info)       │                    │  └───────────────┘   │                        │
+└──────────────────────┘                    │                      │                        │
+                                            │  ┌───────────────┐   │                        │
+┌──────────────────────┐                    │  │pengetahuan.php│   │                        │
+│ tentang.php          │◀───────────────────│  │ (Same pattern)│   │◀───────────────────────┤
+│ (About Page)         │    Shared          │  └───────────────┘   │    Admin Only         │
+└──────────────────────┘    Pages           │                      │                        │
+                                            │  ┌───────────────┐   │                        │
+┌──────────────────────┐                    │  │ admin.php     │   │                        │
+│ bantuan.php          │                    │  │ (Same pattern)│   │                        │
+│ (Help Page)          │                    │  └───────────────┘   │                        │
+└──────────────────────┘                    │                      │                        │
+                                            │  ┌───────────────┐   │                        │
+                                            │  │ post.php      │   │                        │
+                                            │  │ (Same pattern)│   │                        │
+                                            │  └───────────────┘   │                        │
+                                            │                      │                        │
+                                            │  ┌───────────────┐   │                        │
+                                            │  │ password.php  │   │                        │
+                                            │  │ (Change pwd)  │   │                        │
+                                            │  └───────────────┘   │                        │
+                                            │                      │                        │
+                                            └──────────────────────┘                        │
+                                                                                            │
+```
+
+---
+
 *Document generated for DigNet v2.0 - Expert System for IndiHome Troubleshooting*
