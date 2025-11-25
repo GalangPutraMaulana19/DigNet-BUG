@@ -49,7 +49,7 @@
     ]
   },
   "src/js/app.js": {
-    "file": "assets/main.DVVHYrtJ.js",
+    "file": "assets/main.B9ssLC1Q.js",
     "name": "main",
     "src": "src/js/app.js",
     "isEntry": true,
@@ -60,7 +60,7 @@
       "node_modules/chart.js/auto/auto.js"
     ],
     "css": [
-      "assets/styles.BX6zCdUU.css"
+      "assets/styles.gyojnWmw.css"
     ],
     "assets": [
       "assets/fa-brands-400.D_cYUPeE.woff2",
@@ -74,7 +74,7 @@
     ]
   },
   "src/scss/app.scss": {
-    "file": "assets/styles.BX6zCdUU.css",
+    "file": "assets/styles.gyojnWmw.css",
     "src": "src/scss/app.scss",
     "isEntry": true
   }
