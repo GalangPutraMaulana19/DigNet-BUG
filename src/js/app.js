@@ -143,8 +143,11 @@ function highlightActiveMenu() {
   
   menuLinks.forEach(link => {
     const href = link.getAttribute('href');
+    if (!href) return;
+    
+    const hrefQuery = href.includes('?') ? href.split('?')[1] : '';
     if (href === currentPath || href === currentSearch || 
-        currentSearch.includes(href?.split('?')[1])) {
+        (hrefQuery && currentSearch.includes(hrefQuery))) {
       link.classList.add('active');
       
       // Open parent menu if nested
@@ -306,10 +309,11 @@ window.confirmAction = function(message, callback) {
  */
 document.querySelectorAll('img[data-src]').forEach(img => {
   if ('loading' in HTMLImageElement.prototype) {
-    img.src = img.dataset.src;
+    // Set loading attribute BEFORE src to enable native lazy loading
     img.loading = 'lazy';
+    img.src = img.dataset.src;
   } else {
-    // Fallback for older browsers
+    // Fallback for older browsers using Intersection Observer
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
