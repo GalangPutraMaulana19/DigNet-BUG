@@ -216,9 +216,16 @@ const config = {
     }
 };
 
-const ctx = document.getElementById('donutChart');
-if (ctx) {
-    new Chart(ctx, config);
+// Initialize chart with wait for Chart.js to be loaded
+function initDonutChart() {
+    const ctx = document.getElementById('donutChart');
+    if (ctx && typeof Chart !== 'undefined') {
+        new Chart(ctx, config);
+    } else if (ctx) {
+        // Wait for Chart.js to load (from Vite bundle or CDN)
+        setTimeout(initDonutChart, 100);
+    }
 }
+initDonutChart();
 });
 </script>

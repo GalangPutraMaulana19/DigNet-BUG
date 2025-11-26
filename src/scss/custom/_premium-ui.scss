@@ -885,37 +885,66 @@ a, button, .btn, .nav-link, .card {
 }
 
 // ================================================
-// SIDEBAR COLLAPSE/TOGGLE (AdminLTE v3 Compatible)
+// SIDEBAR COLLAPSE/TOGGLE (AdminLTE v3/v4 Compatible)
 // ================================================
 
-// Sidebar transition
+// Sidebar base settings
 .main-sidebar {
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out, transform 0.3s ease-in-out;
     width: 250px;
     z-index: 1038;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
 }
 
+// Content wrapper base
 .content-wrapper {
     transition: margin-left 0.3s ease-in-out;
-    margin-left: 250px;
+    min-height: calc(100vh - 57px);
+    
+    @media (min-width: 992px) {
+        margin-left: 250px;
+    }
+    
+    @media (max-width: 991.98px) {
+        margin-left: 0;
+    }
 }
 
+// Footer base
 .main-footer {
     transition: margin-left 0.3s ease-in-out;
-    margin-left: 250px;
+    
+    @media (min-width: 992px) {
+        margin-left: 250px;
+    }
+    
+    @media (max-width: 991.98px) {
+        margin-left: 0;
+    }
 }
 
+// Header base (full width, fixed at top)
 .main-header {
     transition: margin-left 0.3s ease-in-out;
-    margin-left: 250px;
+    position: sticky;
+    top: 0;
+    z-index: 1037;
+    
+    @media (min-width: 992px) {
+        margin-left: 250px;
+    }
+    
+    @media (max-width: 991.98px) {
+        margin-left: 0;
+    }
 }
 
-// Sidebar collapsed state
+// Sidebar collapsed state (Desktop)
 .sidebar-collapse {
     .main-sidebar {
-        margin-left: -250px;
-        transform: translateX(0);
-        
         @media (min-width: 992px) {
             width: 4.6rem;
             margin-left: 0;
@@ -967,6 +996,10 @@ a, button, .btn, .nav-link, .card {
                 }
             }
         }
+        
+        @media (max-width: 991.98px) {
+            transform: translateX(-250px);
+        }
     }
     
     .content-wrapper,
@@ -982,33 +1015,18 @@ a, button, .btn, .nav-link, .card {
     }
 }
 
-// Mobile sidebar overlay
+// Mobile sidebar behavior
 @media (max-width: 991.98px) {
     .main-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
         transform: translateX(-250px);
     }
     
-    .content-wrapper,
-    .main-footer,
-    .main-header {
-        margin-left: 0 !important;
-    }
-    
-    // Show sidebar when not collapsed on mobile
+    // Show sidebar when NOT collapsed on mobile (sidebar open)
     body:not(.sidebar-collapse) .main-sidebar {
         transform: translateX(0);
     }
     
-    // Hide sidebar when collapsed on mobile
-    .sidebar-collapse .main-sidebar {
-        transform: translateX(-250px);
-    }
-    
-    // Sidebar overlay background
+    // Sidebar overlay background when open on mobile
     body:not(.sidebar-collapse)::before {
         content: '';
         position: fixed;

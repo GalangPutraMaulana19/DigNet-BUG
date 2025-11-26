@@ -231,6 +231,8 @@ if ($hasBuiltAssets) {
     <?php if ($jsFile): ?>
         <!-- Production Build JS (Optimized & Minified by Vite) -->
         <script type="module" src="<?php echo $jsFile; ?>"></script>
+        <!-- Chart.js CDN for pages with inline charts (before Vite lazy-loads it) -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" crossorigin="anonymous"></script>
     <?php else: ?>
         <!-- Development Fallback: CDN Resources -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

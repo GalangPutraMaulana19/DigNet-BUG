@@ -3,8 +3,9 @@
 session_start();
 include "config/koneksi.php";
 
-$user=$_POST['username'];
-$pass=md5($_POST['password']);
+// Check if POST data exists before using
+$user = isset($_POST['username']) ? $_POST['username'] : '';
+$pass = isset($_POST['password']) ? md5($_POST['password']) : '';
 
 $login=mysqli_query($conn,"select * from admin where username='$user' and password='$pass'");
 
