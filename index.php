@@ -249,28 +249,54 @@ if ($hasBuiltAssets) {
         // Sidebar toggle functionality
         const pushMenuBtn = document.querySelector('[data-widget="pushmenu"]');
         const body = document.body;
+        const mainSidebar = document.querySelector('.main-sidebar');
+        const isMobile = () => window.innerWidth <= 991;
         
         if (pushMenuBtn) {
             pushMenuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                body.classList.toggle('sidebar-collapse');
-                try {
-                    localStorage.setItem('sidebar-state', body.classList.contains('sidebar-collapse') ? 'collapsed' : 'open');
-                } catch(e) {}
+                
+                if (isMobile()) {
+                    // On mobile: toggle sidebar-open class
+                    body.classList.toggle('sidebar-open');
+                } else {
+                    // On desktop: toggle sidebar-collapse class
+                    body.classList.toggle('sidebar-collapse');
+                    try {
+                        localStorage.setItem('sidebar-state', body.classList.contains('sidebar-collapse') ? 'collapsed' : 'open');
+                    } catch(e) {}
+                }
             });
         }
         
-        // Restore sidebar state
+        // Close sidebar when clicking on overlay (mobile)
+        document.addEventListener('click', function(e) {
+            if (isMobile() && body.classList.contains('sidebar-open')) {
+                // Check if click is outside sidebar
+                if (mainSidebar && !mainSidebar.contains(e.target) && !pushMenuBtn.contains(e.target)) {
+                    body.classList.remove('sidebar-open');
+                }
+            }
+        });
+        
+        // Restore sidebar state (desktop only)
         try {
-            if (localStorage.getItem('sidebar-state') === 'collapsed') {
+            if (!isMobile() && localStorage.getItem('sidebar-state') === 'collapsed') {
                 body.classList.add('sidebar-collapse');
             }
         } catch(e) {}
         
-        // Mobile: collapse sidebar by default
-        if (window.innerWidth <= 991) {
-            body.classList.add('sidebar-collapse');
-        }
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                if (isMobile()) {
+                    // On mobile: ensure sidebar-open is removed when resizing to mobile
+                    body.classList.remove('sidebar-open');
+                }
+            }, 100);
+        });
         
         // Initialize Bootstrap tooltips
         const tooltipElements = document.querySelectorAll('[data-bs-toggle="tooltip"]');

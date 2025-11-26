@@ -1105,26 +1105,28 @@ $header-height: 60px;
 // MOBILE SIDEBAR BEHAVIOR
 // ================================================
 @media (max-width: 991.98px) {
+    // On mobile, sidebar is hidden by default
     .main-sidebar {
         transform: translateX(-100%);
     }
     
+    // Content areas have no margin on mobile
     .main-header.navbar,
     .content-wrapper,
     .main-footer {
         margin-left: 0 !important;
     }
     
-    // Sidebar open state on mobile
-    body:not(.sidebar-collapse) {
+    // Sidebar open state on mobile (using sidebar-open class)
+    body.sidebar-open {
         overflow: hidden;
         
         .main-sidebar {
             transform: translateX(0);
         }
         
-        // Overlay
-        &::after {
+        // Dark overlay behind sidebar
+        &::before {
             content: '';
             position: fixed;
             inset: 0;
@@ -1132,11 +1134,12 @@ $header-height: 60px;
             z-index: 1039;
             opacity: 1;
             transition: opacity 0.3s;
+            pointer-events: auto;
         }
     }
     
-    // Sidebar closed on mobile
-    .sidebar-collapse .main-sidebar {
+    // Ensure sidebar stays closed when sidebar-collapse is set (without sidebar-open)
+    .sidebar-collapse:not(.sidebar-open) .main-sidebar {
         transform: translateX(-100%);
     }
 }
