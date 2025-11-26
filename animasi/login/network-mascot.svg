@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background glow -->
+  <circle cx="200" cy="200" r="150" fill="url(#glowGrad)" opacity="0.5"/>
+  
+  <!-- Main router body -->
+  <rect x="120" y="150" width="160" height="100" rx="20" fill="url(#primaryGrad)" filter="url(#glow)"/>
+  
+  <!-- Router top bar -->
+  <rect x="140" y="165" width="120" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+  
+  <!-- LEDs -->
+  <circle cx="150" cy="195" r="6" fill="#00ff88">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="195" r="6" fill="#00ff88">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="190" cy="195" r="6" fill="#ffa500">
+    <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="210" cy="195" r="6" fill="#00ff88">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Eyes -->
+  <circle cx="160" cy="220" r="15" fill="white"/>
+  <circle cx="240" cy="220" r="15" fill="white"/>
+  <circle cx="163" cy="222" r="6" fill="#1a1a2e">
+    <animate attributeName="cx" values="163;166;163;160;163" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="243" cy="222" r="6" fill="#1a1a2e">
+    <animate attributeName="cx" values="243;246;243;240;243" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Antenna -->
+  <rect x="195" y="110" width="10" height="40" rx="5" fill="url(#primaryGrad)"/>
+  <circle cx="200" cy="105" r="10" fill="#00ff88" filter="url(#glow)">
+    <animate attributeName="r" values="10;12;10" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Signal waves -->
+  <circle cx="200" cy="105" r="25" fill="none" stroke="#667eea" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="25;40;25" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="105" r="40" fill="none" stroke="#667eea" stroke-width="2" opacity="0.4">
+    <animate attributeName="r" values="40;55;40" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Arms -->
+  <rect x="95" y="170" width="20" height="60" rx="10" fill="url(#primaryGrad)">
+    <animateTransform attributeName="transform" type="rotate" values="-10 105 170;10 105 170;-10 105 170" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="285" y="170" width="20" height="60" rx="10" fill="url(#primaryGrad)">
+    <animateTransform attributeName="transform" type="rotate" values="10 295 170;-10 295 170;10 295 170" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Connection lines -->
+  <line x1="50" y1="200" x2="120" y2="200" stroke="#667eea" stroke-width="3" stroke-linecap="round">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </line>
+  <line x1="280" y1="200" x2="350" y2="200" stroke="#667eea" stroke-width="3" stroke-linecap="round">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </line>
+  
+  <!-- Data packets -->
+  <rect x="60" y="196" width="8" height="8" rx="2" fill="#00ff88">
+    <animate attributeName="x" values="60;115;60" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="330" y="196" width="8" height="8" rx="2" fill="#00ff88">
+    <animate attributeName="x" values="330;285;330" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Status text -->
+  <text x="200" y="290" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#667eea" font-weight="600">
+    DigNet Network
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+  </text>
+</svg>
