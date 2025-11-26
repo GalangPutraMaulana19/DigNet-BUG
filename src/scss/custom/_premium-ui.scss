@@ -883,3 +883,163 @@ a, button, .btn, .nav-link, .card {
     background: rgba(102, 126, 234, 0.3);
     color: #1a1a2e;
 }
+
+// ================================================
+// SIDEBAR COLLAPSE/TOGGLE (AdminLTE v3 Compatible)
+// ================================================
+
+// Sidebar transition
+.main-sidebar {
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    width: 250px;
+    z-index: 1038;
+}
+
+.content-wrapper {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 250px;
+}
+
+.main-footer {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 250px;
+}
+
+.main-header {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 250px;
+}
+
+// Sidebar collapsed state
+.sidebar-collapse {
+    .main-sidebar {
+        margin-left: -250px;
+        transform: translateX(0);
+        
+        @media (min-width: 992px) {
+            width: 4.6rem;
+            margin-left: 0;
+            
+            .sidebar-menu > li > a > span,
+            .nav-link p,
+            .brand-text,
+            .nav-header {
+                opacity: 0;
+                visibility: hidden;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                transition: opacity 0.3s, visibility 0.3s;
+            }
+            
+            .sidebar-menu > li > a,
+            .nav-link {
+                text-align: center;
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+            
+            .nav-icon {
+                margin-right: 0 !important;
+                font-size: 1.25rem;
+            }
+            
+            // Show menu text on hover
+            &:hover {
+                width: 250px;
+                
+                .sidebar-menu > li > a > span,
+                .nav-link p,
+                .brand-text {
+                    opacity: 1;
+                    visibility: visible;
+                    width: auto;
+                }
+                
+                .sidebar-menu > li > a,
+                .nav-link {
+                    text-align: left;
+                    padding-left: 1rem !important;
+                }
+                
+                .nav-icon {
+                    margin-right: 0.75rem !important;
+                }
+            }
+        }
+    }
+    
+    .content-wrapper,
+    .main-footer,
+    .main-header {
+        @media (min-width: 992px) {
+            margin-left: 4.6rem;
+        }
+        
+        @media (max-width: 991.98px) {
+            margin-left: 0;
+        }
+    }
+}
+
+// Mobile sidebar overlay
+@media (max-width: 991.98px) {
+    .main-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        transform: translateX(-250px);
+    }
+    
+    .content-wrapper,
+    .main-footer,
+    .main-header {
+        margin-left: 0 !important;
+    }
+    
+    // Show sidebar when not collapsed on mobile
+    body:not(.sidebar-collapse) .main-sidebar {
+        transform: translateX(0);
+    }
+    
+    // Hide sidebar when collapsed on mobile
+    .sidebar-collapse .main-sidebar {
+        transform: translateX(-250px);
+    }
+    
+    // Sidebar overlay background
+    body:not(.sidebar-collapse)::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1037;
+    }
+}
+
+// Pushmenu toggle button styling
+[data-widget="pushmenu"] {
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    
+    &:hover {
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+    }
+    
+    i {
+        font-size: 1.25rem;
+        transition: transform 0.3s;
+    }
+}
+
+// Rotate hamburger icon when sidebar is collapsed
+.sidebar-collapse [data-widget="pushmenu"] i {
+    transform: rotate(90deg);
+}

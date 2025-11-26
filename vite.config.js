@@ -3,7 +3,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
-  base: '/dignet/',
+  base: './',  // Use relative paths for font assets
   
   // Build optimization
   build: {
