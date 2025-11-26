@@ -243,12 +243,26 @@ switch ($act) {
       readURL(this);
     });
 
-    $(function () {
-      CKEDITOR.replace('editor1');
-      CKEDITOR.replace('editor2');
-      CKEDITOR.replace('editor1a');
-      CKEDITOR.replace('editor2a');
-    })
-
-
+    // CKEditor 5 Initialization
+    document.addEventListener('DOMContentLoaded', function() {
+        const editorElements = ['editor1', 'editor2', 'editor1a', 'editor2a'];
+        
+        editorElements.forEach(function(editorId) {
+            const element = document.querySelector('#' + editorId);
+            if (element && typeof ClassicEditor !== 'undefined') {
+                ClassicEditor
+                    .create(element, {
+                        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'outdent', 'indent', '|', 'blockQuote', 'insertTable', 'undo', 'redo'],
+                        language: 'id'
+                    })
+                    .then(editor => {
+                        // Store editor instance for form submission
+                        element.ckeditorInstance = editor;
+                    })
+                    .catch(error => {
+                        console.error('CKEditor initialization error:', error);
+                    });
+            }
+        });
+    });
 </script>

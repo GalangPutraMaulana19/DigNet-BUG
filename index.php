@@ -238,6 +238,9 @@ if ($hasBuiltAssets) {
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" crossorigin="anonymous"></script>
     <?php endif; ?>
     
+    <!-- CKEditor 5 (Modern WYSIWYG Editor) -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    
     <!-- Inline Critical JS (Sidebar toggle - needed immediately) -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
