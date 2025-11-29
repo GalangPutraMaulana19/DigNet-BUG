@@ -20,7 +20,9 @@ if ($hasBuiltAssets) {
 }
 
 // Generate dynamic base URL for hosting compatibility
-// Use SERVER_NAME when available (more reliable), fallback to HTTP_HOST
+// Use SERVER_NAME when available (more reliable and server-configured), fallback to HTTP_HOST
+// HTTP_HOST is sanitized to allow only valid hostname characters (alphanumeric, dots, hyphens, and colon for port)
+// The output is also escaped with htmlspecialchars() in the HTML template for additional XSS protection
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
 $host = isset($_SERVER['SERVER_NAME']) && !empty($_SERVER['SERVER_NAME']) 
     ? $_SERVER['SERVER_NAME'] 
