@@ -18,6 +18,10 @@ if ($hasBuiltAssets) {
     $cssFile = !empty($cssFiles) ? 'dist/assets/' . basename($cssFiles[0]) : null;
     $jsFile = !empty($jsFiles) ? 'dist/assets/' . basename($jsFiles[0]) : null;
 }
+
+// Generate dynamic base URL for hosting compatibility
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+$base_url = $protocol . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -25,7 +29,7 @@ if ($hasBuiltAssets) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <base href="http://localhost/dignet/">
+    <base href="<?php echo htmlspecialchars($base_url, ENT_QUOTES, 'UTF-8'); ?>">
     <title>DigNet 2.0 - Sistem Pakar Diagnosis Gangguan IndiHome</title>
     <link rel="icon" href="gambar/admin/favicon.png">
     
