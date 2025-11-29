@@ -56,7 +56,7 @@ switch($act){
         <div class='card-body'>
           <form method=POST action='?module=incident' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
             <div class='col-auto'>
-              <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='incident/tambahincident';\">
+              <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='?module=incident&act=tambahincident';\">
                 <i class='fa-solid fa-plus'></i> Tambah Gejala
               </button>
             </div>
@@ -99,7 +99,7 @@ switch($act){
 			 <td class='text-center'>$no</td>
 			 <td>$r[nama_incident]</td>
 			 <td class='text-center'>
-               <a class='btn btn-sm btn-success' href=incident/editincident/$r[kode_incident]>
+               <a class='btn btn-sm btn-success' href='?module=incident&act=editincident&id=$r[kode_incident]'>
                  <i class='fa-solid fa-pen-to-square'></i> Ubah
                </a>
                <a class='btn btn-sm btn-danger' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=incident&act=hapus&id=$r[kode_incident]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">
@@ -140,7 +140,7 @@ switch($act){
 			 <td class='text-center'>$no</td>
 			 <td>$r[nama_incident]</td>
 			 <td class='text-center'>
-               <a class='btn btn-sm btn-success' href=incident/editincident/$r[kode_incident]>
+               <a class='btn btn-sm btn-success' href='?module=incident&act=editincident&id=$r[kode_incident]'>
                  <i class='fa-solid fa-pen-to-square'></i> Ubah
                </a>
                <a class='btn btn-sm btn-danger' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=incident&act=hapus&id=$r[kode_incident]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">

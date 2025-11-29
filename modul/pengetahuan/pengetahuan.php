@@ -74,7 +74,7 @@ switch($act){
           <div class='card-body'>
             <form method=POST action='?module=pengetahuan' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
               <div class='col-auto'>
-                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='pengetahuan/tambahpengetahuan';\">
+                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='?module=pengetahuan&act=tambahpengetahuan';\">
                   <i class='fa-solid fa-plus'></i> Tambah Basis Pengetahuan
                 </button>
               </div>
@@ -125,7 +125,7 @@ switch($act){
 			 <td>".$rincident['nama_incident']."</td>
 			 <td class='text-center'>".$r['mb']."</td>
 			 <td class='text-center'>".$r['md']."</td>
-			 <td class='text-center'><a type='button' class='btn btn-success btn-sm' href=pengetahuan/editpengetahuan/".$r['kode_pengetahuan']."><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
+			 <td class='text-center'><a type='button' class='btn btn-success btn-sm' href='?module=pengetahuan&act=editpengetahuan&id='".$r['kode_pengetahuan']."'><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
 	          <a type='button' class='btn btn-danger btn-sm' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=pengetahuan&act=hapus&id=".$r['kode_pengetahuan']."','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"><i class='fa-solid fa-trash' aria-hidden='true'></i> Hapus</a>
              </td></tr>";
       $no++;
@@ -174,7 +174,7 @@ switch($act){
 			 <td class='text-center'>".$r['mb']."</td>
 			 <td class='text-center'>".$r['md']."</td>
 			 <td class='text-center'>
-			 <a type='button' class='btn btn-success btn-sm' href=pengetahuan/editpengetahuan/".$r['kode_pengetahuan']."><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
+			 <a type='button' class='btn btn-success btn-sm' href='?module=pengetahuan&act=editpengetahuan&id='".$r['kode_pengetahuan']."'><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
 	          <a type='button' class='btn btn-danger btn-sm' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=pengetahuan&act=hapus&id=".$r['kode_pengetahuan']."','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">
 			  <i class='fa-solid fa-trash' aria-hidden='true'></i> Hapus</a>
              </td></tr>";

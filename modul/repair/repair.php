@@ -57,7 +57,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
         <div class='card-body'>
           <form method=POST action='?module=repair' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
             <div class='col-auto'>
-              <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='repair/tambahrepair';\">
+              <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='?module=repair&act=tambahrepair';\">
                 <i class='fa-solid fa-plus'></i> Tambah Gangguan
               </button>
             </div>
@@ -104,7 +104,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
 			 <td>{$r['det_repair']}</td>
 			 <td>{$r['srn_repair']}</td>
 			 <td class='text-center'>
-               <a class='btn btn-sm btn-success' href=repair/editrepair/{$r['kode_repair']}>
+               <a class='btn btn-sm btn-success' href='?module=repair&act=editrepair&id={$r["kode_repair"]}'>
                  <i class='fa-solid fa-pen-to-square'></i> Ubah
                </a>
                <a class='btn btn-sm btn-danger' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=repair&act=hapus&id={$r['kode_repair']}','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">
@@ -149,7 +149,7 @@ if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
 			 <td>{$r['det_repair']}</td>
 			 <td>{$r['srn_repair']}</td>
 			 <td class='text-center'>
-               <a class='btn btn-sm btn-success' href=repair/editrepair/{$r['kode_repair']}>
+               <a class='btn btn-sm btn-success' href='?module=repair&act=editrepair&id={$r["kode_repair"]}'>
                  <i class='fa-solid fa-pen-to-square'></i> Ubah
                </a>
                <a class='btn btn-sm btn-danger' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=repair&act=hapus&id={$r['kode_repair']}','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">

@@ -48,7 +48,7 @@ switch ($act) {
           <div class='card-body'>
             <form method=POST action='?module=post' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
               <div class='col-auto'>
-                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='post/tambahpost';\">
+                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='?module=post&act=tambahpost';\">
                   <i class='fa-solid fa-plus'></i> Tambah Post
                 </button>
               </div>
@@ -93,7 +93,7 @@ switch ($act) {
 			 <td>$r[nama_post]</td>
 			 <td>$r[det_post]</td>
 			 <td>$r[srn_post]</td>
-			 <td class='text-center'><a type='button' class='btn btn-success btn-sm' href=post/editpost/$r[kode_post]><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
+			 <td class='text-center'><a type='button' class='btn btn-success btn-sm' href='?module=post&act=editpost&id=$r[kode_post]'><i class='fa-solid fa-pen-to-square' aria-hidden='true'></i> Ubah </a> &nbsp;
 	          <a type='button' class='btn btn-danger btn-sm' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=post&act=hapus&id=$r[kode_post]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\"> <i class='fa-solid fa-trash' aria-hidden='true'></i> Hapus</a>
              </td></tr>";
                     $no++;
@@ -145,7 +145,7 @@ switch ($act) {
 			 <td>$r[det_post]</td>
 			 <td>$r[srn_post]</td>
 			 <td align=center>
-			 <a type='button' class='btn btn-success margin' href=post/editpost/$r[kode_post]><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubah </a> &nbsp;
+			 <a type='button' class='btn btn-success margin' href='?module=post&act=editpost&id=$r[kode_post]'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Ubah </a> &nbsp;
 	          <a type='button' class='btn btn-danger margin' href=\"JavaScript: confirmIt('Anda yakin akan menghapusnya ?','$aksi?module=post&act=hapus&id=$r[kode_post]','','','','u','n','Self','Self')\" onMouseOver=\"self.status=''; return true\" onMouseOut=\"self.status=''; return true\">
 			  <i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
              </td></tr>";
