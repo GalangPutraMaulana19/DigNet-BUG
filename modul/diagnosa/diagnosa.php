@@ -554,7 +554,7 @@ switch ($_GET['act'] ?? '') {
       }
       echo "</div>
         <div class='submit-section'>
-            <button type='submit' name='submit' class='btn-diagnosa-submit' data-bs-toggle='tooltip' data-bs-placement='top' title='Klik untuk melihat hasil diagnosa'>
+            <button type='submit' name='submit' value='1' class='btn-diagnosa-submit' data-bs-toggle='tooltip' data-bs-placement='top' title='Klik untuk melihat hasil diagnosa'>
                 <i class='fa-solid fa-magnifying-glass-plus'></i>
                 Proses Diagnosa
             </button>
