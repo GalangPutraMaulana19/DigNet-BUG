@@ -161,7 +161,7 @@ switch ($_GET['act'] ?? '') {
                 <h4><i class='fa-solid fa-triangle-exclamation'></i> Perhatian !</h4>
                 Silahkan memilih gejala sesuai dengan kondisi perangkat IndiHome (ODP, ONT, STB, Telepon). Anda dapat memilih tingkat kepastian gejala dari pasti tidak sampai pasti ya. Setelah selesai, tekan tombol proses (<i class='fa-solid fa-magnifying-glass-plus'></i>) di bawah untuk melihat hasil diagnosis.
               </div>
-		<form name=text_form method=POST action='diagnosa' >
+		<form name=text_form method=POST action='?module=diagnosa' >
            <table class='table table-bordered table-striped konsultasi'><tbody class='pilihkondisi'>
            <tr><th>No</th><th>Kode</th><th>Gejala</th><th width='20%'>Pilih Kondisi</th></tr>";
 

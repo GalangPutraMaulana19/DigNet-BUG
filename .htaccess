@@ -1,14 +1,18 @@
 # Enable URL Rewriting
 RewriteEngine On
 
-# Set the base path (adjust if installed in subdirectory)
-# RewriteBase /dignet/
+# Set the base path - IMPORTANT: Uncomment and adjust if installed in subdirectory
+# For root domain (webskripsidignet.tech): use /
+# For subdirectory (localhost/dignet): use /dignet/
+RewriteBase /
 
-# Don't rewrite if the request is for an existing file or directory
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# Handle Authorization Header (needed for some hosting)
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 # Route: /riwayat-detail/123 -> index.php?module=riwayat-detail&id=123
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^riwayat-detail/([0-9]+)/?$ index.php?module=riwayat-detail&id=$1 [NC,L,QSA]
 
 # Route: /admin/editadmin/123 -> index.php?module=admin&act=editadmin&id=123
@@ -26,7 +30,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ index.php?module=$1&act=$2 [NC,L,QSA]
 
-# Route: /diagnosa -> index.php?module=diagnosa
+# Route: /diagnosa -> index.php?module=diagnosa (handles both GET and POST)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?module=$1 [NC,L,QSA]
