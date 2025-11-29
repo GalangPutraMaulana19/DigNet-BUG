@@ -11,10 +11,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Route: /riwayat-detail/123 -> index.php?module=riwayat-detail&id=123
 RewriteRule ^riwayat-detail/([0-9]+)/?$ index.php?module=riwayat-detail&id=$1 [NC,L,QSA]
 
-# Route: /admin/tambahadmin/123 -> index.php?module=admin&act=tambahadmin&id=123
+# Route: /admin/editadmin/123 -> index.php?module=admin&act=editadmin&id=123
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^admin/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ index.php?module=admin&act=$1&id=$2 [NC,L,QSA]
+RewriteRule ^admin/([a-zA-Z0-9_-]+)/([0-9]+)/?$ index.php?module=admin&act=$1&id=$2 [NC,L,QSA]
 
 # Route: /module/action/123 -> index.php?module=module&act=action&id=123
 RewriteCond %{REQUEST_FILENAME} !-f

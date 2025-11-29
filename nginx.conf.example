@@ -41,9 +41,13 @@ server {
     }
     
     # PHP-FPM configuration
+    # Adjust the socket path based on your system:
+    # - Ubuntu/Debian: unix:/var/run/php/php8.1-fpm.sock
+    # - CentOS/RHEL: unix:/var/run/php-fpm/php8.1.sock
+    # - TCP connection: 127.0.0.1:9000
     location ~ \.php$ {
         include fastcgi_params;
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;  # Adjust PHP version as needed
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;  # Adjust path for your system
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_index index.php;
     }
