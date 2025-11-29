@@ -1,7 +1,7 @@
 <title>Diagnosa - DigNet 1.0</title>
 
 <!-- Premium Page Header -->
-<div class="mb-5">
+<div class="mb-4">
     <h2 class="text text-primary">
         <i class="fa-solid fa-stethoscope me-3"></i>
         Diagnosis Gangguan IndiHome
@@ -10,6 +10,258 @@
         Sistem pakar untuk mendiagnosis gangguan perangkat IndiHome dengan metode Forward Chaining dan Certainty Factor
     </p>
 </div>
+
+<style>
+/* Premium SaaS Form Styling */
+.diagnosa-form-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.diagnosa-form-header {
+    background: linear-gradient(135deg, #E21E2C 0%, #B71C1C 100%);
+    color: white;
+    padding: 1.5rem;
+}
+
+.diagnosa-form-body {
+    padding: 1.5rem;
+}
+
+.gejala-card {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.gejala-card:hover {
+    border-color: #E21E2C;
+    box-shadow: 0 2px 8px rgba(226, 30, 44, 0.1);
+    transform: translateY(-1px);
+}
+
+.gejala-number {
+    background: linear-gradient(135deg, #E21E2C 0%, #B71C1C 100%);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.gejala-code {
+    background: #f0f0f0;
+    color: #525252;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.gejala-text {
+    flex: 1;
+    min-width: 200px;
+    font-weight: 500;
+    color: #262626;
+    line-height: 1.4;
+}
+
+.gejala-select-wrapper {
+    flex: 0 0 auto;
+    min-width: 180px;
+}
+
+.premium-select {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background-color: white;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+.premium-select:focus {
+    outline: none;
+    border-color: #E21E2C;
+    box-shadow: 0 0 0 3px rgba(226, 30, 44, 0.1);
+}
+
+.premium-select:hover {
+    border-color: #a3a3a3;
+}
+
+.submit-section {
+    padding: 1.5rem;
+    background: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-diagnosa-submit {
+    background: linear-gradient(135deg, #E21E2C 0%, #B71C1C 100%);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(226, 30, 44, 0.3);
+    cursor: pointer;
+}
+
+.btn-diagnosa-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(226, 30, 44, 0.4);
+}
+
+.btn-diagnosa-submit:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gejala-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .gejala-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    
+    .gejala-text {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .gejala-select-wrapper {
+        width: 100%;
+    }
+    
+    .premium-select {
+        width: 100%;
+    }
+    
+    .btn-diagnosa-submit {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+    }
+    
+    .diagnosa-form-body {
+        padding: 1rem;
+    }
+}
+
+/* Premium Results Styling */
+.hasil-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.hasil-header {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hasil-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.hasil-body {
+    padding: 1.5rem;
+}
+
+.hasil-main-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    border: 2px solid #10B981;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hasil-gangguan {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #059669;
+    margin-bottom: 0.5rem;
+}
+
+.hasil-persentase {
+    font-size: 1.25rem;
+    color: #065F46;
+    font-weight: 600;
+}
+
+.gejala-hasil-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .gejala-hasil-item {
+        flex-wrap: wrap;
+    }
+    
+    .hasil-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hasil-gangguan {
+        font-size: 1.25rem;
+    }
+}
+</style>
 
 <?php
 switch ($_GET['act'] ?? '') {
@@ -112,14 +364,22 @@ switch ($_GET['act'] ?? '') {
       mysqli_stmt_close($stmt_insert);
 // --------------------- END -------------------------
 
-      echo "<div class='content'>
-	<h2 class='text-primary'>Hasil Diagnosis &nbsp;&nbsp;<button id='print' onClick='window.print();' data-bs-toggle='tooltip' data-bs-placement='right' title='Klik tombol ini untuk mencetak hasil diagnosa' class='btn btn-secondary'><i class='fa-solid fa-print'></i> Cetak</button> </h2>
-	          <hr><table class='table table-bordered table-striped diagnosa'> 
-          <th width=8%>No</th>
-          <th width=10%>Kode</th>
-          <th>Incident yang dialami (keluhan)</th>
-          <th width=20%>Pilihan</th>
-          </tr>";
+      // Modern Results Display
+      echo "<div class='hasil-container'>
+        <div class='hasil-header'>
+            <h2><i class='fa-solid fa-clipboard-check me-2'></i> Hasil Diagnosis</h2>
+            <button id='print' onClick='window.print();' class='btn btn-light' data-bs-toggle='tooltip' title='Cetak hasil diagnosa'>
+                <i class='fa-solid fa-print me-2'></i> Cetak
+            </button>
+        </div>
+        <div class='hasil-body'>";
+      
+      // Gejala yang dipilih section
+      echo "<div class='mb-4'>
+                <h5 class='mb-3' style='color: #525252; font-weight: 600;'>
+                    <i class='fa-solid fa-list-check me-2'></i> Gejala yang Dipilih
+                </h5>";
+      
       $ig = 0;
       foreach ($arincident as $key => $value) {
         $kondisi = intval($value);
@@ -134,12 +394,16 @@ switch ($_GET['act'] ?? '') {
         mysqli_stmt_close($stmt4);
         
         if ($r4) {
-          echo '<tr><td>' . $ig . '</td>';
-          echo '<td>G' . str_pad(htmlspecialchars($r4['kode_incident'], ENT_QUOTES, 'UTF-8'), 3, '0', STR_PAD_LEFT) . '</td>';
-          echo '<td><span class="hasil text text-primary">' . htmlspecialchars($r4['nama_incident'], ENT_QUOTES, 'UTF-8') . "</span></td>";
-          echo '<td><span class="kondisipilih" style="color:' . ($arcolor[$kondisi] ?? '#ffffff') . '">' . ($arkondisitext[$kondisi] ?? '') . "</span></td></tr>";
+          echo "<div class='gejala-hasil-item'>
+                    <span class='gejala-number' style='width: 28px; height: 28px; font-size: 0.75rem;'>$ig</span>
+                    <span class='gejala-code'>G" . str_pad(htmlspecialchars($r4['kode_incident'], ENT_QUOTES, 'UTF-8'), 3, '0', STR_PAD_LEFT) . "</span>
+                    <span style='flex: 1; font-weight: 500;'>" . htmlspecialchars($r4['nama_incident'], ENT_QUOTES, 'UTF-8') . "</span>
+                    <span class='badge' style='background-color: " . ($arcolor[$kondisi] ?? '#e5e5e5') . "; color: #262626; padding: 0.5rem 0.75rem; border-radius: 20px;'>" . ($arkondisitext[$kondisi] ?? '-') . "</span>
+                </div>";
         }
       }
+      echo "</div>";
+      
       $np = 0;
       $idpkt = [];
       $nmpkt = [];
@@ -150,53 +414,123 @@ switch ($_GET['act'] ?? '') {
         $nmpkt[$np] = $arpkt[$key] ?? '';
         $vlpkt[$np] = $value;
       }
-      if ($argpkt[$idpkt[1]]) {
+      if (isset($argpkt[$idpkt[1]]) && $argpkt[$idpkt[1]]) {
         $gambar = 'gambar/repair/' . $argpkt[$idpkt[1]];
       } else {
         $gambar = 'gambar/noimage.png';
       }
-      echo "</table><div class='card'><div class='card-body'><img class='img-fluid rounded float-end' style='margin-left:15px; max-width: 200px;' src='" . $gambar . "'><h3>Hasil Diagnosa</h3>";
-      echo "<div class='alert alert-success'>Jenis gangguan yang terdeteksi adalah <b><h3 class='text-success'>" . $nmpkt[1] . "</b> / " . round($vlpkt[1], 2) . " % (" . $vlpkt[1] . ")<br></h3>";
-      echo "</div></div></div><div class='card card-info card-outline mt-3'><div class='card-header'><h3 class='card-title'><i class='fa-solid fa-circle-info'></i> Detail</h3></div><div class='card-body'><h4>";
-      echo $ardpkt[$idpkt[1]];
-      echo "</h4></div></div>
-          <div class='card card-warning card-outline mt-3'><div class='card-header'><h3 class='card-title'><i class='fa-solid fa-lightbulb'></i> Saran Penanganan</h3></div><div class='card-body'><h4>";
-      echo $arspkt[$idpkt[1]];
-      echo "</h4></div></div>
-          <div class='card card-danger card-outline mt-3'><div class='card-header'><h3 class='card-title'><i class='fa-solid fa-list'></i> Kemungkinan lain:</h3></div><div class='card-body'><h4>";
-      for ($ipl = 2; $ipl < count($idpkt); $ipl++) {
-        echo " <h4><i class='fa-solid fa-caret-right'></i> " . $nmpkt[$ipl] . "</b> / " . round($vlpkt[$ipl], 2) . " % (" . $vlpkt[$ipl] . ")<br></h4>";
+      
+      // Main diagnosis result
+      echo "<div class='hasil-main-card'>
+                <div class='row align-items-center'>
+                    <div class='col-md-8'>
+                        <span class='badge mb-2' style='background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px;'>
+                            <i class='fa-solid fa-check-circle me-1'></i> Hasil Terdeteksi
+                        </span>
+                        <div class='hasil-gangguan'>" . htmlspecialchars($nmpkt[1] ?? 'Tidak terdeteksi', ENT_QUOTES, 'UTF-8') . "</div>
+                        <div class='hasil-persentase'>
+                            <i class='fa-solid fa-chart-pie me-1'></i> Tingkat Kepastian: <strong>" . round($vlpkt[1] ?? 0, 2) . "%</strong> (" . ($vlpkt[1] ?? 0) . ")
+                        </div>
+                    </div>
+                    <div class='col-md-4 text-center mt-3 mt-md-0'>
+                        <img class='img-fluid rounded' style='max-width: 180px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 12px;' src='$gambar' alt='Gambar gangguan'>
+                    </div>
+                </div>
+            </div>";
+      
+      // Detail section
+      echo "<div class='card mb-3' style='border-left: 4px solid #3B82F6; border-radius: 12px;'>
+                <div class='card-body'>
+                    <h5 class='card-title mb-3' style='color: #3B82F6;'>
+                        <i class='fa-solid fa-circle-info me-2'></i> Detail Gangguan
+                    </h5>
+                    <p class='mb-0' style='line-height: 1.7;'>" . htmlspecialchars($ardpkt[$idpkt[1]] ?? '', ENT_QUOTES, 'UTF-8') . "</p>
+                </div>
+            </div>";
+      
+      // Saran section
+      echo "<div class='card mb-3' style='border-left: 4px solid #F59E0B; border-radius: 12px;'>
+                <div class='card-body'>
+                    <h5 class='card-title mb-3' style='color: #F59E0B;'>
+                        <i class='fa-solid fa-lightbulb me-2'></i> Saran Penanganan
+                    </h5>
+                    <p class='mb-0' style='line-height: 1.7;'>" . htmlspecialchars($arspkt[$idpkt[1]] ?? '', ENT_QUOTES, 'UTF-8') . "</p>
+                </div>
+            </div>";
+      
+      // Other possibilities
+      if (count($idpkt) > 1) {
+        echo "<div class='card' style='border-left: 4px solid #EF4444; border-radius: 12px;'>
+                    <div class='card-body'>
+                        <h5 class='card-title mb-3' style='color: #EF4444;'>
+                            <i class='fa-solid fa-list me-2'></i> Kemungkinan Lain
+                        </h5>
+                        <div class='list-group list-group-flush'>";
+        
+        for ($ipl = 2; $ipl <= count($idpkt); $ipl++) {
+          if (isset($nmpkt[$ipl])) {
+            echo "<div class='list-group-item d-flex justify-content-between align-items-center' style='border-radius: 8px; margin-bottom: 0.5rem; background: #fafafa;'>
+                        <span><i class='fa-solid fa-caret-right me-2 text-danger'></i> " . htmlspecialchars($nmpkt[$ipl], ENT_QUOTES, 'UTF-8') . "</span>
+                        <span class='badge bg-secondary'>" . round($vlpkt[$ipl], 2) . "%</span>
+                    </div>";
+          }
+        }
+        
+        echo "</div></div></div>";
       }
-      echo "</div></div>
-		  </div>";
+      
+      // Action buttons
+      echo "<div class='text-center mt-4'>
+                <a href='?module=diagnosa' class='btn btn-primary me-2' style='border-radius: 10px; padding: 0.75rem 1.5rem;'>
+                    <i class='fa-solid fa-rotate-left me-2'></i> Diagnosa Ulang
+                </a>
+                <a href='?module=riwayat' class='btn btn-outline-secondary' style='border-radius: 10px; padding: 0.75rem 1.5rem;'>
+                    <i class='fa-solid fa-clock-rotate-left me-2'></i> Lihat Riwayat
+                </a>
+            </div>";
+      
+      echo "</div></div>";
     } else {
       echo "
-	 <h2 class='text-primary'>Diagnosa Gangguan IndiHome</h2>  <hr>
-	 <div class='alert alert-success alert-dismissible fade show'>
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                <h4><i class='fa-solid fa-triangle-exclamation'></i> Perhatian !</h4>
-                Silahkan memilih gejala sesuai dengan kondisi perangkat IndiHome (ODP, ONT, STB, Telepon). Anda dapat memilih tingkat kepastian gejala dari pasti tidak sampai pasti ya. Setelah selesai, tekan tombol proses (<i class='fa-solid fa-magnifying-glass-plus'></i>) di bawah untuk melihat hasil diagnosis.
-              </div>
-		<form name=text_form method=POST action='?module=diagnosa' >
-           <table class='table table-bordered table-striped konsultasi'><tbody class='pilihkondisi'>
-           <tr><th>No</th><th>Kode</th><th>Gejala</th><th width='20%'>Pilih Kondisi</th></tr>";
+<div class='diagnosa-form-container'>
+    <div class='diagnosa-form-header'>
+        <h3 class='mb-0'><i class='fa-solid fa-stethoscope me-2'></i> Formulir Diagnosa Gangguan</h3>
+        <p class='mb-0 mt-2 opacity-75'>Pilih gejala sesuai kondisi perangkat IndiHome Anda</p>
+    </div>
+    <form name='text_form' method='POST' action='?module=diagnosa'>
+        <div class='diagnosa-form-body'>";
+      
+      echo "<div class='alert alert-info mb-4' style='border-radius: 12px; border-left: 4px solid #3B82F6;'>
+                <div class='d-flex align-items-start'>
+                    <i class='fa-solid fa-circle-info me-3 mt-1' style='color: #3B82F6; font-size: 1.25rem;'></i>
+                    <div>
+                        <strong>Petunjuk Penggunaan:</strong><br>
+                        Pilih tingkat kepastian gejala dari \"Pasti Tidak\" sampai \"Pasti Ya\" untuk setiap gejala yang sesuai dengan kondisi perangkat IndiHome (ODP, ONT, STB, Telepon). Setelah selesai, klik tombol <strong>Proses Diagnosa</strong>.
+                    </div>
+                </div>
+            </div>";
 
       $sql3 = mysqli_query($conn, "SELECT * FROM incident order by kode_incident");
       $i = 0;
       while ($r3 = mysqli_fetch_array($sql3)) {
         $i++;
-        echo "<tr><td class=opsi>$i</td>";
-        echo "<td class=opsi>G" . str_pad($r3['kode_incident'], 3, '0', STR_PAD_LEFT) . "</td>";
-        echo "<td class=incident>$r3[nama_incident]</td>";
-        echo '<td class="opsi"><select name="kondisi[]" id="sl' . $i . '" class="opsikondisi"/><option data-id="0" value="0">Pilih jika sesuai</option>';
+        echo "<div class='gejala-card'>
+                <div class='gejala-number'>$i</div>
+                <span class='gejala-code'>G" . str_pad($r3['kode_incident'], 3, '0', STR_PAD_LEFT) . "</span>
+                <div class='gejala-text'>" . htmlspecialchars($r3['nama_incident'], ENT_QUOTES, 'UTF-8') . "</div>
+                <div class='gejala-select-wrapper'>
+                    <select name='kondisi[]' id='sl$i' class='premium-select'>
+                        <option data-id='0' value='0'>Pilih jika sesuai</option>";
+        
         $s = "select * from kondisi order by id";
         $q = mysqli_query($conn, $s) or die($s);
         while ($rw = mysqli_fetch_array($q)) {
-          ?>
-          <option data-id="<?php echo $rw['id']; ?>" value="<?php echo $r3['kode_incident'] . '_' . $rw['id']; ?>"><?php echo $rw['kondisi']; ?></option>
-          <?php
+          echo "<option data-id='" . htmlspecialchars($rw['id'], ENT_QUOTES, 'UTF-8') . "' value='" . $r3['kode_incident'] . "_" . $rw['id'] . "'>" . htmlspecialchars($rw['kondisi'], ENT_QUOTES, 'UTF-8') . "</option>";
         }
-        echo '</select></td>';
+        
+        echo "</select>
+                </div>
+              </div>";
         ?>
         <script type="text/javascript">
           (function() {
@@ -217,11 +551,16 @@ switch ($_GET['act'] ?? '') {
           })();
         </script>
         <?php
-        echo "</tr>";
       }
-      echo "
-		  <input class='float' type=submit data-bs-toggle='tooltip' data-bs-placement='top' title='Klik disini untuk melihat hasil diagnosa' name=submit value='&#xf00e;' style='font-family:Arial, FontAwesome'>
-          </tbody></table></form>";
+      echo "</div>
+        <div class='submit-section'>
+            <button type='submit' name='submit' class='btn-diagnosa-submit' data-bs-toggle='tooltip' data-bs-placement='top' title='Klik untuk melihat hasil diagnosa'>
+                <i class='fa-solid fa-magnifying-glass-plus'></i>
+                Proses Diagnosa
+            </button>
+        </div>
+    </form>
+</div>";
     }
     break;
 }
