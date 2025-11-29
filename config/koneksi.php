@@ -1,9 +1,15 @@
 <?php
     // Database configuration - can be overridden by environment variables for hosting
-    $server = getenv('DB_HOST') ?: "localhost";
-    $username = getenv('DB_USER') ?: "root";
-    $password = getenv('DB_PASSWORD') ?: "";
-    $database = getenv('DB_NAME') ?: "dignet";
+    // Environment variables are validated to ensure they are non-empty strings
+    $db_host = getenv('DB_HOST');
+    $db_user = getenv('DB_USER');
+    $db_pass = getenv('DB_PASSWORD');
+    $db_name = getenv('DB_NAME');
+    
+    $server = (!empty($db_host) && is_string($db_host)) ? $db_host : "localhost";
+    $username = (!empty($db_user) && is_string($db_user)) ? $db_user : "root";
+    $password = (is_string($db_pass)) ? $db_pass : "";  // Allow empty password for local dev
+    $database = (!empty($db_name) && is_string($db_name)) ? $db_name : "dignet";
 
     $conn = mysqli_connect($server, $username, $password, $database);
 

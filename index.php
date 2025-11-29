@@ -20,8 +20,12 @@ if ($hasBuiltAssets) {
 }
 
 // Generate dynamic base URL for hosting compatibility
+// Use SERVER_NAME when available (more reliable), fallback to HTTP_HOST
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
-$base_url = $protocol . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
+$host = isset($_SERVER['SERVER_NAME']) && !empty($_SERVER['SERVER_NAME']) 
+    ? $_SERVER['SERVER_NAME'] 
+    : (isset($_SERVER['HTTP_HOST']) ? preg_replace('/[^a-zA-Z0-9\.\-:]/', '', $_SERVER['HTTP_HOST']) : 'localhost');
+$base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
 ?>
 <!DOCTYPE html>
 <html lang="id">
