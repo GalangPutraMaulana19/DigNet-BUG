@@ -23,16 +23,23 @@ switch ($_GET['act'] ?? '') {
       $arbobot = array('0', '1', '0.8', '0.6', '0.4', '-0.2', '-0.4', '-0.6', '-0.8', '-1');
       $arincident = array();
 
-      for ($i = 0; $i < count($_POST['kondisi']); $i++) {
-        $arkondisi = explode("_", $_POST['kondisi'][$i]);
-        if (strlen($_POST['kondisi'][$i]) > 1) {
-          $arincident += array($arkondisi[0] => $arkondisi[1]);
+      // Sanitize and validate input
+      $kondisi_input = isset($_POST['kondisi']) && is_array($_POST['kondisi']) ? $_POST['kondisi'] : [];
+      for ($i = 0; $i < count($kondisi_input); $i++) {
+        $arkondisi = explode("_", $kondisi_input[$i]);
+        if (strlen($kondisi_input[$i]) > 1 && count($arkondisi) >= 2) {
+          // Only accept numeric values
+          $kode = intval($arkondisi[0]);
+          $nilai = intval($arkondisi[1]);
+          if ($kode > 0 && $nilai >= 0 && $nilai <= 9) {
+            $arincident[$kode] = $nilai;
+          }
         }
       }
 
       $sqlkondisi = mysqli_query($conn, "SELECT * FROM kondisi order by id+0");
       while ($rkondisi = mysqli_fetch_array($sqlkondisi)) {
-        $arkondisitext[$rkondisi['id']] = $rkondisi['kondisi'];
+        $arkondisitext[$rkondisi['id']] = htmlspecialchars($rkondisi['kondisi'], ENT_QUOTES, 'UTF-8');
       }
 
       $sqlpkt = mysqli_query($conn, "SELECT * FROM repair order by kode_repair+0");
@@ -51,17 +58,19 @@ switch ($_GET['act'] ?? '') {
       while ($rrepair = mysqli_fetch_array($sqlrepair)) {
         $cftotal_temp = 0;
         $cf = 0;
-        $sqlincident = mysqli_query($conn, "SELECT * FROM basis_pengetahuan where kode_repair=$rrepair[kode_repair]");
+        // Use prepared statement for inner query
+        $kode_repair_int = intval($rrepair['kode_repair']);
+        $stmt_incident = mysqli_prepare($conn, "SELECT * FROM basis_pengetahuan WHERE kode_repair = ?");
+        mysqli_stmt_bind_param($stmt_incident, "i", $kode_repair_int);
+        mysqli_stmt_execute($stmt_incident);
+        $sqlincident = mysqli_stmt_get_result($stmt_incident);
         $cflama = 0;
         while ($rincident = mysqli_fetch_array($sqlincident)) {
-          $arkondisi = explode("_", $_POST['kondisi'][0]);
-          $incident = $arkondisi[0];
-
-          for ($i = 0; $i < count($_POST['kondisi']); $i++) {
-            $arkondisi = explode("_", $_POST['kondisi'][$i]);
-            $incident = $arkondisi[0];
-            if ($rincident['kode_incident'] == $incident) {
-              $cf = ($rincident['mb'] - $rincident['md']) * $arbobot[$arkondisi[1]];
+          // Use validated arincident array
+          foreach ($arincident as $incident_key => $incident_value) {
+            if ($rincident['kode_incident'] == $incident_key) {
+              $bobot_index = min(max(intval($incident_value), 0), 9);
+              $cf = ($rincident['mb'] - $rincident['md']) * $arbobot[$bobot_index];
               if (($cf >= 0) && ($cf * $cflama >= 0)) {
                 $cflama = $cflama + ($cf * (1 - $cflama));
               }
@@ -74,6 +83,7 @@ switch ($_GET['act'] ?? '') {
             }
           }
         }
+        mysqli_stmt_close($stmt_incident);
         if ($cflama > 0) {
           $arrepair += array($rrepair['kode_repair'] => number_format($cflama, 4));
         }
@@ -85,26 +95,21 @@ switch ($_GET['act'] ?? '') {
       $inprepair = serialize($arrepair);
 
       $np1 = 0;
+      $idpkt1 = [];
+      $vlpkt1 = [];
       foreach ($arrepair as $key1 => $value1) {
         $np1++;
-        $idpkt1[$np1] = $key1;
-        $vlpkt1[$np1] = $value1;
+        $idpkt1[$np1] = intval($key1);
+        $vlpkt1[$np1] = floatval($value1);
       }
 
-      mysqli_query($conn, "INSERT INTO hasil(
-                  tanggal,
-                  incident,
-                  repair,
-                  hasil_id,
-                  hasil_nilai
-				  ) 
-	        VALUES(
-                '$inptanggal',
-                '$inpincident',
-                '$inprepair',
-                '$idpkt1[1]',
-                '$vlpkt1[1]'
-				)");
+      // Use prepared statement for insert
+      $hasil_id = $idpkt1[1] ?? 0;
+      $hasil_nilai = $vlpkt1[1] ?? 0;
+      $stmt_insert = mysqli_prepare($conn, "INSERT INTO hasil (tanggal, incident, repair, hasil_id, hasil_nilai) VALUES (?, ?, ?, ?, ?)");
+      mysqli_stmt_bind_param($stmt_insert, "sssid", $inptanggal, $inpincident, $inprepair, $hasil_id, $hasil_nilai);
+      mysqli_stmt_execute($stmt_insert);
+      mysqli_stmt_close($stmt_insert);
 // --------------------- END -------------------------
 
       echo "<div class='content'>
@@ -117,21 +122,32 @@ switch ($_GET['act'] ?? '') {
           </tr>";
       $ig = 0;
       foreach ($arincident as $key => $value) {
-        $kondisi = $value;
+        $kondisi = intval($value);
         $ig++;
-        $incident = $key;
-        $sql4 = mysqli_query($conn, "SELECT * FROM incident where kode_incident = '$key'");
-        $r4 = mysqli_fetch_array($sql4);
-        echo '<tr><td>' . $ig . '</td>';
-        echo '<td>G' . str_pad($r4['kode_incident'], 3, '0', STR_PAD_LEFT) . '</td>';
-        echo '<td><span class="hasil text text-primary">' . $r4['nama_incident'] . "</span></td>";
-        echo '<td><span class="kondisipilih" style="color:' . $arcolor[$kondisi] . '">' . $arkondisitext[$kondisi] . "</span></td></tr>";
+        $incident = intval($key);
+        // Use prepared statement
+        $stmt4 = mysqli_prepare($conn, "SELECT * FROM incident WHERE kode_incident = ?");
+        mysqli_stmt_bind_param($stmt4, "i", $incident);
+        mysqli_stmt_execute($stmt4);
+        $result4 = mysqli_stmt_get_result($stmt4);
+        $r4 = mysqli_fetch_array($result4);
+        mysqli_stmt_close($stmt4);
+        
+        if ($r4) {
+          echo '<tr><td>' . $ig . '</td>';
+          echo '<td>G' . str_pad(htmlspecialchars($r4['kode_incident'], ENT_QUOTES, 'UTF-8'), 3, '0', STR_PAD_LEFT) . '</td>';
+          echo '<td><span class="hasil text text-primary">' . htmlspecialchars($r4['nama_incident'], ENT_QUOTES, 'UTF-8') . "</span></td>";
+          echo '<td><span class="kondisipilih" style="color:' . ($arcolor[$kondisi] ?? '#ffffff') . '">' . ($arkondisitext[$kondisi] ?? '') . "</span></td></tr>";
+        }
       }
       $np = 0;
+      $idpkt = [];
+      $nmpkt = [];
+      $vlpkt = [];
       foreach ($arrepair as $key => $value) {
         $np++;
         $idpkt[$np] = $key;
-        $nmpkt[$np] = $arpkt[$key];
+        $nmpkt[$np] = $arpkt[$key] ?? '';
         $vlpkt[$np] = $value;
       }
       if ($argpkt[$idpkt[1]]) {
