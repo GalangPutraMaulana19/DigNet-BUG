@@ -37,7 +37,8 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="<?php echo htmlspecialchars($base_url, ENT_QUOTES, 'UTF-8'); ?>">
     <title>DigNet 2.0 - Sistem Pakar Diagnosis Gangguan IndiHome</title>
-    <link rel="icon" href="gambar/admin/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="gambar/admin/favicon.svg">
+    <link rel="alternate icon" href="gambar/admin/favicon.png">
     
     <!-- DNS Prefetch for Performance -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
