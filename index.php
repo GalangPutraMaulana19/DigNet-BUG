@@ -5,6 +5,11 @@ session_start(); // Memulai sesi
 include "config/koneksi.php"; // Menghubungkan ke database
 include "config/fungsi_alert.php"; // Menghubungkan ke fungsi alert
 
+// Get module and action parameters from URL (sanitized)
+$module = isset($_GET['module']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['module']) : '';
+$act = isset($_GET['act']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['act']) : '';
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
 // Detect if built assets exist
 $distDir = __DIR__ . '/dist/assets/';
 $hasBuiltAssets = is_dir($distDir);
