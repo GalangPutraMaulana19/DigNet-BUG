@@ -1,7 +1,7 @@
 <?php
 if ($module == ""){
     // Check if user is logged in as admin
-    if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
         // Admin user - show dashboard
         include "modul/dashboard.php";
     } else {
