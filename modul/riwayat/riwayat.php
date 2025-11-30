@@ -40,8 +40,8 @@ switch ($_GET['act'] ?? '') {
             
             <!-- Pie Chart Card (First, Left Side) -->
             <div class='col-md-4 mb-4'>
-              <div class='card card-danger card-outline shadow-sm'>
-                <div class='card-header bg-gradient-danger text-white'>
+              <div class='card card-danger card-outline shadow-sm' style='border-radius: 12px; overflow: hidden;'>
+                <div class='card-header bg-gradient-danger text-white' style='border-radius: 12px 12px 0 0;'>
                   <i class='fa-solid fa-chart-pie me-2'></i>
                   <h3 class='card-title mb-0'>Statistik Diagnosis</h3>
                   <div class='card-tools'>
@@ -50,14 +50,19 @@ switch ($_GET['act'] ?? '') {
                     </button>
                   </div>
                 </div>
-                <div class='card-body collapse show' id='chartCollapse'>
-                  <canvas id='donutChart' style='height:300px; max-height:300px;'></canvas>
+                <div class='card-body collapse show' id='chartCollapse' style='display: flex; flex-direction: column; padding-bottom: 32px;'>
+                  <div style='position: relative; height: auto; min-height: 350px;'>
+                    <canvas id='donutChart'></canvas>
+                  </div>
                 </div>
               </div>
             </div>
             
             <!-- Table (Right Side) -->
-            <div class='col-md-8'><table class='table table-bordered table-striped riwayat' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+            <div class='col-md-8'>
+            <div class='card shadow-sm' style='border-radius: 12px; overflow: hidden;'>
+            <div class='card-body' style='padding: 0;'>
+            <table class='table table-bordered table-striped riwayat mb-0' style='overflow-x: auto; border-radius: 12px;' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -91,7 +96,7 @@ switch ($_GET['act'] ?? '') {
                 $counter++;
             }
             }
-            echo "</tbody></table></div></div>";
+            echo "</tbody></table></div></div></div></div>";
             ?>
 
             <?php
