@@ -1,17 +1,38 @@
 <title>Diagnosa - DigNet 1.0</title>
 
 <!-- Premium Page Header -->
-<div class="mb-4">
-    <h2 class="text text-primary">
+<div class="diagnosa-page-header mb-4">
+    <h2 class="diagnosa-title text-primary">
         <i class="fa-solid fa-stethoscope me-3"></i>
         Diagnosis Gangguan IndiHome
     </h2>
-    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+    <p class="diagnosa-subtitle text-muted">
         Sistem pakar untuk mendiagnosis gangguan perangkat IndiHome dengan metode Forward Chaining dan Certainty Factor
     </p>
 </div>
 
 <style>
+/* Base Styles */
+.diagnosa-page-header,
+.diagnosa-form-container,
+.hasil-container,
+.diagnosa-page-header *,
+.diagnosa-form-container *,
+.hasil-container * {
+    box-sizing: border-box;
+}
+
+/* Page Header Styling */
+.diagnosa-page-header .diagnosa-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.diagnosa-page-header .diagnosa-subtitle {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
 /* Premium SaaS Form Styling */
 .diagnosa-form-container {
     background: white;
@@ -43,10 +64,14 @@
     gap: 1rem;
 }
 
-.gejala-card:hover {
-    border-color: #E21E2C;
-    box-shadow: 0 2px 8px rgba(226, 30, 44, 0.1);
-    transform: translateY(-1px);
+/* Only apply hover effects on devices that support hover */
+@media (hover: hover) {
+    .gejala-card:hover {
+        border-color: #E21E2C;
+        box-shadow: 0 2px 8px rgba(226, 30, 44, 0.1);
+        transform: translateY(-1px);
+    }
+}
 }
 
 .gejala-number {
@@ -148,10 +173,6 @@
 }
 
 /* Mobile-first responsive approach - Prevent glitches */
-* {
-    box-sizing: border-box;
-}
-
 /* Responsive adjustments for tablets */
 @media (max-width: 991px) {
     .diagnosa-form-container {
@@ -183,6 +204,20 @@
 
 /* Mobile specific adjustments */
 @media (max-width: 768px) {
+    .diagnosa-page-header .diagnosa-title {
+        font-size: 1.25rem;
+        word-break: break-word;
+    }
+    
+    .diagnosa-page-header .diagnosa-title i {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .diagnosa-page-header .diagnosa-subtitle {
+        font-size: 0.9rem;
+    }
+    
     .diagnosa-form-container {
         border-radius: 10px;
         overflow: hidden;
@@ -204,10 +239,6 @@
         padding: 0.875rem;
         margin-bottom: 0.625rem;
         border-radius: 10px;
-    }
-    
-    .gejala-card:hover {
-        transform: none; /* Disable hover transform on mobile - prevents glitches */
     }
     
     .gejala-number {
@@ -678,9 +709,12 @@
     gap: 1rem;
 }
 
-.kemungkinan-item:hover {
-    background: #f0f0f0;
-    border-color: #EF4444;
+/* Only apply hover effects on devices that support hover */
+@media (hover: hover) {
+    .kemungkinan-item:hover {
+        background: #f0f0f0;
+        border-color: #EF4444;
+    }
 }
 
 .kemungkinan-content {
@@ -723,10 +757,6 @@
         gap: 0.5rem;
     }
     
-    .kemungkinan-item:hover {
-        transform: none; /* Prevent glitchy transforms on mobile */
-    }
-    
     .kemungkinan-content {
         width: 100%;
     }
@@ -752,30 +782,13 @@
     }
 }
 
-/* Page header mobile fix */
-@media (max-width: 768px) {
-    .mb-4 h2.text-primary {
-        font-size: 1.25rem;
-        word-break: break-word;
-    }
-    
-    .mb-4 h2.text-primary i {
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-    
-    .mb-4 p.text-muted {
-        font-size: 0.9rem !important;
-    }
-}
-
 @media (max-width: 480px) {
-    .mb-4 h2.text-primary {
+    .diagnosa-page-header .diagnosa-title {
         font-size: 1.125rem;
     }
     
-    .mb-4 p.text-muted {
-        font-size: 0.8125rem !important;
+    .diagnosa-page-header .diagnosa-subtitle {
+        font-size: 0.8125rem;
     }
 }
 </style>
