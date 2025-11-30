@@ -9,7 +9,7 @@ $module = $_GET['module'] ?? '';
     </a>
 </li>
 
-<?php if (!empty($_SESSION['username']) && !empty($_SESSION['password'])) { ?>
+<?php if (!empty($_SESSION['username'])) { ?>
     <!-- Admin Menu (Logged In) -->
     <li class="nav-item">
         <a href="?module=admin" class="nav-link <?php if ($module == "admin") echo 'active'; ?>" title="Admin">
