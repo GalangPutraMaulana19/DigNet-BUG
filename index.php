@@ -86,178 +86,166 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             -moz-osx-font-smoothing: grayscale !important;
         }
         
-        /* ==================== Smooth Sidebar Animations ==================== */
-        /* Smooth sidebar slide-in/out animation */
+        /* ==================== Premium Full-Width Dropdown System ==================== */
+        
+        /* ===== 1. NAVBAR DROPDOWN - Full-width Unified Surface ===== */
+        .navbar .nav-item.dropdown {
+            position: relative;
+        }
+        
+        /* Dropdown trigger button - unified surface */
+        .navbar .dropdown-toggle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+            background: transparent;
+        }
+        
+        .navbar .dropdown-toggle:hover,
+        .navbar .dropdown-toggle:focus {
+            background: rgba(226, 30, 44, 0.08);
+            border-color: rgba(226, 30, 44, 0.15);
+        }
+        
+        .navbar .dropdown-toggle.show {
+            background: #fff;
+            border-color: rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Dropdown arrow smooth rotation */
+        .navbar .dropdown-toggle::after {
+            display: inline-block;
+            margin-left: 0.35rem;
+            vertical-align: 0.15rem;
+            content: "";
+            border-top: 0.35em solid;
+            border-right: 0.35em solid transparent;
+            border-bottom: 0;
+            border-left: 0.35em solid transparent;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .navbar .dropdown-toggle.show::after {
+            transform: rotate(180deg);
+        }
+        
+        /* Premium dropdown menu - Unified Surface Design */
+        .navbar .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 280px;
+            padding: 0;
+            margin: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            background: #fff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12),
+                        0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transform-origin: top right;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .navbar .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Dropdown header - premium styling */
+        .navbar .dropdown-header {
+            padding: 1.25rem 1.25rem 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+        
+        .navbar .dropdown-header img {
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar .dropdown-header p {
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 0.9375rem;
+        }
+        
+        .navbar .dropdown-header small {
+            color: #6c757d;
+            font-size: 0.8125rem;
+        }
+        
+        /* Dropdown items - smooth interactions */
+        .navbar .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem 1.25rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: #374151;
+            border: none;
+            background: transparent;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .navbar .dropdown-item i {
+            width: 1.5rem;
+            color: #9ca3af;
+            transition: all 0.25s ease;
+        }
+        
+        .navbar .dropdown-item:hover,
+        .navbar .dropdown-item:focus {
+            background: linear-gradient(90deg, rgba(226, 30, 44, 0.08) 0%, rgba(226, 30, 44, 0.03) 100%);
+            color: #E21E2C;
+            padding-left: 1.5rem;
+        }
+        
+        .navbar .dropdown-item:hover i,
+        .navbar .dropdown-item:focus i {
+            color: #E21E2C;
+            transform: scale(1.15);
+        }
+        
+        /* Dropdown divider */
+        .navbar .dropdown-divider {
+            margin: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        /* ===== 2. SIDEBAR MENU - Premium Unified Styling ===== */
+        
+        /* Sidebar container */
         .main-sidebar {
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
                         width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform, width;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
         }
         
-        /* Smooth sidebar menu items - general */
-        .nav-sidebar .nav-item {
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-        
-        .nav-sidebar .nav-link {
-            transition: background-color 0.25s ease, 
-                        color 0.25s ease, 
-                        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                        padding-left 0.25s ease,
-                        box-shadow 0.25s ease;
-        }
-        
-        /* Smooth hover effect on menu items */
-        .nav-sidebar .nav-link:hover {
-            transform: translateX(4px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Smooth icon transitions */
-        .nav-sidebar .nav-icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                        color 0.25s ease,
-                        font-size 0.25s ease;
-        }
-        
-        .nav-sidebar .nav-link:hover .nav-icon {
-            transform: scale(1.1);
-        }
-        
-        /* Smooth dropdown/treeview animations 
-           Max-height is set high to accommodate deep menu structures.
-           The actual height animates smoothly due to CSS transition. */
-        .nav-treeview {
-            display: block;
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                        opacity 0.3s ease,
-                        padding 0.3s ease;
-            padding: 0;
-        }
-        
-        /* Expanded treeview - max-height set to accommodate up to ~10 menu items */
-        .nav-item.menu-open > .nav-treeview,
-        .nav-item.menu-is-opening > .nav-treeview {
-            max-height: 50rem; /* ~800px - accommodates deep menu structures */
-            opacity: 1;
-            padding: 0.25rem 0;
-        }
-        
-        /* Closing animation state */
-        .nav-item.menu-is-closing > .nav-treeview {
-            max-height: 0;
-            opacity: 0;
-            padding: 0;
-        }
-        
-        /* Smooth treeview items */
-        .nav-treeview .nav-item {
-            transform: translateX(-10px);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        
-        .nav-item.menu-open > .nav-treeview .nav-item,
-        .nav-item.menu-is-opening > .nav-treeview .nav-item {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        
-        /* Staggered animation for treeview items */
-        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(1) { transition-delay: 0.05s; }
-        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(2) { transition-delay: 0.1s; }
-        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(3) { transition-delay: 0.15s; }
-        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(4) { transition-delay: 0.2s; }
-        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(5) { transition-delay: 0.25s; }
-        
-        /* Smooth dropdown arrow rotation */
-        .nav-sidebar .nav-link > .right,
-        .nav-sidebar .nav-link > p > .right,
-        .nav-sidebar .nav-link .fa-angle-left,
-        .nav-sidebar .nav-link .fa-angle-right,
-        .nav-sidebar .nav-link .fa-chevron-down,
-        .nav-sidebar .nav-link .fa-chevron-right {
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .nav-item.menu-open > .nav-link > .right,
-        .nav-item.menu-open > .nav-link > p > .right,
-        .nav-item.menu-open > .nav-link .fa-angle-left,
-        .nav-item.menu-open > .nav-link .fa-chevron-right {
-            transform: rotate(-90deg);
-        }
-        
-        .nav-item.menu-open > .nav-link .fa-chevron-down,
-        .nav-item.menu-open > .nav-link .fa-angle-right {
-            transform: rotate(90deg);
-        }
-        
-        /* Smooth active state */
-        .nav-sidebar .nav-link.active {
-            transition: background 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        /* Smooth pushmenu (sidebar toggle) button */
-        [data-widget="pushmenu"] {
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-        
-        [data-widget="pushmenu"]:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Smooth mobile sidebar overlay */
-        .sidebar-open::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0);
-            z-index: 1037;
-            transition: background 0.3s ease;
-            pointer-events: none;
-        }
-        
-        .sidebar-open.sidebar-animate::before {
-            background: rgba(0, 0, 0, 0.4);
-            pointer-events: auto;
-        }
-        
-        /* Content area smooth transition when sidebar toggles */
-        .content-wrapper,
-        .main-header,
-        .main-footer {
-            transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        /* Smooth brand logo animation */
-        .brand-link {
-            transition: padding 0.3s ease, background 0.3s ease;
-        }
-        
-        .brand-link:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .brand-image, .brand-image-navbar {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .brand-link:hover .brand-image,
-        .navbar-brand:hover .brand-image-navbar {
-            transform: rotate(5deg) scale(1.05);
-        }
-        
-        /* Smooth scrollbar for sidebar */
+        /* Sidebar scrollbar - premium thin design */
         .sidebar {
             scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.2) transparent;
+            scrollbar-color: rgba(255,255,255,0.15) transparent;
+            padding-bottom: 1rem;
         }
         
         .sidebar::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         
         .sidebar::-webkit-scrollbar-track {
@@ -265,21 +253,286 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
         }
         
         .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 3px;
-            transition: background 0.3s ease;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
         }
         
         .sidebar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.25);
         }
         
-        /* Smooth nav header */
-        .nav-header {
-            transition: opacity 0.3s ease, padding 0.3s ease;
+        /* Nav sidebar - full-width consistent */
+        .nav-sidebar {
+            padding: 0 0.5rem;
         }
         
-        /* Reduce motion for accessibility */
+        .nav-sidebar .nav-item {
+            margin-bottom: 2px;
+            width: 100%;
+        }
+        
+        /* Nav link - unified full-width surface */
+        .nav-sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Hover effect - subtle highlight */
+        .nav-sidebar .nav-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            transform: none; /* Remove translateX for pixel-perfect alignment */
+        }
+        
+        /* Active state - premium highlight */
+        .nav-sidebar .nav-link.active {
+            background: linear-gradient(135deg, #E21E2C 0%, #b71c1c 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(226, 30, 44, 0.35);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Nav icon - consistent sizing */
+        .nav-sidebar .nav-icon {
+            width: 1.5rem;
+            margin-right: 0.75rem;
+            font-size: 1.125rem;
+            text-align: center;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+        
+        .nav-sidebar .nav-link:hover .nav-icon {
+            transform: scale(1.1);
+        }
+        
+        .nav-sidebar .nav-link.active .nav-icon {
+            color: #fff;
+        }
+        
+        /* Nav header styling */
+        .nav-sidebar .nav-header {
+            padding: 1.25rem 1rem 0.625rem;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+        }
+        
+        /* ===== 3. TREEVIEW DROPDOWN - Seamless Unified Surface ===== */
+        
+        /* Parent nav item with treeview */
+        .nav-sidebar .nav-item.has-treeview > .nav-link {
+            padding-right: 2.5rem;
+        }
+        
+        /* Dropdown arrow indicator */
+        .nav-sidebar .nav-item.has-treeview > .nav-link::after {
+            content: '\f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+            font-size: 0.75rem;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-sidebar .nav-item.has-treeview.menu-open > .nav-link::after {
+            transform: rotate(90deg);
+        }
+        
+        /* Treeview dropdown container - seamless expansion */
+        .nav-treeview {
+            display: block;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            background: rgba(0, 0, 0, 0.15);
+            margin: 0 -0.5rem;
+            padding: 0 0.5rem;
+            border-radius: 0 0 8px 8px;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease,
+                        padding 0.3s ease,
+                        margin 0.3s ease;
+        }
+        
+        /* Expanded treeview */
+        .nav-item.menu-open > .nav-treeview,
+        .nav-item.menu-is-opening > .nav-treeview {
+            max-height: 50rem;
+            opacity: 1;
+            padding: 0.5rem 0.5rem;
+            margin: 0 -0.5rem;
+        }
+        
+        /* Closing state */
+        .nav-item.menu-is-closing > .nav-treeview {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 0.5rem;
+        }
+        
+        /* Treeview items */
+        .nav-treeview .nav-item {
+            margin-bottom: 1px;
+            transform: translateY(-8px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s ease;
+        }
+        
+        .nav-item.menu-open > .nav-treeview .nav-item {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Staggered animation for premium feel */
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(1) { transition-delay: 0.05s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(2) { transition-delay: 0.08s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(3) { transition-delay: 0.11s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(4) { transition-delay: 0.14s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(5) { transition-delay: 0.17s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(6) { transition-delay: 0.20s; }
+        
+        /* Treeview nav links */
+        .nav-treeview .nav-link {
+            padding: 0.625rem 0.875rem 0.625rem 2.75rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.65);
+            border-radius: 6px;
+        }
+        
+        .nav-treeview .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.25s ease;
+        }
+        
+        .nav-treeview .nav-link:hover::before {
+            background: #E21E2C;
+            box-shadow: 0 0 8px rgba(226, 30, 44, 0.5);
+        }
+        
+        .nav-treeview .nav-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        
+        .nav-treeview .nav-link.active {
+            background: rgba(226, 30, 44, 0.2);
+            color: #fff;
+        }
+        
+        .nav-treeview .nav-link.active::before {
+            background: #E21E2C;
+        }
+        
+        /* Legacy arrow indicators - hide them */
+        .nav-sidebar .nav-link > .right,
+        .nav-sidebar .nav-link > p > .right {
+            display: none;
+        }
+        
+        /* ===== 4. BRAND LINK - Premium Styling ===== */
+        .brand-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .brand-link:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+        
+        .brand-image, .brand-image-navbar {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .brand-link:hover .brand-image,
+        .navbar-brand:hover .brand-image-navbar {
+            transform: rotate(8deg) scale(1.08);
+        }
+        
+        /* ===== 5. PUSHMENU BUTTON ===== */
+        [data-widget="pushmenu"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+        }
+        
+        [data-widget="pushmenu"]:hover {
+            background: rgba(226, 30, 44, 0.1);
+            transform: scale(1.05);
+        }
+        
+        [data-widget="pushmenu"]:active {
+            transform: scale(0.95);
+        }
+        
+        /* ===== 6. MOBILE SIDEBAR OVERLAY ===== */
+        @media (max-width: 991.98px) {
+            .sidebar-open::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0);
+                z-index: 1037;
+                transition: background 0.35s ease;
+                pointer-events: none;
+            }
+            
+            .sidebar-open.sidebar-animate::before {
+                background: rgba(0, 0, 0, 0.5);
+                pointer-events: auto;
+            }
+        }
+        
+        /* ===== 7. CONTENT AREA TRANSITIONS ===== */
+        .content-wrapper,
+        .main-header,
+        .main-footer {
+            transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* ===== 8. RESPONSIVE DROPDOWN ===== */
+        @media (max-width: 767.98px) {
+            .navbar .dropdown-menu {
+                min-width: 260px;
+                left: auto;
+                right: 0;
+            }
+            
+            .navbar .dropdown-toggle {
+                padding: 0.5rem 0.75rem;
+            }
+        }
+        
+        /* ===== 9. ACCESSIBILITY - REDUCED MOTION ===== */
         @media (prefers-reduced-motion: reduce) {
             .main-sidebar,
             .nav-sidebar .nav-item,
@@ -294,8 +547,10 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             .brand-image,
             .brand-image-navbar,
             [data-widget="pushmenu"],
-            .nav-sidebar .nav-link > .right,
-            .nav-sidebar .nav-link > p > .right {
+            .navbar .dropdown-toggle,
+            .navbar .dropdown-menu,
+            .navbar .dropdown-item,
+            .nav-sidebar .nav-item.has-treeview > .nav-link::after {
                 transition: none !important;
                 animation: none !important;
             }
