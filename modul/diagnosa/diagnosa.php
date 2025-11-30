@@ -64,6 +64,12 @@
     gap: 1rem;
     position: relative; /* For proper stacking context */
     overflow: visible; /* Allow dropdown to overflow */
+    z-index: 1; /* Base z-index */
+}
+
+/* When dropdown is open inside this card, elevate the entire card above others */
+.gejala-card.dropdown-active {
+    z-index: 1000 !important;
 }
 
 /* Only apply hover effects on devices that support hover */
@@ -1534,6 +1540,7 @@ switch ($_GET['act'] ?? '') {
         const colorIndicator = valueDisplay.querySelector('.kondisi-dropdown-color');
         const textDisplay = valueDisplay.querySelector('.kondisi-dropdown-text');
         const options = dropdown.querySelectorAll('.kondisi-dropdown-option');
+        const parentCard = dropdown.closest('.gejala-card'); // Get parent card for z-index management
         
         // Toggle dropdown
         trigger.addEventListener('click', function(e) {
@@ -1545,9 +1552,11 @@ switch ($_GET['act'] ?? '') {
                 if (other !== dropdown) {
                     other.classList.remove('is-open');
                     other.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
-                    // Reset z-index on wrapper
+                    // Reset z-index on wrapper and parent card
                     const otherWrapper = other.closest('.gejala-select-wrapper');
                     if (otherWrapper) otherWrapper.style.zIndex = '';
+                    const otherCard = other.closest('.gejala-card');
+                    if (otherCard) otherCard.classList.remove('dropdown-active');
                 }
             });
             
@@ -1559,6 +1568,15 @@ switch ($_GET['act'] ?? '') {
             const wrapper = dropdown.closest('.gejala-select-wrapper');
             if (wrapper) {
                 wrapper.style.zIndex = isOpen ? '100' : '';
+            }
+            
+            // Manage z-index on parent card to ensure dropdown appears above other cards
+            if (parentCard) {
+                if (isOpen) {
+                    parentCard.classList.add('dropdown-active');
+                } else {
+                    parentCard.classList.remove('dropdown-active');
+                }
             }
             
             // Scroll selected option into view
@@ -1596,9 +1614,10 @@ switch ($_GET['act'] ?? '') {
                 });
                 option.classList.add('is-selected');
                 
-                // Close dropdown
+                // Close dropdown and reset z-index on parent card
                 dropdown.classList.remove('is-open');
                 trigger.setAttribute('aria-expanded', 'false');
+                if (parentCard) parentCard.classList.remove('dropdown-active');
             });
         });
     });
@@ -1609,9 +1628,11 @@ switch ($_GET['act'] ?? '') {
             document.querySelectorAll('.kondisi-dropdown.is-open').forEach(function(dropdown) {
                 dropdown.classList.remove('is-open');
                 dropdown.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
-                // Reset z-index on wrapper
+                // Reset z-index on wrapper and parent card
                 const wrapper = dropdown.closest('.gejala-select-wrapper');
                 if (wrapper) wrapper.style.zIndex = '';
+                const card = dropdown.closest('.gejala-card');
+                if (card) card.classList.remove('dropdown-active');
             });
         }
     });
@@ -1629,9 +1650,11 @@ switch ($_GET['act'] ?? '') {
             openDropdown.classList.remove('is-open');
             openDropdown.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
             openDropdown.querySelector('.kondisi-dropdown-trigger').focus();
-            // Reset z-index on wrapper
+            // Reset z-index on wrapper and parent card
             const wrapper = openDropdown.closest('.gejala-select-wrapper');
             if (wrapper) wrapper.style.zIndex = '';
+            const card = openDropdown.closest('.gejala-card');
+            if (card) card.classList.remove('dropdown-active');
         } else if (e.key === 'ArrowDown') {
             e.preventDefault();
             const nextIndex = currentIndex < options.length - 1 ? currentIndex + 1 : 0;
