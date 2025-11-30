@@ -111,32 +111,254 @@
     min-width: 180px;
 }
 
+/* Hidden native select for form submission */
 .premium-select {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+
+/* Premium Custom Dropdown Component */
+.kondisi-dropdown {
+    position: relative;
+    width: 100%;
+    font-family: inherit;
+}
+
+.kondisi-dropdown-trigger {
     width: 100%;
     padding: 0.625rem 1rem;
     border: 2px solid #e5e5e5;
     border-radius: 8px;
     font-size: 0.875rem;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     background-color: white;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1rem;
-    padding-right: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: 42px;
+    text-align: left;
 }
 
-.premium-select:focus {
+.kondisi-dropdown-trigger:hover {
+    border-color: #a3a3a3;
+}
+
+.kondisi-dropdown-trigger:focus {
     outline: none;
     border-color: #E21E2C;
     box-shadow: 0 0 0 3px rgba(226, 30, 44, 0.1);
 }
 
-.premium-select:hover {
-    border-color: #a3a3a3;
+.kondisi-dropdown.is-open .kondisi-dropdown-trigger {
+    border-color: #E21E2C;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0 0 3px rgba(226, 30, 44, 0.1);
+}
+
+.kondisi-dropdown-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.kondisi-dropdown-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.kondisi-dropdown-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #262626;
+}
+
+.kondisi-dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #737373;
+}
+
+.kondisi-dropdown.is-open .kondisi-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.kondisi-dropdown-menu {
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #E21E2C;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 8px 24px rgba(226, 30, 44, 0.15);
+    z-index: 1000;
+    max-height: 280px;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kondisi-dropdown.is-open .kondisi-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Custom scrollbar for dropdown menu */
+.kondisi-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.kondisi-dropdown-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 0 6px 0;
+}
+
+.kondisi-dropdown-menu::-webkit-scrollbar-thumb {
+    background: #E21E2C;
+    border-radius: 3px;
+}
+
+/* Dropdown Options */
+.kondisi-dropdown-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-left: 3px solid transparent;
+}
+
+.kondisi-dropdown-option:hover {
+    background: #f5f5f5;
+    border-left-color: #E21E2C;
+}
+
+.kondisi-dropdown-option.is-selected {
+    background: rgba(226, 30, 44, 0.08);
+    border-left-color: #E21E2C;
+}
+
+.kondisi-dropdown-option:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.kondisi-option-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+    transition: transform 0.15s ease;
+}
+
+.kondisi-dropdown-option:hover .kondisi-option-color {
+    transform: scale(1.1);
+}
+
+.kondisi-option-text {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.kondisi-dropdown-option:hover .kondisi-option-text {
+    color: #E21E2C;
+}
+
+.kondisi-option-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.05);
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Color-coded option indicator colors */
+.kondisi-color-0 { background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); } /* Pilih */
+.kondisi-color-1 { background: linear-gradient(135deg, #cc66ff 0%, #a855f7 100%); } /* Pasti Ya - Purple */
+.kondisi-color-2 { background: linear-gradient(135deg, #019AFF 0%, #0284c7 100%); } /* Hampir pasti ya - Blue */
+.kondisi-color-3 { background: linear-gradient(135deg, #00CBFD 0%, #06b6d4 100%); } /* Kemungkinan besar ya - Cyan */
+.kondisi-color-4 { background: linear-gradient(135deg, #00FEFE 0%, #14b8a6 100%); } /* Mungkin ya - Teal */
+.kondisi-color-5 { background: linear-gradient(135deg, #A4F804 0%, #84cc16 100%); } /* Tidak tahu - Lime */
+.kondisi-color-6 { background: linear-gradient(135deg, #FFFC00 0%, #eab308 100%); } /* Mungkin tidak - Yellow */
+.kondisi-color-7 { background: linear-gradient(135deg, #FDCD01 0%, #f59e0b 100%); } /* Kemungkinan besar tidak - Amber */
+.kondisi-color-8 { background: linear-gradient(135deg, #FD9A01 0%, #ea580c 100%); } /* Hampir pasti tidak - Orange */
+.kondisi-color-9 { background: linear-gradient(135deg, #FB6700 0%, #dc2626 100%); } /* Pasti tidak - Red/Orange */
+
+/* Mobile responsive for dropdown */
+@media (max-width: 768px) {
+    .kondisi-dropdown-trigger {
+        padding: 0.75rem 1rem;
+        min-height: 48px;
+        font-size: 0.9rem;
+    }
+    
+    .kondisi-dropdown-menu {
+        max-height: 240px;
+    }
+    
+    .kondisi-dropdown-option {
+        padding: 0.875rem 1rem;
+    }
+    
+    .kondisi-option-color {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .kondisi-dropdown-trigger {
+        padding: 0.625rem 0.875rem;
+    }
+    
+    .kondisi-dropdown-text {
+        font-size: 0.8rem;
+    }
+    
+    .kondisi-dropdown-option {
+        padding: 0.75rem 0.875rem;
+        gap: 0.5rem;
+    }
+    
+    .kondisi-option-text {
+        font-size: 0.8rem;
+    }
+    
+    .kondisi-option-badge {
+        display: none;
+    }
 }
 
 .submit-section {
@@ -1045,45 +1267,84 @@ switch ($_GET['act'] ?? '') {
 
       $sql3 = mysqli_query($conn, "SELECT * FROM incident order by kode_incident");
       $i = 0;
+      
+      // Get all kondisi options once
+      $kondisiOptions = [];
+      $kondisiQuery = mysqli_query($conn, "select * from kondisi order by id");
+      while ($kRow = mysqli_fetch_array($kondisiQuery)) {
+        $kondisiOptions[] = [
+          'id' => $kRow['id'],
+          'text' => $kRow['kondisi']
+        ];
+      }
+      
+      // Kondisi color labels
+      $kondisiLabels = [
+        0 => 'Pilih',
+        1 => 'Pasti Ya',
+        2 => 'Hampir Pasti Ya',
+        3 => 'Mungkin Besar Ya',
+        4 => 'Mungkin Ya',
+        5 => 'Tidak Tahu',
+        6 => 'Mungkin Tidak',
+        7 => 'Mungkin Besar Tidak',
+        8 => 'Hampir Pasti Tidak',
+        9 => 'Pasti Tidak'
+      ];
+      
       while ($r3 = mysqli_fetch_array($sql3)) {
         $i++;
+        $kodeIncident = $r3['kode_incident'];
+        
         echo "<div class='gejala-card'>
                 <div class='gejala-number'>$i</div>
-                <span class='gejala-code'>G" . str_pad($r3['kode_incident'], 3, '0', STR_PAD_LEFT) . "</span>
+                <span class='gejala-code'>G" . str_pad($kodeIncident, 3, '0', STR_PAD_LEFT) . "</span>
                 <div class='gejala-text'>" . htmlspecialchars($r3['nama_incident'], ENT_QUOTES, 'UTF-8') . "</div>
                 <div class='gejala-select-wrapper'>
+                    <!-- Hidden native select for form submission -->
                     <select name='kondisi[]' id='sl$i' class='premium-select'>
                         <option data-id='0' value='0'>Pilih jika sesuai</option>";
         
-        $s = "select * from kondisi order by id";
-        $q = mysqli_query($conn, $s) or die($s);
-        while ($rw = mysqli_fetch_array($q)) {
-          echo "<option data-id='" . htmlspecialchars($rw['id'], ENT_QUOTES, 'UTF-8') . "' value='" . $r3['kode_incident'] . "_" . $rw['id'] . "'>" . htmlspecialchars($rw['kondisi'], ENT_QUOTES, 'UTF-8') . "</option>";
+        foreach ($kondisiOptions as $opt) {
+          echo "<option data-id='" . htmlspecialchars($opt['id'], ENT_QUOTES, 'UTF-8') . "' value='" . $kodeIncident . "_" . $opt['id'] . "'>" . htmlspecialchars($opt['text'], ENT_QUOTES, 'UTF-8') . "</option>";
         }
         
         echo "</select>
+                    <!-- Custom Premium Dropdown -->
+                    <div class='kondisi-dropdown' data-select-id='sl$i'>
+                        <button type='button' class='kondisi-dropdown-trigger' aria-haspopup='listbox' aria-expanded='false'>
+                            <span class='kondisi-dropdown-value'>
+                                <span class='kondisi-dropdown-color kondisi-color-0'></span>
+                                <span class='kondisi-dropdown-text'>Pilih jika sesuai</span>
+                            </span>
+                            <svg class='kondisi-dropdown-arrow' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'></path>
+                            </svg>
+                        </button>
+                        <div class='kondisi-dropdown-menu' role='listbox'>
+                            <div class='kondisi-dropdown-option is-selected' data-value='0' data-id='0' role='option'>
+                                <span class='kondisi-option-color kondisi-color-0'></span>
+                                <span class='kondisi-option-text'>Pilih jika sesuai</span>
+                                <span class='kondisi-option-badge'>Default</span>
+                            </div>";
+        
+        foreach ($kondisiOptions as $idx => $opt) {
+          $optId = intval($opt['id']);
+          $optText = htmlspecialchars($opt['text'], ENT_QUOTES, 'UTF-8');
+          $optValue = $kodeIncident . "_" . $opt['id'];
+          $labelText = $kondisiLabels[$optId] ?? '';
+          
+          echo "<div class='kondisi-dropdown-option' data-value='$optValue' data-id='$optId' role='option'>
+                    <span class='kondisi-option-color kondisi-color-$optId'></span>
+                    <span class='kondisi-option-text'>$optText</span>
+                    <span class='kondisi-option-badge'>$labelText</span>
+                </div>";
+        }
+        
+        echo "</div>
+                    </div>
                 </div>
               </div>";
-        ?>
-        <script type="text/javascript">
-          (function() {
-            const arcolor = ['#ffffff', '#cc66ff', '#019AFF', '#00CBFD', '#00FEFE', '#A4F804', '#FFFC00', '#FDCD01', '#FD9A01', '#FB6700'];
-            const selectEl = document.getElementById('sl<?php echo $i; ?>');
-            
-            function setColor() {
-              const selectedOption = selectEl.options[selectEl.selectedIndex];
-              const colorId = selectedOption.getAttribute('data-id');
-              const color = arcolor[colorId] || '#ffffff';
-              selectEl.style.backgroundColor = color;
-            }
-            
-            if (selectEl) {
-              setColor();
-              selectEl.addEventListener('change', setColor);
-            }
-          })();
-        </script>
-        <?php
       }
       echo "</div>
         <div class='submit-section'>
@@ -1093,7 +1354,142 @@ switch ($_GET['act'] ?? '') {
             </button>
         </div>
     </form>
-</div>";
+</div>
+
+<!-- Custom Dropdown JavaScript -->
+<script>
+(function() {
+    'use strict';
+    
+    // Color mapping
+    const kondisiColors = {
+        0: 'kondisi-color-0',
+        1: 'kondisi-color-1',
+        2: 'kondisi-color-2',
+        3: 'kondisi-color-3',
+        4: 'kondisi-color-4',
+        5: 'kondisi-color-5',
+        6: 'kondisi-color-6',
+        7: 'kondisi-color-7',
+        8: 'kondisi-color-8',
+        9: 'kondisi-color-9'
+    };
+    
+    // Initialize all custom dropdowns
+    document.querySelectorAll('.kondisi-dropdown').forEach(function(dropdown) {
+        const selectId = dropdown.dataset.selectId;
+        const nativeSelect = document.getElementById(selectId);
+        const trigger = dropdown.querySelector('.kondisi-dropdown-trigger');
+        const menu = dropdown.querySelector('.kondisi-dropdown-menu');
+        const valueDisplay = dropdown.querySelector('.kondisi-dropdown-value');
+        const colorIndicator = valueDisplay.querySelector('.kondisi-dropdown-color');
+        const textDisplay = valueDisplay.querySelector('.kondisi-dropdown-text');
+        const options = dropdown.querySelectorAll('.kondisi-dropdown-option');
+        
+        // Toggle dropdown
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Close other dropdowns
+            document.querySelectorAll('.kondisi-dropdown.is-open').forEach(function(other) {
+                if (other !== dropdown) {
+                    other.classList.remove('is-open');
+                    other.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Toggle current
+            const isOpen = dropdown.classList.toggle('is-open');
+            trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            
+            // Scroll selected option into view
+            if (isOpen) {
+                const selected = menu.querySelector('.is-selected');
+                if (selected) {
+                    setTimeout(function() {
+                        selected.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+        });
+        
+        // Option selection
+        options.forEach(function(option) {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const value = option.dataset.value;
+                const id = parseInt(option.dataset.id, 10);
+                const text = option.querySelector('.kondisi-option-text').textContent;
+                
+                // Update native select
+                nativeSelect.value = value;
+                nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                // Update visual
+                textDisplay.textContent = text;
+                colorIndicator.className = 'kondisi-dropdown-color ' + (kondisiColors[id] || 'kondisi-color-0');
+                
+                // Update selected state
+                options.forEach(function(opt) {
+                    opt.classList.remove('is-selected');
+                });
+                option.classList.add('is-selected');
+                
+                // Close dropdown
+                dropdown.classList.remove('is-open');
+                trigger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.kondisi-dropdown')) {
+            document.querySelectorAll('.kondisi-dropdown.is-open').forEach(function(dropdown) {
+                dropdown.classList.remove('is-open');
+                dropdown.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        const openDropdown = document.querySelector('.kondisi-dropdown.is-open');
+        if (!openDropdown) return;
+        
+        const menu = openDropdown.querySelector('.kondisi-dropdown-menu');
+        const options = Array.from(menu.querySelectorAll('.kondisi-dropdown-option'));
+        const currentIndex = options.findIndex(function(opt) { return opt.classList.contains('is-focused') || opt.classList.contains('is-selected'); });
+        
+        if (e.key === 'Escape') {
+            openDropdown.classList.remove('is-open');
+            openDropdown.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
+            openDropdown.querySelector('.kondisi-dropdown-trigger').focus();
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = currentIndex < options.length - 1 ? currentIndex + 1 : 0;
+            options.forEach(function(opt) { opt.classList.remove('is-focused'); });
+            options[nextIndex].classList.add('is-focused');
+            options[nextIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = currentIndex > 0 ? currentIndex - 1 : options.length - 1;
+            options.forEach(function(opt) { opt.classList.remove('is-focused'); });
+            options[prevIndex].classList.add('is-focused');
+            options[prevIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            const focused = menu.querySelector('.is-focused');
+            if (focused) {
+                focused.click();
+            }
+        }
+    });
+})();
+</script>";
     }
     break;
 }
