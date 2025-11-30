@@ -193,6 +193,8 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 100%;
 }
 
 .hasil-header {
@@ -210,10 +212,13 @@
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
+    word-break: break-word;
 }
 
 .hasil-body {
     padding: 1.5rem;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 .hasil-main-card {
@@ -222,6 +227,7 @@
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+    overflow: hidden;
 }
 
 .hasil-gangguan {
@@ -229,36 +235,301 @@
     font-weight: 800;
     color: #059669;
     margin-bottom: 0.5rem;
+    word-break: break-word;
+    line-height: 1.3;
 }
 
 .hasil-persentase {
     font-size: 1.25rem;
     color: #065F46;
     font-weight: 600;
+    word-break: break-word;
 }
 
 .gejala-hasil-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
     padding: 0.75rem 1rem;
     background: #fafafa;
     border-radius: 8px;
     margin-bottom: 0.5rem;
+    border: 1px solid #e5e5e5;
+    transition: all 0.2s ease;
 }
 
+.gejala-hasil-item:hover {
+    background: #f0f0f0;
+    border-color: #d4d4d4;
+}
+
+/* Premium card styling for results */
+.hasil-body .card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.hasil-body .card-body {
+    padding: 1.25rem;
+}
+
+.hasil-body .card-body p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.7;
+    color: #374151;
+    font-size: 0.95rem;
+}
+
+.hasil-body .card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+/* List group items in results */
+.hasil-body .list-group-item {
+    border: none;
+    border-radius: 8px !important;
+    margin-bottom: 0.5rem;
+    background: #fafafa;
+    transition: all 0.2s ease;
+}
+
+.hasil-body .list-group-item:hover {
+    background: #f0f0f0;
+}
+
+/* Mobile responsive for results */
 @media (max-width: 768px) {
-    .gejala-hasil-item {
-        flex-wrap: wrap;
+    .hasil-container {
+        border-radius: 12px;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        width: calc(100% + 1rem);
+        max-width: calc(100% + 1rem);
     }
     
     .hasil-header {
         flex-direction: column;
         text-align: center;
+        padding: 1.25rem 1rem;
+    }
+    
+    .hasil-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .hasil-body {
+        padding: 1rem;
+    }
+    
+    .hasil-main-card {
+        padding: 1rem;
+        border-radius: 10px;
     }
     
     .hasil-gangguan {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
+        text-align: center;
+    }
+    
+    .hasil-persentase {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    .gejala-hasil-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.875rem;
+    }
+    
+    .gejala-hasil-item > span:first-child {
+        align-self: flex-start;
+    }
+    
+    .gejala-hasil-item > span:nth-child(2) {
+        margin-top: -0.25rem;
+    }
+    
+    .gejala-hasil-item > span:nth-child(3) {
+        width: 100%;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .gejala-hasil-item > span:last-child {
+        align-self: flex-start;
+        margin-top: 0.25rem;
+    }
+    
+    .hasil-body .card {
+        border-radius: 10px !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .hasil-body .card-body {
+        padding: 1rem;
+    }
+    
+    .hasil-body .card-body p {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+    
+    .hasil-body .card-title {
+        font-size: 0.95rem;
+    }
+    
+    .hasil-body .list-group-item {
+        padding: 0.875rem;
+        font-size: 0.875rem;
+    }
+    
+    .hasil-body .list-group-item .badge {
+        margin-top: 0.5rem;
+    }
+    
+    /* Fix row/col layout on mobile */
+    .hasil-main-card .row {
+        flex-direction: column-reverse;
+    }
+    
+    .hasil-main-card .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
+    .hasil-main-card .col-md-4 img {
+        max-width: 120px !important;
+    }
+    
+    .hasil-main-card .col-md-8 {
+        text-align: center;
+    }
+    
+    /* Action buttons on mobile */
+    .hasil-body .text-center .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hasil-body .text-center .btn:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .hasil-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .hasil-gangguan {
+        font-size: 1rem;
+    }
+    
+    .hasil-persentase {
+        font-size: 0.9rem;
+    }
+    
+    .gejala-hasil-item {
+        padding: 0.75rem;
+    }
+    
+    .hasil-body .card-body p {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Kemungkinan Lain Section Styling */
+.kemungkinan-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.kemungkinan-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 1rem;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    transition: all 0.2s ease;
+    gap: 1rem;
+}
+
+.kemungkinan-item:hover {
+    background: #f0f0f0;
+    border-color: #EF4444;
+}
+
+.kemungkinan-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.kemungkinan-content i {
+    flex-shrink: 0;
+}
+
+.kemungkinan-text {
+    font-weight: 500;
+    color: #374151;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+.kemungkinan-badge {
+    background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .kemungkinan-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.875rem;
+        gap: 0.5rem;
+    }
+    
+    .kemungkinan-content {
+        width: 100%;
+    }
+    
+    .kemungkinan-text {
+        font-size: 0.875rem;
+    }
+    
+    .kemungkinan-badge {
+        align-self: flex-start;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.625rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kemungkinan-item {
+        padding: 0.75rem;
+    }
+    
+    .kemungkinan-text {
+        font-size: 0.8125rem;
     }
 }
 </style>
@@ -460,18 +731,21 @@ switch ($_GET['act'] ?? '') {
       
       // Other possibilities
       if (count($idpkt) > 1) {
-        echo "<div class='card' style='border-left: 4px solid #EF4444; border-radius: 12px;'>
+        echo "<div class='card kemungkinan-lain-card' style='border-left: 4px solid #EF4444; border-radius: 12px;'>
                     <div class='card-body'>
                         <h5 class='card-title mb-3' style='color: #EF4444;'>
                             <i class='fa-solid fa-list me-2'></i> Kemungkinan Lain
                         </h5>
-                        <div class='list-group list-group-flush'>";
+                        <div class='kemungkinan-list'>";
         
         for ($ipl = 2; $ipl <= count($idpkt); $ipl++) {
           if (isset($nmpkt[$ipl])) {
-            echo "<div class='list-group-item d-flex justify-content-between align-items-center' style='border-radius: 8px; margin-bottom: 0.5rem; background: #fafafa;'>
-                        <span><i class='fa-solid fa-caret-right me-2 text-danger'></i> " . htmlspecialchars($nmpkt[$ipl], ENT_QUOTES, 'UTF-8') . "</span>
-                        <span class='badge bg-secondary'>" . round($vlpkt[$ipl], 2) . "%</span>
+            echo "<div class='kemungkinan-item'>
+                        <div class='kemungkinan-content'>
+                            <i class='fa-solid fa-caret-right text-danger'></i>
+                            <span class='kemungkinan-text'>" . htmlspecialchars($nmpkt[$ipl], ENT_QUOTES, 'UTF-8') . "</span>
+                        </div>
+                        <span class='kemungkinan-badge'>" . round($vlpkt[$ipl], 2) . "%</span>
                     </div>";
           }
         }
