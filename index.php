@@ -588,7 +588,7 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ms-auto">
-                <?php if (isset($_SESSION['username']) && isset($_SESSION['password'])) { ?>
+                <?php if (isset($_SESSION['username']) && !empty($_SESSION['username'])) { ?>
                 <!-- User Menu (Logged In) -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

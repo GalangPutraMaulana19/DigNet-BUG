@@ -2,7 +2,8 @@
 
 <?php 
 // Check if user is logged in as admin
-if (!(isset($_SESSION['username']) && isset($_SESSION['password']))) {
+// Note: Password should NOT be stored in session for security reasons
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     header('location:index.php');
     exit();
 }
