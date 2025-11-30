@@ -72,7 +72,7 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             -webkit-font-smoothing: antialiased;
         }
         .wrapper { min-height: 100vh; }
-        .main-sidebar { transition: transform 0.3s ease-in-out; }
+        .main-sidebar { transition: transform 0.3s ease-in-out, width 0.3s ease-in-out; }
         .content-wrapper { transition: margin-left 0.3s ease-in-out; }
         
         /* Font Awesome icon fix */
@@ -84,6 +84,212 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             text-rendering: auto !important;
             -webkit-font-smoothing: antialiased !important;
             -moz-osx-font-smoothing: grayscale !important;
+        }
+        
+        /* ==================== Smooth Sidebar Animations ==================== */
+        /* Smooth sidebar slide-in/out animation */
+        .main-sidebar {
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+                        width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, width;
+        }
+        
+        /* Smooth sidebar menu items - general */
+        .nav-sidebar .nav-item {
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        
+        .nav-sidebar .nav-link {
+            transition: background-color 0.25s ease, 
+                        color 0.25s ease, 
+                        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                        padding-left 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+        
+        /* Smooth hover effect on menu items */
+        .nav-sidebar .nav-link:hover {
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Smooth icon transitions */
+        .nav-sidebar .nav-icon {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.25s ease,
+                        font-size 0.25s ease;
+        }
+        
+        .nav-sidebar .nav-link:hover .nav-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Smooth dropdown/treeview animations */
+        .nav-treeview {
+            display: block;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.3s ease,
+                        padding 0.3s ease;
+            padding: 0;
+        }
+        
+        .nav-item.menu-open > .nav-treeview,
+        .nav-item.menu-is-opening > .nav-treeview {
+            max-height: 500px; /* Large enough for expanded menus */
+            opacity: 1;
+            padding: 0.25rem 0;
+        }
+        
+        /* Smooth treeview items */
+        .nav-treeview .nav-item {
+            transform: translateX(-10px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .nav-item.menu-open > .nav-treeview .nav-item,
+        .nav-item.menu-is-opening > .nav-treeview .nav-item {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Staggered animation for treeview items */
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(1) { transition-delay: 0.05s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(2) { transition-delay: 0.1s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(3) { transition-delay: 0.15s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(4) { transition-delay: 0.2s; }
+        .nav-item.menu-open > .nav-treeview .nav-item:nth-child(5) { transition-delay: 0.25s; }
+        
+        /* Smooth dropdown arrow rotation */
+        .nav-sidebar .nav-link > .right,
+        .nav-sidebar .nav-link > p > .right,
+        .nav-sidebar .nav-link .fa-angle-left,
+        .nav-sidebar .nav-link .fa-angle-right,
+        .nav-sidebar .nav-link .fa-chevron-down,
+        .nav-sidebar .nav-link .fa-chevron-right {
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-item.menu-open > .nav-link > .right,
+        .nav-item.menu-open > .nav-link > p > .right,
+        .nav-item.menu-open > .nav-link .fa-angle-left,
+        .nav-item.menu-open > .nav-link .fa-chevron-right {
+            transform: rotate(-90deg);
+        }
+        
+        .nav-item.menu-open > .nav-link .fa-chevron-down,
+        .nav-item.menu-open > .nav-link .fa-angle-right {
+            transform: rotate(90deg);
+        }
+        
+        /* Smooth active state */
+        .nav-sidebar .nav-link.active {
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Smooth pushmenu (sidebar toggle) button */
+        [data-widget="pushmenu"] {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        
+        [data-widget="pushmenu"]:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Smooth mobile sidebar overlay */
+        .sidebar-open::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1037;
+            transition: background 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .sidebar-open.sidebar-animate::before {
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: auto;
+        }
+        
+        /* Content area smooth transition when sidebar toggles */
+        .content-wrapper,
+        .main-header,
+        .main-footer {
+            transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Smooth brand logo animation */
+        .brand-link {
+            transition: padding 0.3s ease, background 0.3s ease;
+        }
+        
+        .brand-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .brand-image, .brand-image-navbar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .brand-link:hover .brand-image,
+        .navbar-brand:hover .brand-image-navbar {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        /* Smooth scrollbar for sidebar */
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+        
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            transition: background 0.3s ease;
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.4);
+        }
+        
+        /* Smooth nav header */
+        .nav-header {
+            transition: opacity 0.3s ease, padding 0.3s ease;
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .main-sidebar,
+            .nav-sidebar .nav-item,
+            .nav-sidebar .nav-link,
+            .nav-sidebar .nav-icon,
+            .nav-treeview,
+            .nav-treeview .nav-item,
+            .content-wrapper,
+            .main-header,
+            .main-footer,
+            .brand-link,
+            .brand-image,
+            .brand-image-navbar,
+            [data-widget="pushmenu"],
+            .nav-sidebar .nav-link > .right,
+            .nav-sidebar .nav-link > p > .right {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
@@ -268,8 +474,14 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
                 e.preventDefault();
                 
                 if (isMobile()) {
-                    // On mobile: toggle sidebar-open class
-                    body.classList.toggle('sidebar-open');
+                    // On mobile: toggle sidebar-open class with animation
+                    if (body.classList.contains('sidebar-open')) {
+                        body.classList.remove('sidebar-animate');
+                        setTimeout(() => body.classList.remove('sidebar-open'), 50);
+                    } else {
+                        body.classList.add('sidebar-open');
+                        setTimeout(() => body.classList.add('sidebar-animate'), 50);
+                    }
                 } else {
                     // On desktop: toggle sidebar-collapse class
                     body.classList.toggle('sidebar-collapse');
@@ -285,7 +497,8 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             if (isMobile() && body.classList.contains('sidebar-open')) {
                 // Check if click is outside sidebar
                 if (mainSidebar && !mainSidebar.contains(e.target) && !pushMenuBtn.contains(e.target)) {
-                    body.classList.remove('sidebar-open');
+                    body.classList.remove('sidebar-animate');
+                    setTimeout(() => body.classList.remove('sidebar-open'), 50);
                 }
             }
         });
@@ -304,7 +517,7 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             resizeTimeout = setTimeout(function() {
                 if (isMobile()) {
                     // On mobile: ensure sidebar-open is removed when resizing to mobile
-                    body.classList.remove('sidebar-open');
+                    body.classList.remove('sidebar-open', 'sidebar-animate');
                 }
             }, 100);
         });
@@ -313,6 +526,87 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
         const tooltipElements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         if (typeof bootstrap !== 'undefined') {
             tooltipElements.forEach(el => new bootstrap.Tooltip(el));
+        }
+        
+        // ==================== Smooth Treeview Dropdown Handler ====================
+        // Custom smooth treeview toggle for nav-sidebar
+        const treeviewLinks = document.querySelectorAll('.nav-sidebar .nav-item.has-treeview > .nav-link');
+        
+        treeviewLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                // Only prevent default if this is a treeview toggle (has children)
+                const navItem = this.closest('.nav-item');
+                const treeviewMenu = navItem ? navItem.querySelector('.nav-treeview') : null;
+                
+                if (treeviewMenu) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close other open menus if accordion mode
+                    const isAccordion = document.querySelector('[data-widget="treeview"][data-accordion="true"]');
+                    if (isAccordion) {
+                        document.querySelectorAll('.nav-sidebar .nav-item.menu-open').forEach(function(openItem) {
+                            if (openItem !== navItem) {
+                                openItem.classList.remove('menu-open', 'menu-is-opening');
+                            }
+                        });
+                    }
+                    
+                    // Toggle current menu with smooth animation
+                    if (navItem.classList.contains('menu-open')) {
+                        navItem.classList.remove('menu-open');
+                        navItem.classList.add('menu-is-closing');
+                        setTimeout(() => navItem.classList.remove('menu-is-closing'), 400);
+                    } else {
+                        navItem.classList.add('menu-is-opening');
+                        setTimeout(() => {
+                            navItem.classList.add('menu-open');
+                            navItem.classList.remove('menu-is-opening');
+                        }, 50);
+                    }
+                }
+            });
+        });
+        
+        // Add smooth hover effects to all nav links
+        const navLinks = document.querySelectorAll('.nav-sidebar .nav-link');
+        navLinks.forEach(function(link) {
+            // Add subtle ripple effect on click
+            link.addEventListener('mousedown', function(e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    background: rgba(255,255,255,0.3);
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    left: ${e.clientX - rect.left - 10}px;
+                    top: ${e.clientY - rect.top - 10}px;
+                    transform: scale(0);
+                    animation: ripple-effect 0.6s ease-out forwards;
+                    pointer-events: none;
+                `;
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+        
+        // Add ripple animation keyframes dynamically
+        if (!document.getElementById('ripple-styles')) {
+            const rippleStyles = document.createElement('style');
+            rippleStyles.id = 'ripple-styles';
+            rippleStyles.textContent = `
+                @keyframes ripple-effect {
+                    to {
+                        transform: scale(15);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(rippleStyles);
         }
     });
     </script>
