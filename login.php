@@ -40,20 +40,38 @@ else{
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="animasi/login/network.css">
   <style>
+    /* Mobile-First Layout Override */
+    body {
+      flex-direction: column !important;
+      min-height: 100vh;
+      height: auto !important;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+    }
+    
+    /* Hide mascot on mobile - cleaner design */
+    .mascot {
+      display: none;
+    }
+    
     /* Login Failed Premium Styling */
     .error-container {
       z-index: 10;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
+      width: 100%;
       max-width: 400px;
-      margin: 0 auto;
-      padding: 40px;
+      margin: auto;
+      padding: 35px 25px;
       border-radius: 24px;
       text-align: center;
       box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.3),
         0 0 0 1px rgba(255, 255, 255, 0.1);
       animation: shake 0.5s ease-out, form-appear 0.6s ease-out;
+      box-sizing: border-box;
     }
     
     @keyframes form-appear {
@@ -69,9 +87,9 @@ else{
     
     /* Error Icon */
     .error-icon {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 25px;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
       background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
       border-radius: 50%;
       display: flex;
@@ -87,69 +105,82 @@ else{
     }
     
     .error-icon i {
-      font-size: 48px;
+      font-size: 36px;
       color: white;
     }
     
     .error-title {
       font-family: 'Inter', sans-serif;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
       color: #1a1a2e;
       margin: 0 0 10px;
+      word-wrap: break-word;
     }
     
     .error-subtitle {
       font-family: 'Inter', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       color: #666;
       margin: 0 0 8px;
       line-height: 1.5;
+      word-wrap: break-word;
     }
     
     .error-detail {
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       color: #999;
-      margin: 0 0 30px;
+      margin: 0 0 20px;
+      word-wrap: break-word;
     }
     
     /* Warning Badge */
     .warning-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 6px;
       background: #fff5f5;
       color: #ee5a5a;
-      padding: 10px 18px;
-      border-radius: 30px;
-      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 11px;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       border: 1px solid rgba(238, 90, 90, 0.2);
+      flex-wrap: wrap;
+      text-align: center;
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+    
+    .warning-badge i {
+      flex-shrink: 0;
     }
     
     /* Buttons */
     .btn-retry {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
-      padding: 16px 30px;
+      padding: 14px 20px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
-      border-radius: 14px;
-      font-size: 16px;
+      border-radius: 12px;
+      font-size: 15px;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
       text-decoration: none;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
     }
     
     .btn-retry:hover {
@@ -159,22 +190,23 @@ else{
     }
     
     .btn-help {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       width: 100%;
-      padding: 14px 24px;
+      padding: 12px 20px;
       background: transparent;
       color: #667eea;
       border: 2px solid #e0e0e0;
-      border-radius: 14px;
-      font-size: 14px;
+      border-radius: 12px;
+      font-size: 13px;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
+      box-sizing: border-box;
     }
     
     .btn-help:hover {
@@ -187,9 +219,9 @@ else{
     .divider {
       display: flex;
       align-items: center;
-      margin: 20px 0;
+      margin: 15px 0;
       color: #ccc;
-      font-size: 13px;
+      font-size: 12px;
       font-family: 'Inter', sans-serif;
     }
     
@@ -202,27 +234,27 @@ else{
     }
     
     .divider span {
-      padding: 0 15px;
+      padding: 0 12px;
     }
     
     /* Tips Section */
     .tips-section {
       background: #f8f9fa;
       border-radius: 12px;
-      padding: 15px;
-      margin-top: 20px;
+      padding: 14px;
+      margin-top: 15px;
       text-align: left;
     }
     
     .tips-title {
       font-family: 'Inter', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: #1a1a2e;
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     
     .tips-title i {
@@ -231,31 +263,145 @@ else{
     
     .tips-list {
       margin: 0;
-      padding: 0 0 0 20px;
+      padding: 0 0 0 18px;
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       color: #666;
-      line-height: 1.8;
+      line-height: 1.7;
     }
     
-    /* Responsive */
-    @media (max-width: 480px) {
+    .tips-list li {
+      margin-bottom: 4px;
+    }
+    
+    /* Floating Particles - hide on mobile for performance */
+    .particle {
+      display: none;
+    }
+    
+    /* Desktop - show mascot and particles */
+    @media (min-width: 769px) {
+      body {
+        flex-direction: row !important;
+        padding: 0;
+        overflow: hidden !important;
+        height: 100vh !important;
+      }
+      
+      .mascot {
+        display: block;
+      }
+      
+      .particle {
+        display: block;
+      }
+      
       .error-container {
-        margin: 20px;
-        padding: 30px 25px;
+        padding: 40px;
+        margin: 0 auto;
       }
       
       .error-icon {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 25px;
       }
       
       .error-icon i {
-        font-size: 36px;
+        font-size: 48px;
       }
       
       .error-title {
-        font-size: 22px;
+        font-size: 28px;
+      }
+      
+      .error-subtitle {
+        font-size: 15px;
+      }
+      
+      .error-detail {
+        font-size: 14px;
+        margin-bottom: 30px;
+      }
+      
+      .warning-badge {
+        font-size: 13px;
+        padding: 10px 18px;
+        margin-bottom: 25px;
+      }
+      
+      .btn-retry {
+        padding: 16px 30px;
+        font-size: 16px;
+        border-radius: 14px;
+        margin-bottom: 15px;
+      }
+      
+      .btn-help {
+        padding: 14px 24px;
+        font-size: 14px;
+        border-radius: 14px;
+      }
+      
+      .tips-section {
+        padding: 15px;
+        margin-top: 20px;
+      }
+      
+      .tips-title {
+        font-size: 13px;
+      }
+      
+      .tips-list {
+        font-size: 12px;
+      }
+    }
+    
+    /* Extra small devices */
+    @media (max-width: 380px) {
+      .error-container {
+        padding: 25px 20px;
+        border-radius: 20px;
+      }
+      
+      .error-icon {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .error-icon i {
+        font-size: 32px;
+      }
+      
+      .error-title {
+        font-size: 20px;
+      }
+      
+      .error-subtitle {
+        font-size: 13px;
+      }
+      
+      .warning-badge {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+      
+      .btn-retry {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      
+      .btn-help {
+        padding: 10px 16px;
+        font-size: 12px;
+      }
+      
+      .tips-title {
+        font-size: 11px;
+      }
+      
+      .tips-list {
+        font-size: 10px;
       }
     }
   </style>
