@@ -90,8 +90,7 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
         /* Smooth sidebar slide-in/out animation */
         .main-sidebar {
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
-                        width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                        left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                        width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform, width;
         }
         
@@ -125,7 +124,9 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             transform: scale(1.1);
         }
         
-        /* Smooth dropdown/treeview animations */
+        /* Smooth dropdown/treeview animations 
+           Max-height is set high to accommodate deep menu structures.
+           The actual height animates smoothly due to CSS transition. */
         .nav-treeview {
             display: block;
             overflow: hidden;
@@ -137,11 +138,19 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             padding: 0;
         }
         
+        /* Expanded treeview - max-height set to accommodate up to ~10 menu items */
         .nav-item.menu-open > .nav-treeview,
         .nav-item.menu-is-opening > .nav-treeview {
-            max-height: 500px; /* Large enough for expanded menus */
+            max-height: 50rem; /* ~800px - accommodates deep menu structures */
             opacity: 1;
             padding: 0.25rem 0;
+        }
+        
+        /* Closing animation state */
+        .nav-item.menu-is-closing > .nav-treeview {
+            max-height: 0;
+            opacity: 0;
+            padding: 0;
         }
         
         /* Smooth treeview items */
@@ -574,23 +583,27 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             // Add subtle ripple effect on click
             link.addEventListener('mousedown', function(e) {
                 const rect = this.getBoundingClientRect();
+                // Validate and sanitize mouse coordinates
+                const posX = Math.max(0, Math.min(rect.width, e.clientX - rect.left)) - 10;
+                const posY = Math.max(0, Math.min(rect.height, e.clientY - rect.top)) - 10;
+                
                 const ripple = document.createElement('span');
-                ripple.style.cssText = `
-                    position: absolute;
-                    background: rgba(255,255,255,0.3);
-                    border-radius: 50%;
-                    width: 20px;
-                    height: 20px;
-                    left: ${e.clientX - rect.left - 10}px;
-                    top: ${e.clientY - rect.top - 10}px;
-                    transform: scale(0);
-                    animation: ripple-effect 0.6s ease-out forwards;
-                    pointer-events: none;
-                `;
+                ripple.className = 'nav-ripple-effect';
+                ripple.style.left = posX + 'px';
+                ripple.style.top = posY + 'px';
+                
                 this.style.position = 'relative';
                 this.style.overflow = 'hidden';
                 this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
+                
+                // Store reference to remove safely
+                const parentLink = this;
+                setTimeout(function() {
+                    // Check if ripple is still attached to this element before removing
+                    if (ripple.parentNode === parentLink) {
+                        ripple.remove();
+                    }
+                }, 600);
             });
         });
         
@@ -604,6 +617,16 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
                         transform: scale(15);
                         opacity: 0;
                     }
+                }
+                .nav-ripple-effect {
+                    position: absolute;
+                    background: rgba(255,255,255,0.3);
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    transform: scale(0);
+                    animation: ripple-effect 0.6s ease-out forwards;
+                    pointer-events: none;
                 }
             `;
             document.head.appendChild(rippleStyles);
