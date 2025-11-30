@@ -444,14 +444,14 @@ else{
       Akses ditolak - Autentikasi gagal
     </div>
     
-    <a href="?module=formlogin" class="btn-retry">
+    <a href="index.php?module=formlogin" class="btn-retry">
       <i class="fa-solid fa-rotate-right"></i>
       Coba Lagi
     </a>
     
     <div class="divider"><span>atau</span></div>
     
-    <a href="?module=bantuan" class="btn-help">
+    <a href="index.php?module=bantuan" class="btn-help">
       <i class="fa-solid fa-circle-question"></i>
       Butuh Bantuan?
     </a>
