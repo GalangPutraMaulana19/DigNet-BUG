@@ -36,5 +36,11 @@ include "modul/riwayat/riwayat.php";
 include "modul/riwayat/detail.php";
 }elseif ($module == "formlogin"){
 include "modul/formlogin.php";
+}elseif ($module == "404"){
+// Explicit 404 page access
+include "modul/404.php";
+}else{
+// Module not found - show 404 page
+include "modul/404.php";
 }
 ?>
