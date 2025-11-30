@@ -38,7 +38,7 @@
     background: white;
     border-radius: 16px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to allow dropdown menus to overflow */
 }
 
 .diagnosa-form-header {
@@ -62,6 +62,8 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
+    position: relative; /* For proper stacking context */
+    overflow: visible; /* Allow dropdown to overflow */
 }
 
 /* Only apply hover effects on devices that support hover */
@@ -71,7 +73,6 @@
         box-shadow: 0 2px 8px rgba(226, 30, 44, 0.1);
         transform: translateY(-1px);
     }
-}
 }
 
 .gejala-number {
@@ -109,6 +110,13 @@
 .gejala-select-wrapper {
     flex: 0 0 auto;
     min-width: 180px;
+    position: relative; /* Ensure dropdown can position relative to this */
+    z-index: 1; /* Base z-index for stacking context */
+}
+
+/* When dropdown is open, increase wrapper z-index to bring it above other cards */
+.gejala-select-wrapper:has(.kondisi-dropdown.is-open) {
+    z-index: 100;
 }
 
 /* Hidden native select for form submission */
@@ -206,13 +214,14 @@
     top: calc(100% - 2px);
     left: 0;
     right: 0;
+    width: 100%; /* Explicit width to match trigger */
     background: white;
     border: 2px solid #E21E2C;
     border-top: none;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    box-shadow: 0 8px 24px rgba(226, 30, 44, 0.15);
-    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(226, 30, 44, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* High z-index to ensure it appears above all elements */
     max-height: 280px;
     overflow-y: auto;
     opacity: 0;
@@ -442,7 +451,7 @@
     
     .diagnosa-form-container {
         border-radius: 10px;
-        overflow: hidden;
+        overflow: visible; /* Allow dropdown to overflow */
     }
     
     .diagnosa-form-header {
@@ -1391,17 +1400,26 @@ switch ($_GET['act'] ?? '') {
             e.preventDefault();
             e.stopPropagation();
             
-            // Close other dropdowns
+            // Close other dropdowns and reset their z-index
             document.querySelectorAll('.kondisi-dropdown.is-open').forEach(function(other) {
                 if (other !== dropdown) {
                     other.classList.remove('is-open');
                     other.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    // Reset z-index on wrapper
+                    const otherWrapper = other.closest('.gejala-select-wrapper');
+                    if (otherWrapper) otherWrapper.style.zIndex = '';
                 }
             });
             
             // Toggle current
             const isOpen = dropdown.classList.toggle('is-open');
             trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            
+            // Manage z-index on wrapper (for browsers without :has() support)
+            const wrapper = dropdown.closest('.gejala-select-wrapper');
+            if (wrapper) {
+                wrapper.style.zIndex = isOpen ? '100' : '';
+            }
             
             // Scroll selected option into view
             if (isOpen) {
@@ -1451,6 +1469,9 @@ switch ($_GET['act'] ?? '') {
             document.querySelectorAll('.kondisi-dropdown.is-open').forEach(function(dropdown) {
                 dropdown.classList.remove('is-open');
                 dropdown.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
+                // Reset z-index on wrapper
+                const wrapper = dropdown.closest('.gejala-select-wrapper');
+                if (wrapper) wrapper.style.zIndex = '';
             });
         }
     });
@@ -1468,6 +1489,9 @@ switch ($_GET['act'] ?? '') {
             openDropdown.classList.remove('is-open');
             openDropdown.querySelector('.kondisi-dropdown-trigger').setAttribute('aria-expanded', 'false');
             openDropdown.querySelector('.kondisi-dropdown-trigger').focus();
+            // Reset z-index on wrapper
+            const wrapper = openDropdown.closest('.gejala-select-wrapper');
+            if (wrapper) wrapper.style.zIndex = '';
         } else if (e.key === 'ArrowDown') {
             e.preventDefault();
             const nextIndex = currentIndex < options.length - 1 ? currentIndex + 1 : 0;
