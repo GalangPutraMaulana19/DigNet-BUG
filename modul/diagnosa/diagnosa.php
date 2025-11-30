@@ -717,6 +717,60 @@
     margin-bottom: 0.75rem;
 }
 
+/* Saran Penanganan styling */
+.saran-content {
+    margin-top: 1rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+.saran-content ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    counter-reset: saran-counter;
+    list-style: none;
+}
+
+.saran-content ol li {
+    position: relative;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    border-bottom: 1px solid #f0f0f0;
+    counter-increment: saran-counter;
+}
+
+.saran-content ol li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.saran-content ol li::before {
+    content: counter(saran-counter) ".";
+    position: absolute;
+    left: -1.5rem;
+    color: #F59E0B;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.saran-content p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Detail Gangguan styling */
+.detail-content {
+    margin-top: 1rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+.detail-content p {
+    margin: 0;
+    line-height: 1.7;
+}
+
 /* List group items in results */
 .hasil-body .list-group-item {
     border: none;
@@ -925,19 +979,21 @@
 .kemungkinan-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem; /* Increased gap between items */
+    margin-top: 0.5rem; /* Space from heading */
 }
 
 .kemungkinan-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.875rem 1rem;
+    padding: 1rem 1.25rem; /* Increased padding */
     background: #fafafa;
-    border-radius: 8px;
+    border-radius: 10px; /* Slightly larger radius */
     border: 1px solid #e5e5e5;
     transition: all 0.2s ease;
     gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04); /* Subtle shadow */
 }
 
 /* Only apply hover effects on devices that support hover */
@@ -945,19 +1001,23 @@
     .kemungkinan-item:hover {
         background: #f0f0f0;
         border-color: #EF4444;
+        box-shadow: 0 2px 6px rgba(239, 68, 68, 0.1);
     }
 }
 
 .kemungkinan-content {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem; /* Increased gap between icon and text */
     flex: 1;
     min-width: 0;
+    padding: 0.25rem 0; /* Vertical padding for content */
 }
 
 .kemungkinan-content i {
     flex-shrink: 0;
+    font-size: 0.875rem;
+    color: #EF4444;
 }
 
 .kemungkinan-text {
@@ -965,51 +1025,65 @@
     color: #374151;
     word-break: break-word;
     overflow-wrap: break-word;
-    line-height: 1.4;
+    line-height: 1.5; /* Increased line height */
+    font-size: 0.9375rem;
 }
 
 .kemungkinan-badge {
     background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
     color: white;
-    padding: 0.375rem 0.75rem;
+    padding: 0.5rem 0.875rem; /* Increased padding */
     border-radius: 20px;
     font-size: 0.8125rem;
     font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Kemungkinan Lain Mobile */
 @media (max-width: 768px) {
+    .kemungkinan-list {
+        gap: 0.625rem;
+    }
+    
     .kemungkinan-item {
         flex-direction: column;
         align-items: flex-start;
-        padding: 0.875rem;
-        gap: 0.5rem;
+        padding: 1rem;
+        gap: 0.75rem; /* Increased gap for mobile */
     }
     
     .kemungkinan-content {
         width: 100%;
+        gap: 0.625rem;
+        padding: 0;
     }
     
     .kemungkinan-text {
         font-size: 0.875rem;
+        line-height: 1.5;
     }
     
     .kemungkinan-badge {
         align-self: flex-start;
         font-size: 0.75rem;
-        padding: 0.25rem 0.625rem;
+        padding: 0.375rem 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
     .kemungkinan-item {
-        padding: 0.75rem;
+        padding: 0.875rem;
+        gap: 0.625rem;
     }
     
     .kemungkinan-text {
         font-size: 0.8125rem;
+    }
+    
+    .kemungkinan-badge {
+        padding: 0.3rem 0.625rem;
     }
 }
 
@@ -1025,6 +1099,72 @@
 </style>
 
 <?php
+/**
+ * Convert numbered text into an ordered list HTML
+ * Handles patterns like "1. text", "1) text", "1 text", etc.
+ * @param string $text The text to convert
+ * @return string HTML with ordered list or paragraph if no numbered items found
+ */
+function formatSaranToList($text) {
+    if (empty($text)) {
+        return '<p>-</p>';
+    }
+    
+    // Escape the text first for security
+    $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    
+    // Split by common numbered patterns (1. or 1) or 1: followed by text)
+    // Also handle newlines and multiple spaces
+    $patterns = [
+        '/(\d+)\.\s+/',    // "1. " pattern
+        '/(\d+)\)\s+/',    // "1) " pattern
+        '/(\d+):\s+/',     // "1: " pattern
+        '/\n(\d+)\s+/',    // newline followed by number
+    ];
+    
+    // Try to detect if the text has numbered items
+    $hasNumberedItems = false;
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $text)) {
+            $hasNumberedItems = true;
+            break;
+        }
+    }
+    
+    if (!$hasNumberedItems) {
+        // Check for simple "1 " at start of lines
+        if (preg_match('/^\d+\s/', $text) || preg_match('/\n\d+\s/', $text)) {
+            $hasNumberedItems = true;
+        }
+    }
+    
+    if ($hasNumberedItems) {
+        // Split the text into items
+        // First, normalize line breaks
+        $text = str_replace(["\r\n", "\r"], "\n", $text);
+        
+        // Split by numbered pattern at start or after newline
+        $items = preg_split('/(?:^|\n)\s*\d+[\.\)\:]?\s*/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        
+        if (count($items) > 1 || (count($items) == 1 && strlen(trim($items[0])) > 0)) {
+            $html = '<ol>';
+            foreach ($items as $item) {
+                $item = trim($item);
+                if (!empty($item)) {
+                    $html .= '<li>' . $item . '</li>';
+                }
+            }
+            $html .= '</ol>';
+            return $html;
+        }
+    }
+    
+    // If no numbered items detected, return as paragraph
+    // But still handle line breaks
+    $text = nl2br($text);
+    return '<p>' . $text . '</p>';
+}
+
 switch ($_GET['act'] ?? '') {
 
   default:
@@ -1205,17 +1345,17 @@ switch ($_GET['act'] ?? '') {
                     <h5 class='card-title mb-3' style='color: #3B82F6;'>
                         <i class='fa-solid fa-circle-info me-2'></i> Detail Gangguan
                     </h5>
-                    <p class='mb-0' style='line-height: 1.7;'>" . htmlspecialchars($ardpkt[$idpkt[1]] ?? '', ENT_QUOTES, 'UTF-8') . "</p>
+                    <div class='detail-content'>" . nl2br(htmlspecialchars($ardpkt[$idpkt[1]] ?? '', ENT_QUOTES, 'UTF-8')) . "</div>
                 </div>
             </div>";
       
-      // Saran section
+      // Saran section - use formatSaranToList for proper ordered list formatting
       echo "<div class='card mb-3' style='border-left: 4px solid #F59E0B; border-radius: 12px;'>
                 <div class='card-body'>
                     <h5 class='card-title mb-3' style='color: #F59E0B;'>
                         <i class='fa-solid fa-lightbulb me-2'></i> Saran Penanganan
                     </h5>
-                    <p class='mb-0' style='line-height: 1.7;'>" . htmlspecialchars($arspkt[$idpkt[1]] ?? '', ENT_QUOTES, 'UTF-8') . "</p>
+                    <div class='saran-content'>" . formatSaranToList($arspkt[$idpkt[1]] ?? '') . "</div>
                 </div>
             </div>";
       
