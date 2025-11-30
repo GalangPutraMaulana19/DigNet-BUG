@@ -147,42 +147,204 @@
     transform: translateY(0);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .gejala-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
+/* Mobile-first responsive approach - Prevent glitches */
+* {
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 991px) {
+    .diagnosa-form-container {
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 12px;
     }
     
-    .gejala-header {
-        display: flex;
-        align-items: center;
+    .gejala-card {
+        flex-direction: column;
+        align-items: stretch;
         gap: 0.75rem;
-        width: 100%;
+        padding: 1rem;
     }
     
     .gejala-text {
-        min-width: auto;
+        min-width: unset;
         width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
     
     .gejala-select-wrapper {
         width: 100%;
+        min-width: unset;
+    }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+    .diagnosa-form-container {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .diagnosa-form-header {
+        padding: 1.25rem 1rem;
+    }
+    
+    .diagnosa-form-header h3 {
+        font-size: 1.125rem;
+    }
+    
+    .diagnosa-form-header p {
+        font-size: 0.875rem;
+    }
+    
+    .gejala-card {
+        padding: 0.875rem;
+        margin-bottom: 0.625rem;
+        border-radius: 10px;
+    }
+    
+    .gejala-card:hover {
+        transform: none; /* Disable hover transform on mobile - prevents glitches */
+    }
+    
+    .gejala-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8125rem;
+    }
+    
+    .gejala-code {
+        font-size: 0.6875rem;
+        padding: 0.2rem 0.625rem;
+    }
+    
+    .gejala-text {
+        font-size: 0.875rem;
+        line-height: 1.5;
     }
     
     .premium-select {
         width: 100%;
+        padding: 0.75rem 2.5rem 0.75rem 0.875rem;
+        font-size: 0.8125rem;
+        min-height: 44px; /* Touch-friendly height */
     }
     
     .btn-diagnosa-submit {
         width: 100%;
         justify-content: center;
-        padding: 1rem 1.5rem;
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+        min-height: 48px;
     }
     
     .diagnosa-form-body {
+        padding: 1rem 0.875rem;
+    }
+    
+    .submit-section {
         padding: 1rem;
+    }
+    
+    /* Fix alert info on mobile */
+    .diagnosa-form-body .alert {
+        padding: 0.875rem;
+        font-size: 0.875rem;
+    }
+    
+    .diagnosa-form-body .alert .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .diagnosa-form-body .alert i {
+        align-self: flex-start;
+    }
+}
+
+/* Extra small devices - prevent content overflow */
+@media (max-width: 480px) {
+    .diagnosa-form-container {
+        margin: 0 -0.75rem;
+        width: calc(100% + 1.5rem);
+        border-radius: 8px;
+    }
+    
+    .diagnosa-form-header {
+        padding: 1rem;
+    }
+    
+    .diagnosa-form-header h3 {
+        font-size: 1rem;
+        word-break: break-word;
+    }
+    
+    .diagnosa-form-header h3 i {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .gejala-card {
+        padding: 0.75rem;
+        gap: 0.625rem;
+    }
+    
+    .gejala-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+    
+    .gejala-code {
+        font-size: 0.625rem;
+        padding: 0.15rem 0.5rem;
+    }
+    
+    .gejala-text {
+        font-size: 0.8125rem;
+        line-height: 1.45;
+    }
+    
+    .premium-select {
+        font-size: 0.8125rem;
+        padding: 0.625rem 2.25rem 0.625rem 0.75rem;
+    }
+    
+    .btn-diagnosa-submit {
+        font-size: 0.9375rem;
+        padding: 0.875rem 1rem;
+    }
+    
+    .diagnosa-form-body {
+        padding: 0.875rem 0.75rem;
+    }
+    
+    .submit-section {
+        padding: 0.875rem 0.75rem;
+    }
+}
+
+/* Very small devices (320px-360px) */
+@media (max-width: 380px) {
+    .diagnosa-form-container {
+        margin: 0 -1rem;
+        width: calc(100% + 2rem);
+        border-radius: 0;
+    }
+    
+    .diagnosa-form-header h3 {
+        font-size: 0.9375rem;
+    }
+    
+    .gejala-text {
+        font-size: 0.75rem;
+    }
+    
+    .premium-select {
+        font-size: 0.75rem;
     }
 }
 
@@ -218,7 +380,9 @@
 .hasil-body {
     padding: 1.5rem;
     overflow-x: hidden;
+    overflow-y: visible;
     word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .hasil-main-card {
@@ -236,6 +400,7 @@
     color: #059669;
     margin-bottom: 0.5rem;
     word-break: break-word;
+    overflow-wrap: break-word;
     line-height: 1.3;
 }
 
@@ -256,6 +421,7 @@
     margin-bottom: 0.5rem;
     border: 1px solid #e5e5e5;
     transition: all 0.2s ease;
+    flex-wrap: wrap;
 }
 
 .gejala-hasil-item:hover {
@@ -302,24 +468,49 @@
     background: #f0f0f0;
 }
 
-/* Mobile responsive for results */
-@media (max-width: 768px) {
+/* Mobile responsive for results - Tablet */
+@media (max-width: 991px) {
     .hasil-container {
-        border-radius: 12px;
         margin-left: -0.5rem;
         margin-right: -0.5rem;
         width: calc(100% + 1rem);
-        max-width: calc(100% + 1rem);
+        border-radius: 12px;
+    }
+    
+    .hasil-main-card .row {
+        flex-direction: column-reverse;
+    }
+    
+    .hasil-main-card .col-md-4 {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    .hasil-main-card .col-md-8 {
+        text-align: center;
+    }
+}
+
+/* Mobile specific results */
+@media (max-width: 768px) {
+    .hasil-container {
+        border-radius: 10px;
     }
     
     .hasil-header {
         flex-direction: column;
         text-align: center;
         padding: 1.25rem 1rem;
+        gap: 0.75rem;
     }
     
     .hasil-header h2 {
         font-size: 1.25rem;
+    }
+    
+    .hasil-header .btn {
+        width: 100%;
+        justify-content: center;
     }
     
     .hasil-body {
@@ -332,7 +523,7 @@
     }
     
     .hasil-gangguan {
-        font-size: 1.15rem;
+        font-size: 1.25rem;
         text-align: center;
     }
     
@@ -360,6 +551,7 @@
         width: 100%;
         font-size: 0.9rem;
         line-height: 1.4;
+        word-break: break-word;
     }
     
     .gejala-hasil-item > span:last-child {
@@ -394,21 +586,8 @@
         margin-top: 0.5rem;
     }
     
-    /* Fix row/col layout on mobile */
-    .hasil-main-card .row {
-        flex-direction: column-reverse;
-    }
-    
-    .hasil-main-card .col-md-4 {
-        margin-bottom: 1rem;
-    }
-    
     .hasil-main-card .col-md-4 img {
-        max-width: 120px !important;
-    }
-    
-    .hasil-main-card .col-md-8 {
-        text-align: center;
+        max-width: 140px !important;
     }
     
     /* Action buttons on mobile */
@@ -416,6 +595,7 @@
         display: block;
         width: 100%;
         margin-bottom: 0.5rem;
+        margin-right: 0 !important;
     }
     
     .hasil-body .text-center .btn:last-child {
@@ -423,14 +603,21 @@
     }
 }
 
-/* Extra small devices */
+/* Extra small devices for results */
 @media (max-width: 480px) {
+    .hasil-container {
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+        width: calc(100% + 1.5rem);
+        border-radius: 8px;
+    }
+    
     .hasil-header h2 {
         font-size: 1.1rem;
     }
     
     .hasil-gangguan {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
     
     .hasil-persentase {
@@ -443,6 +630,32 @@
     
     .hasil-body .card-body p {
         font-size: 0.8125rem;
+    }
+    
+    .hasil-main-card .col-md-4 img {
+        max-width: 100px !important;
+    }
+}
+
+/* Very small devices for results */
+@media (max-width: 380px) {
+    .hasil-container {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        width: calc(100% + 2rem);
+        border-radius: 0;
+    }
+    
+    .hasil-header {
+        padding: 1rem;
+    }
+    
+    .hasil-header h2 {
+        font-size: 1rem;
+    }
+    
+    .hasil-body {
+        padding: 0.875rem;
     }
 }
 
@@ -486,6 +699,7 @@
     font-weight: 500;
     color: #374151;
     word-break: break-word;
+    overflow-wrap: break-word;
     line-height: 1.4;
 }
 
@@ -500,12 +714,17 @@
     flex-shrink: 0;
 }
 
+/* Kemungkinan Lain Mobile */
 @media (max-width: 768px) {
     .kemungkinan-item {
         flex-direction: column;
         align-items: flex-start;
         padding: 0.875rem;
         gap: 0.5rem;
+    }
+    
+    .kemungkinan-item:hover {
+        transform: none; /* Prevent glitchy transforms on mobile */
     }
     
     .kemungkinan-content {
@@ -530,6 +749,33 @@
     
     .kemungkinan-text {
         font-size: 0.8125rem;
+    }
+}
+
+/* Page header mobile fix */
+@media (max-width: 768px) {
+    .mb-4 h2.text-primary {
+        font-size: 1.25rem;
+        word-break: break-word;
+    }
+    
+    .mb-4 h2.text-primary i {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .mb-4 p.text-muted {
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .mb-4 h2.text-primary {
+        font-size: 1.125rem;
+    }
+    
+    .mb-4 p.text-muted {
+        font-size: 0.8125rem !important;
     }
 }
 </style>
