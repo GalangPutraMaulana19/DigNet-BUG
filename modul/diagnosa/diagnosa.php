@@ -45,6 +45,7 @@
     background: linear-gradient(135deg, #E21E2C 0%, #B71C1C 100%);
     color: white;
     padding: 1.5rem;
+    border-radius: 16px 16px 0 0;
 }
 
 .diagnosa-form-body {
