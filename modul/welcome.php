@@ -30,12 +30,12 @@
         <p class="hero-subtitle" style="font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; line-height: 1.6; margin-bottom: var(--space-6); opacity: 0.95; max-width: 700px; margin-left: auto; margin-right: auto;">
             Sistem pakar berbasis Forward Chaining dan Certainty Factor untuk membantu teknisi provisioning mendiagnosis gangguan IndiHome selama masa retensi 60 hari dengan akurasi tinggi.
         </p>
-        <div class="hero-cta" style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-            <a href="?module=diagnosa" class="btn btn-hero-primary">
+        <div class="hero-cta" style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="?module=diagnosa" class="btn btn-hero-primary" style="margin: 0.5rem;">
                 <i class="fa-solid fa-stethoscope me-2"></i>
                 Mulai Diagnosis
             </a>
-            <a href="?module=bantuan" class="btn btn-hero-secondary">
+            <a href="?module=bantuan" class="btn btn-hero-secondary" style="margin: 0.5rem;">
                 <i class="fa-solid fa-circle-info me-2"></i>
                 Pelajari Lebih Lanjut
             </a>
