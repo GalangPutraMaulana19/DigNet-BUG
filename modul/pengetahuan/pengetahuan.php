@@ -1,13 +1,102 @@
 <title>Basis Pengetahuan - DigNet 1.0</title>
 
+<!-- Premium SaaS Admin Styles -->
+<style>
+.admin-page-header {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(250, 112, 154, 0.3);
+}
+.admin-page-header h2 {
+    color: #fff;
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.75rem;
+}
+.admin-page-header p {
+    color: rgba(255,255,255,0.85);
+    margin: 0.75rem 0 0 0;
+    font-size: 1rem;
+}
+.admin-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: none;
+    overflow: hidden;
+}
+.admin-card .card-body {
+    padding: 1.5rem;
+}
+.admin-table-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+.admin-table-container table {
+    margin-bottom: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.admin-table-container table thead {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+.admin-table-container table thead th {
+    color: #fff;
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.admin-table-container table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-color: #f0f0f0;
+}
+.admin-table-container table tbody tr:hover {
+    background-color: #fffaf0;
+}
+.admin-form-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 2rem;
+    margin-top: 1rem;
+}
+.admin-form-container table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+.admin-form-container table td {
+    padding: 1rem;
+    border-color: #f0f0f0;
+}
+.admin-form-container .form-control {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+.admin-form-container .form-control:focus {
+    border-color: #fa709a;
+    box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.15);
+}
+</style>
+
 <!-- Premium Page Header -->
-<div class="mb-5">
-    <h2 class="text text-primary">
+<div class="admin-page-header">
+    <h2>
         <i class="fa-solid fa-brain me-3"></i>
         Basis Pengetahuan
     </h2>
-    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
-        Kelola aturan IF-THEN dengan nilai MB (Measure of Belief) dan MD (Measure of Disbelief) untuk setiap kombinasi gejala-gangguan
+    <p>
+        Kelola aturan IF-THEN dengan nilai MB dan MD untuk setiap kombinasi gejala-gangguan
     </p>
 </div>
 
@@ -69,25 +158,25 @@ switch($act){
 	//jumlah data yang ditampilkan perpage
 	$limit = 15;
   $tampil = mysqli_query($conn, "SELECT * FROM basis_pengetahuan ORDER BY kode_pengetahuan");
-	echo "<div class='card'>
+	echo "<div class='admin-card'>
           <div class='card-body'>
             <form method=POST action='?module=pengetahuan' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
               <div class='col-auto'>
-                <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='?module=pengetahuan&act=tambahpengetahuan';\">
+                <button class='btn btn-success' style='border-radius: 8px; padding: 0.6rem 1.2rem;' type=button name=tambah onclick=\"window.location.href='?module=pengetahuan&act=tambahpengetahuan';\">
                   <i class='fa-solid fa-plus'></i> Tambah Basis Pengetahuan
                 </button>
               </div>
               <div class='col'>
-                <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' />
+                <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' style='border-radius: 8px;' value='$_POST[keyword]' />
               </div>
               <div class='col-auto'>
-                <button class='btn btn-primary' type=submit name=Go>
+                <button class='btn btn-primary' style='border-radius: 8px; padding: 0.6rem 1.2rem;' type=submit name=Go>
                   <i class='fa-solid fa-magnifying-glass'></i> Cari
                 </button>
               </div>
             </form>
           </div>
-        </div><br>";
+        </div>";
 		  	$baris = mysqli_num_rows($tampil);
 	if (isset($_POST['Go'])){
 			$numrows = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM basis_pengetahuan b,repair p where b.kode_repair=p.kode_repair AND p.nama_repair like '%".$_POST['keyword']."%'"));
@@ -98,7 +187,7 @@ switch($act){
                 Pengetahuan yang anda cari di temukan.
               </div>";
 				$i = 1;
-	echo" <table class='table table-bordered' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+	echo" <div class='admin-table-container'><table class='table table-bordered' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -130,7 +219,7 @@ switch($act){
       $no++;
 	  $counter++;
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 			}
 			else{
 				echo "<div class='alert alert-danger alert-dismissible fade show'>
@@ -142,7 +231,7 @@ switch($act){
 		}else{
 	
 	if($baris > 0){
-	echo" <table class='table table-bordered' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+	echo" <div class='admin-table-container'><table class='table table-bordered' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -180,7 +269,7 @@ switch($act){
       $no++;
 	  $counter++;
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 	echo "<div class=paging>";
 
 	if ($offset != 0) {
@@ -226,7 +315,7 @@ switch($act){
     break;
   
   case "tambahpengetahuan":
-	echo "	<div class='alert alert-success alert-dismissible fade show'>
+	echo "	<div class='alert alert-success alert-dismissible fade show' style='border-radius: 12px;'>
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                 <h4><i class='icon fa-solid fa-triangle-exclamation'></i>Petunjuk Pengisian Pakar !</h4>
                 Silahkan pilih incident yang sesuai dengan repair yang ada, dan berikan <b>nilai kepastian (MB & MB)</b> dengan cakupan sebagai berikut:<br><br>
@@ -241,15 +330,15 @@ switch($act){
 				<b>Maka:</b> CF(Pakar) = MB – MD (0.8 - 0.2) = <b>0.6</b> <br>
 				Dimana nilai kepastian anda terhadap incident Mencret keputih-putihan untuk repair Berak Kapur adalah <b>0.6 (Kemungkinan Besar)</b>
               </div>
-          <form name=text_form method=POST action='$aksi?module=pengetahuan&act=input' onsubmit='return Blank_TextField_Validator()'>
-          <br><br><table class='table table-bordered'>
-		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair'  id='kode_repair'><option value=''>- Pilih Gangguan -</option>";
+          <div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=pengetahuan&act=input' onsubmit='return Blank_TextField_Validator()'>
+          <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
+		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair'  id='kode_repair' style='border-radius: 8px;'><option value=''>- Pilih Gangguan -</option>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM repair order by nama_repair");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_repair']."'>".$r4['nama_repair']."</option>";
 		}
 		echo	"</select></td></tr>
-		<tr><td>Gejala</td><td><select class='form-control' name='kode_incident' id='kode_incident'><option value=''>- Pilih Gejala -</option>";
+		<tr><td>Gejala</td><td><select class='form-control' name='kode_incident' id='kode_incident' style='border-radius: 8px;'><option value=''>- Pilih Gejala -</option>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM incident order by nama_incident");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_incident']."'>".$r4['nama_incident']."</option>";
@@ -257,9 +346,9 @@ switch($act){
 		echo	"</select></td></tr>
 		<tr><td>MB</td><td><input autocomplete='off' placeholder='Masukkan MB' type=text class='form-control' name='mb' size=15 ></td></tr>
 		<tr><td>MD</td><td><input autocomplete='off' placeholder='Masukkan MD' type=text class='form-control' name='md' size=15 ></td></tr>
-		  <tr><td></td><td><input class='btn btn-success' type=submit name=submit value='Simpan' >
-		  <input class='btn btn-danger' type=button name=batal value='Batal' onclick=\"window.location.href='?module=pengetahuan';\"></td></tr>
-          </table></form>";
+		  <tr><td></td><td><input class='btn btn-success' style='border-radius: 8px;' type=submit name=submit value='Simpan' >
+		  <input class='btn btn-danger' style='border-radius: 8px;' type=button name=batal value='Batal' onclick=\"window.location.href='?module=pengetahuan';\"></td></tr>
+          </table></form></div>";
      break;
     
   case "editpengetahuan":
@@ -268,17 +357,17 @@ switch($act){
 	
     echo "<br>
 	<br>
-	<form name=text_form method=POST action='$aksi?module=pengetahuan&act=update' onsubmit='return Blank_TextField_Validator()'>
+	<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=pengetahuan&act=update' onsubmit='return Blank_TextField_Validator()'>
           <input type=hidden name=id value='".$r['kode_pengetahuan']."'>
-          <br><br><table class='table table-bordered'>
-		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair' id='kode_repair'>";
+          <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
+		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair' id='kode_repair' style='border-radius: 8px;'>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM repair order by nama_repair");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_repair']."'"; if($r['kode_repair'] == $r4['kode_repair']) echo "selected";
 			echo ">$r4[nama_repair]</option>";
 		}
 		echo	"</select></td></tr>
-		<tr><td>Gejala</td><td><select class='form-control' name='kode_incident' id='kode_incident'>";
+		<tr><td>Gejala</td><td><select class='form-control' name='kode_incident' id='kode_incident' style='border-radius: 8px;'>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM incident order by nama_incident");
 		while($r4 = mysqli_fetch_array($hasil4)){
 			echo "<option value='".$r4['kode_incident']."'"; if($r['kode_incident'] == $r4['kode_incident']) echo "selected";
@@ -287,9 +376,9 @@ switch($act){
 		echo	"</select></td></tr>
 		<tr><td>MB</td><td><input autocomplete='off' placeholder='Masukkan MB' type=text class='form-control' name='mb' size=15 value='".$r['mb']."'></td></tr>
 		<tr><td>MD</td><td><input autocomplete='off' placeholder='Masukkan MD' type=text class='form-control' name='md' size=15 value='".$r['md']."'></td></tr>
-          <tr><td></td><td><input class='btn btn-success' type=submit name=submit value='Simpan' >
-		  <input class='btn btn-danger' type=button name=batal value='Batal' onclick=\"window.location.href='?module=pengetahuan';\"></td></tr>
-          </table></form>";
+          <tr><td></td><td><input class='btn btn-success' style='border-radius: 8px;' type=submit name=submit value='Simpan' >
+		  <input class='btn btn-danger' style='border-radius: 8px;' type=button name=batal value='Batal' onclick=\"window.location.href='?module=pengetahuan';\"></td></tr>
+          </table></form></div>";
     break;  
 }
 ?>

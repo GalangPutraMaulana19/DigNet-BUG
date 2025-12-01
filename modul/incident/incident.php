@@ -1,12 +1,101 @@
 <title>Data Gejala - DigNet 1.0</title>
 
+<!-- Premium SaaS Admin Styles -->
+<style>
+.admin-page-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(79, 172, 254, 0.3);
+}
+.admin-page-header h2 {
+    color: #fff;
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.75rem;
+}
+.admin-page-header p {
+    color: rgba(255,255,255,0.85);
+    margin: 0.75rem 0 0 0;
+    font-size: 1rem;
+}
+.admin-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: none;
+    overflow: hidden;
+}
+.admin-card .card-body {
+    padding: 1.5rem;
+}
+.admin-table-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+.admin-table-container table {
+    margin-bottom: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.admin-table-container table thead {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+.admin-table-container table thead th {
+    color: #fff;
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.admin-table-container table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-color: #f0f0f0;
+}
+.admin-table-container table tbody tr:hover {
+    background-color: #f0faff;
+}
+.admin-form-container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 2rem;
+    margin-top: 1rem;
+}
+.admin-form-container table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+.admin-form-container table td {
+    padding: 1rem;
+    border-color: #f0f0f0;
+}
+.admin-form-container .form-control {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+.admin-form-container .form-control:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.15);
+}
+</style>
+
 <!-- Premium Page Header -->
-<div class="mb-5">
-    <h2 class="text text-primary">
+<div class="admin-page-header">
+    <h2>
         <i class="fa-solid fa-wifi me-3"></i>
         Data Gejala Gangguan
     </h2>
-    <p class="text-muted" style="font-size: 1.1rem; margin-top: 1rem;">
+    <p>
         Kelola daftar gejala (symptoms) yang muncul pada gangguan IndiHome
     </p>
 </div>
@@ -51,25 +140,25 @@ switch($act){
 	//jumlah data yang ditampilkan perpage
 	$limit = 15;
   $tampil = mysqli_query($conn, "SELECT * FROM incident ORDER BY kode_incident");
-	echo "<div class='card'>
+	echo "<div class='admin-card'>
         <div class='card-body'>
           <form method=POST action='?module=incident' name=text_form onsubmit='return Blank_TextField_Validator_Cari()' class='row g-3'>
             <div class='col-auto'>
-              <button class='btn btn-success' type=button name=tambah onclick=\"window.location.href='?module=incident&act=tambahincident';\">
+              <button class='btn btn-success' style='border-radius: 8px; padding: 0.6rem 1.2rem;' type=button name=tambah onclick=\"window.location.href='?module=incident&act=tambahincident';\">
                 <i class='fa-solid fa-plus'></i> Tambah Gejala
               </button>
             </div>
             <div class='col'>
-              <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' value='$_POST[keyword]' />
+              <input type=text name='keyword' placeholder='Ketik dan tekan cari...' class='form-control' style='border-radius: 8px;' value='$_POST[keyword]' />
             </div>
             <div class='col-auto'>
-              <button class='btn btn-primary' type=submit name=Go>
+              <button class='btn btn-primary' style='border-radius: 8px; padding: 0.6rem 1.2rem;' type=submit name=Go>
                 <i class='fa-solid fa-magnifying-glass'></i> Cari
               </button>
             </div>
           </form>
         </div>
-      </div><br>";
+      </div>";
 		  $baris = mysqli_num_rows($tampil);
 		  
 	if (isset($_POST['Go'])){
@@ -81,7 +170,7 @@ switch($act){
                 Gejala yang anda cari ditemukan.
               </div>";
 				$i = 1;
-	echo" <table class='table table-bordered' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+	echo" <div class='admin-table-container'><table class='table table-bordered' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -108,7 +197,7 @@ switch($act){
       $no++;
 	  $counter++;
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 			}
 			else{
 				echo "<div class='alert alert-danger alert-dismissible fade show'>
@@ -120,7 +209,7 @@ switch($act){
 		}else{
 	
 	if($baris > 0){
-	echo" <table class='table table-bordered' style='overflow-x=auto' cellpadding='0' cellspacing='0'>
+	echo" <div class='admin-table-container'><table class='table table-bordered' cellpadding='0' cellspacing='0'>
           <thead>
             <tr>
               <th>No</th>
@@ -149,7 +238,7 @@ switch($act){
       $no++;
 	  $counter++;
     }
-    echo "</tbody></table>";
+    echo "</tbody></table></div>";
 	echo "<div class=paging>";
 
 	if ($offset != 0) {
@@ -195,25 +284,25 @@ switch($act){
     break;
   
   case "tambahincident":
-    echo "<form name=text_form method=POST action='$aksi?module=incident&act=input' onsubmit='return Blank_TextField_Validator()'>
-          <br><br><table class='table table-bordered'>
+    echo "<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=incident&act=input' onsubmit='return Blank_TextField_Validator()'>
+          <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td width=120>Nama Gejala</td><td><input type=text autocomplete='off' placeholder='Masukkan incident baru...' class='form-control' name='nama_incident' size=30></td></tr>
-		  <tr><td></td><td><input class='btn btn-success' type=submit name=submit value='Simpan' >
-		  <input class='btn btn-danger' type=button name=batal value='Batal' onclick=\"window.location.href='?module=incident';\"></td></tr>
-          </table></form>";
+		  <tr><td></td><td><input class='btn btn-success' style='border-radius: 8px;' type=submit name=submit value='Simpan' >
+		  <input class='btn btn-danger' style='border-radius: 8px;' type=button name=batal value='Batal' onclick=\"window.location.href='?module=incident';\"></td></tr>
+          </table></form></div>";
      break;
     
   case "editincident":
     $edit = mysqli_query($conn, "SELECT * FROM incident WHERE kode_incident='$_GET[id]'");
     $r = mysqli_fetch_array($edit);
 	
-    echo "<form name=text_form method=POST action='$aksi?module=incident&act=update' onsubmit='return Blank_TextField_Validator()'>
+    echo "<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=incident&act=update' onsubmit='return Blank_TextField_Validator()'>
           <input type=hidden name=id value='$r[kode_incident]'>
-          <br><br><table class='table table-bordered'>
+          <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td width=120>Nama Gejala</td><td><input autocomplete='off' type=text class='form-control' name='nama_incident' size=30 value=\"$r[nama_incident]\"></td></tr>
-          <tr><td></td><td><input class='btn btn-success' type=submit name=submit value='Simpan' >
-		  <input class='btn btn-danger' type=button value='Batal' onclick=\"window.location.href='?module=incident';\"></td></tr>
-          </table></form>";
+          <tr><td></td><td><input class='btn btn-success' style='border-radius: 8px;' type=submit name=submit value='Simpan' >
+		  <input class='btn btn-danger' style='border-radius: 8px;' type=button value='Batal' onclick=\"window.location.href='?module=incident';\"></td></tr>
+          </table></form></div>";
     break;  
 }
 ?>
