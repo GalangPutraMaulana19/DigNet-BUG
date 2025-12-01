@@ -266,9 +266,9 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             background: rgba(255,255,255,0.25);
         }
         
-        /* Nav sidebar - full-width consistent */
+        /* Nav sidebar - full-width consistent with proportional spacing */
         .nav-sidebar {
-            padding: 0 0.5rem;
+            padding: 0.5rem 1rem;
         }
         
         .nav-sidebar .nav-item {
@@ -324,9 +324,9 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             color: #fff;
         }
         
-        /* Nav header styling */
+        /* Nav header styling - proportional spacing */
         .nav-sidebar .nav-header {
-            padding: 1.25rem 1rem 0.625rem;
+            padding: 1.25rem 0.75rem 0.625rem;
             font-size: 0.6875rem;
             font-weight: 700;
             letter-spacing: 0.1em;
