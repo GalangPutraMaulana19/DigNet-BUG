@@ -90,7 +90,7 @@ switch ($_GET['act'] ?? '') {
 			 <td>" . $arpkt[$r['hasil_id']] . "</td>
 			 <td><span class='badge bg-secondary'>" . $r['hasil_nilai'] . "</span></td>
 			 <td class='text-center'>
-			 <a type='button' class='btn btn-secondary btn-sm' target='_blank' href=riwayat-detail/$r[id_hasil]><i class='fa-solid fa-eye' aria-hidden='true'></i> Detail </a> &nbsp;
+			 <a type='button' class='btn btn-secondary btn-sm' target='_blank' href='?module=riwayat-detail&id=$r[id_hasil]'><i class='fa-solid fa-eye' aria-hidden='true'></i> Detail </a> &nbsp;
 	         </td></tr>";
                 $no++;
                 $counter++;
