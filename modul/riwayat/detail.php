@@ -32,7 +32,10 @@ if (isset($_GET['id'])) {
   }
 
   $id = intval($_GET['id']);
-  $sqlhasil = mysqli_query($conn, "SELECT * FROM hasil WHERE id_hasil=" . $id);
+  $stmt = mysqli_prepare($conn, "SELECT * FROM hasil WHERE id_hasil = ?");
+  mysqli_stmt_bind_param($stmt, "i", $id);
+  mysqli_stmt_execute($stmt);
+  $sqlhasil = mysqli_stmt_get_result($stmt);
   while ($rhasil = mysqli_fetch_array($sqlhasil)) {
     $arrepair = unserialize($rhasil['repair']);
     $arincident = unserialize($rhasil['incident']);
