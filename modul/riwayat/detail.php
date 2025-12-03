@@ -1,6 +1,97 @@
 <title>Detail Riwayat - DigNet 1.0</title>
 <?php
 
+/**
+ * Convert numbered text into an ordered list HTML
+ * Handles patterns like "1. text", "1) text", "1 text", etc.
+ * Also handles inline numbered items without newlines like "text 2) text 3) text"
+ * @param string $text The text to convert
+ * @return string HTML with ordered list or paragraph if no numbered items found
+ */
+function formatSaranToListDetail($text) {
+    if (empty($text)) {
+        return '<p>-</p>';
+    }
+    
+    // Escape the text first for security
+    $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    
+    // Normalize line breaks
+    $text = str_replace(["\r\n", "\r"], "\n", $text);
+    
+    // Check for inline numbered items pattern like "text 2) text 3) text" or "1. text 2. text"
+    // This handles cases where items are in one paragraph without newlines
+    $inlinePattern = '/\s*(\d+)[\.\)]\s*/';
+    
+    // Count how many numbered items we have
+    preg_match_all($inlinePattern, $text, $matches);
+    $numberedCount = count($matches[0]);
+    
+    if ($numberedCount >= 2) {
+        // We have multiple numbered items - split and create list
+        // Split by the numbered pattern, keeping the text between
+        $items = preg_split('/\s*\d+[\.\)]\s*/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        
+        if (count($items) > 0) {
+            $html = '<ol>';
+            foreach ($items as $item) {
+                $item = trim($item);
+                if (!empty($item)) {
+                    $html .= '<li>' . $item . '</li>';
+                }
+            }
+            $html .= '</ol>';
+            return $html;
+        }
+    }
+    
+    // Check for patterns with newlines
+    $patterns = [
+        '/(\d+)\.\s+/',    // "1. " pattern
+        '/(\d+)\)\s+/',    // "1) " pattern
+        '/(\d+):\s+/',     // "1: " pattern
+        '/\n(\d+)\s+/',    // newline followed by number
+    ];
+    
+    // Try to detect if the text has numbered items
+    $hasNumberedItems = false;
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $text)) {
+            $hasNumberedItems = true;
+            break;
+        }
+    }
+    
+    if (!$hasNumberedItems) {
+        // Check for simple "1 " at start of lines
+        if (preg_match('/^\d+\s/', $text) || preg_match('/\n\d+\s/', $text)) {
+            $hasNumberedItems = true;
+        }
+    }
+    
+    if ($hasNumberedItems) {
+        // Split by numbered pattern at start or after newline
+        $items = preg_split('/(?:^|\n)\s*\d+[\.\)\:]?\s*/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        
+        if (count($items) > 1 || (count($items) == 1 && strlen(trim($items[0])) > 0)) {
+            $html = '<ol>';
+            foreach ($items as $item) {
+                $item = trim($item);
+                if (!empty($item)) {
+                    $html .= '<li>' . $item . '</li>';
+                }
+            }
+            $html .= '</ol>';
+            return $html;
+        }
+    }
+    
+    // If no numbered items detected, return as paragraph
+    // But still handle line breaks
+    $text = nl2br($text);
+    return '<p>' . $text . '</p>';
+}
+
 if (isset($_GET['id'])) {
   $arcolor = ['#ffffff', '#cc66ff', '#019AFF', '#00CBFD', '#00FEFE', '#A4F804', '#FFFC00', '#FDCD01', '#FD9A01', '#FB6700'];
   date_default_timezone_set("Asia/Jakarta");
@@ -229,6 +320,42 @@ if (isset($_GET['id'])) {
     padding: 1.5rem;
     line-height: 1.7;
     color: #495057;
+}
+
+/* Saran Penanganan styling */
+.saran-content ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    counter-reset: saran-counter;
+    list-style: none;
+}
+
+.saran-content ol li {
+    position: relative;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    border-bottom: 1px solid #f0f0f0;
+    counter-increment: saran-counter;
+}
+
+.saran-content ol li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.saran-content ol li::before {
+    content: counter(saran-counter) ".";
+    position: absolute;
+    left: -1.5rem;
+    color: #F59E0B;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.saran-content p {
+    margin: 0;
+    line-height: 1.7;
 }
 
 /* Gejala Table */
@@ -506,8 +633,8 @@ if (isset($_GET['id'])) {
                 <i class="fa-solid fa-lightbulb"></i>
                 Saran Penanganan
             </div>
-            <div class="info-card-body">
-                <?php echo isset($idpkt[1]) && isset($arspkt[$idpkt[1]]) ? nl2br(htmlspecialchars($arspkt[$idpkt[1]])) : 'Tidak ada saran tersedia.'; ?>
+            <div class="info-card-body saran-content">
+                <?php echo isset($idpkt[1]) && isset($arspkt[$idpkt[1]]) ? formatSaranToListDetail($arspkt[$idpkt[1]]) : '<p>Tidak ada saran tersedia.</p>'; ?>
             </div>
         </div>
         

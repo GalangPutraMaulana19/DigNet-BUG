@@ -1414,6 +1414,7 @@
 /**
  * Convert numbered text into an ordered list HTML
  * Handles patterns like "1. text", "1) text", "1 text", etc.
+ * Also handles inline numbered items without newlines like "text 2) text 3) text"
  * @param string $text The text to convert
  * @return string HTML with ordered list or paragraph if no numbered items found
  */
@@ -1425,8 +1426,36 @@ function formatSaranToList($text) {
     // Escape the text first for security
     $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
     
-    // Split by common numbered patterns (1. or 1) or 1: followed by text)
-    // Also handle newlines and multiple spaces
+    // Normalize line breaks
+    $text = str_replace(["\r\n", "\r"], "\n", $text);
+    
+    // Check for inline numbered items pattern like "text 2) text 3) text" or "1. text 2. text"
+    // This handles cases where items are in one paragraph without newlines
+    $inlinePattern = '/\s*(\d+)[\.\)]\s*/';
+    
+    // Count how many numbered items we have
+    preg_match_all($inlinePattern, $text, $matches);
+    $numberedCount = count($matches[0]);
+    
+    if ($numberedCount >= 2) {
+        // We have multiple numbered items - split and create list
+        // Split by the numbered pattern, keeping the text between
+        $items = preg_split('/\s*\d+[\.\)]\s*/', $text, -1, PREG_SPLIT_NO_EMPTY);
+        
+        if (count($items) > 0) {
+            $html = '<ol>';
+            foreach ($items as $item) {
+                $item = trim($item);
+                if (!empty($item)) {
+                    $html .= '<li>' . $item . '</li>';
+                }
+            }
+            $html .= '</ol>';
+            return $html;
+        }
+    }
+    
+    // Check for patterns with newlines
     $patterns = [
         '/(\d+)\.\s+/',    // "1. " pattern
         '/(\d+)\)\s+/',    // "1) " pattern
@@ -1451,10 +1480,6 @@ function formatSaranToList($text) {
     }
     
     if ($hasNumberedItems) {
-        // Split the text into items
-        // First, normalize line breaks
-        $text = str_replace(["\r\n", "\r"], "\n", $text);
-        
         // Split by numbered pattern at start or after newline
         $items = preg_split('/(?:^|\n)\s*\d+[\.\)\:]?\s*/', $text, -1, PREG_SPLIT_NO_EMPTY);
         
