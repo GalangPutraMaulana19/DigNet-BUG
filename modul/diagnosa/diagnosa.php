@@ -617,21 +617,21 @@
     }
 }
 
-/* Premium Results Styling */
+/* Premium Results Styling - Matching riwayat-detail */
 .hasil-container {
+    max-width: 1200px;
+    margin: 0 auto 1.5rem;
     background: white;
     border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    width: 100%;
-    max-width: 100%;
 }
 
 .hasil-header {
-    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px 16px 0 0;
+    padding: 2rem;
     color: white;
-    padding: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -641,43 +641,313 @@
 
 .hasil-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    word-break: break-word;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.hasil-header .subtitle {
+    opacity: 0.9;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.btn-print-hasil {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-print-hasil:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: white;
+    transform: translateY(-2px);
+    color: white;
 }
 
 .hasil-body {
-    padding: 1.5rem;
+    background: white;
+    border-radius: 0 0 16px 16px;
+    padding: 2rem;
     overflow-x: hidden;
     overflow-y: visible;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
+/* Main Result Card - Like detail page */
 .hasil-main-card {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
-    border: 2px solid #10B981;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8f4f8 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.hasil-image {
+    flex-shrink: 0;
+    width: 220px;
+    height: 180px;
     border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
     overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.hasil-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hasil-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.hasil-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
 }
 
 .hasil-gangguan {
     font-size: 1.75rem;
-    font-weight: 800;
-    color: #059669;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: #28a745;
+    margin-bottom: 1rem;
+    line-height: 1.3;
     word-break: break-word;
     overflow-wrap: break-word;
-    line-height: 1.3;
 }
 
 .hasil-persentase {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+}
+
+/* Gejala Section Styling - Like detail page */
+.gejala-section-hasil {
+    margin-bottom: 2rem;
+}
+
+.gejala-section-title {
     font-size: 1.25rem;
-    color: #065F46;
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gejala-table-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef;
+}
+
+.gejala-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.gejala-table thead th {
+    background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+    color: white;
+    padding: 1rem;
     font-weight: 600;
-    word-break: break-word;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.gejala-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.gejala-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.gejala-table tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.gejala-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.kode-badge {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.kondisi-badge-hasil {
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    background: #f8f9fa;
+    border: 2px solid currentColor;
+}
+
+/* Info Cards - Like detail page */
+.info-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.info-card-header {
+    padding: 1.25rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.info-card-header.detail-header-blue {
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+    color: white;
+}
+
+.info-card-header.saran-header-amber {
+    background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+    color: white;
+}
+
+.info-card-header.kemungkinan-header-red {
+    background: linear-gradient(135deg, #dc3545 0%, #e91e63 100%);
+    color: white;
+}
+
+.info-card-body {
+    padding: 1.5rem;
+    line-height: 1.7;
+    color: #495057;
+}
+
+/* Kemungkinan Lain Items - Like detail page */
+.kemungkinan-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.kemungkinan-item:last-child {
+    border-bottom: none;
+}
+
+.kemungkinan-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #dc3545 0%, #e91e63 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.kemungkinan-name {
+    flex: 1;
+    font-weight: 600;
+    color: #495057;
+}
+
+.kemungkinan-percentage {
+    background: #f8f9fa;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #dc3545;
+}
+
+/* Back/Action Buttons - Like detail page */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-action-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-action-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    color: white;
+}
+
+.btn-action-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-action-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    color: white;
 }
 
 .gejala-hasil-item {
@@ -800,17 +1070,19 @@
         border-radius: 12px;
     }
     
-    .hasil-main-card .row {
-        flex-direction: column-reverse;
+    .hasil-main-card {
+        flex-direction: column;
+        padding: 1.5rem;
     }
     
-    .hasil-main-card .col-md-4 {
-        margin-bottom: 1rem;
-        text-align: center;
+    .hasil-image {
+        width: 100%;
+        height: 200px;
     }
     
-    .hasil-main-card .col-md-8 {
-        text-align: center;
+    .hasil-info {
+        min-width: unset;
+        width: 100%;
     }
 }
 
@@ -823,38 +1095,71 @@
     .hasil-header {
         flex-direction: column;
         text-align: center;
-        padding: 1.25rem 1rem;
+        padding: 1.5rem;
         gap: 0.75rem;
     }
     
     .hasil-header h2 {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
     }
     
-    .hasil-header .btn {
+    .btn-print-hasil {
         width: 100%;
         justify-content: center;
     }
     
     .hasil-body {
-        padding: 1rem;
+        padding: 1.5rem;
     }
     
     .hasil-main-card {
-        padding: 1rem;
-        border-radius: 10px;
+        padding: 1.5rem;
+        border-radius: 12px;
     }
     
     .hasil-gangguan {
-        font-size: 1.25rem;
-        text-align: center;
+        font-size: 1.4rem;
     }
     
     .hasil-persentase {
         font-size: 1rem;
-        text-align: center;
     }
     
+    .gejala-table thead th,
+    .gejala-table tbody td {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .info-card-header {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+    }
+    
+    .info-card-body {
+        padding: 1rem;
+    }
+    
+    .kemungkinan-item {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .kemungkinan-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-action-primary,
+    .btn-action-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
     .gejala-hasil-item {
         flex-direction: column;
         align-items: flex-start;
@@ -1272,46 +1577,7 @@ switch ($_GET['act'] ?? '') {
       mysqli_stmt_close($stmt_insert);
 // --------------------- END -------------------------
 
-      // Modern Results Display
-      echo "<div class='hasil-container'>
-        <div class='hasil-header'>
-            <h2><i class='fa-solid fa-clipboard-check me-2'></i> Hasil Diagnosis</h2>
-            <button id='print' onClick='window.print();' class='btn btn-light' data-bs-toggle='tooltip' title='Cetak hasil diagnosa'>
-                <i class='fa-solid fa-print me-2'></i> Cetak
-            </button>
-        </div>
-        <div class='hasil-body'>";
-      
-      // Gejala yang dipilih section
-      echo "<div class='mb-4'>
-                <h5 class='mb-3' style='color: #525252; font-weight: 600;'>
-                    <i class='fa-solid fa-list-check me-2'></i> Gejala yang Dipilih
-                </h5>";
-      
-      $ig = 0;
-      foreach ($arincident as $key => $value) {
-        $kondisi = intval($value);
-        $ig++;
-        $incident = intval($key);
-        // Use prepared statement
-        $stmt4 = mysqli_prepare($conn, "SELECT * FROM incident WHERE kode_incident = ?");
-        mysqli_stmt_bind_param($stmt4, "i", $incident);
-        mysqli_stmt_execute($stmt4);
-        $result4 = mysqli_stmt_get_result($stmt4);
-        $r4 = mysqli_fetch_array($result4);
-        mysqli_stmt_close($stmt4);
-        
-        if ($r4) {
-          echo "<div class='gejala-hasil-item'>
-                    <span class='gejala-number' style='width: 28px; height: 28px; font-size: 0.75rem;'>$ig</span>
-                    <span class='gejala-code'>G" . str_pad(htmlspecialchars($r4['kode_incident'], ENT_QUOTES, 'UTF-8'), 3, '0', STR_PAD_LEFT) . "</span>
-                    <span style='flex: 1; font-weight: 500;'>" . htmlspecialchars($r4['nama_incident'], ENT_QUOTES, 'UTF-8') . "</span>
-                    <span class='badge' style='background-color: " . ($arcolor[$kondisi] ?? '#e5e5e5') . "; color: #262626; padding: 0.5rem 0.75rem; border-radius: 20px;'>" . ($arkondisitext[$kondisi] ?? '-') . "</span>
-                </div>";
-        }
-      }
-      echo "</div>";
-      
+      // Modern Results Display - Matching riwayat-detail styling
       $np = 0;
       $idpkt = [];
       $nmpkt = [];
@@ -1327,76 +1593,125 @@ switch ($_GET['act'] ?? '') {
       } else {
         $gambar = 'gambar/noimage.png';
       }
+
+      echo "<div class='hasil-container'>
+        <div class='hasil-header'>
+            <div>
+                <h2><i class='fa-solid fa-clipboard-check'></i> Hasil Diagnosis</h2>
+                <p class='subtitle mb-0'>Tanggal: " . date('d M Y, H:i', strtotime($inptanggal)) . "</p>
+            </div>
+            <button id='print' onClick='window.print();' class='btn btn-print-hasil' data-bs-toggle='tooltip' title='Cetak hasil diagnosa'>
+                <i class='fa-solid fa-print'></i> Cetak
+            </button>
+        </div>
+        <div class='hasil-body'>";
       
-      // Main diagnosis result
+      // Main Result Card - Like detail page
       echo "<div class='hasil-main-card'>
-                <div class='row align-items-center'>
-                    <div class='col-md-8'>
-                        <span class='badge mb-2' style='background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px;'>
-                            <i class='fa-solid fa-check-circle me-1'></i> Hasil Terdeteksi
-                        </span>
-                        <div class='hasil-gangguan'>" . htmlspecialchars($nmpkt[1] ?? 'Tidak terdeteksi', ENT_QUOTES, 'UTF-8') . "</div>
-                        <div class='hasil-persentase'>
-                            <i class='fa-solid fa-chart-pie me-1'></i> Tingkat Kepastian: <strong>" . round($vlpkt[1] ?? 0, 2) . "%</strong> (" . ($vlpkt[1] ?? 0) . ")
-                        </div>
-                    </div>
-                    <div class='col-md-4 text-center mt-3 mt-md-0'>
-                        <img class='img-fluid rounded' style='max-width: 180px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 12px;' src='$gambar' alt='Gambar gangguan'>
-                    </div>
+                <div class='hasil-image'>
+                    <img src='$gambar' alt='Gambar gangguan'>
+                </div>
+                <div class='hasil-info'>
+                    <p class='hasil-label'>Hasil Diagnosa Utama</p>
+                    <div class='hasil-gangguan'>" . htmlspecialchars($nmpkt[1] ?? 'Tidak terdeteksi', ENT_QUOTES, 'UTF-8') . "</div>
+                    <span class='hasil-persentase'>
+                        <i class='fa-solid fa-chart-pie'></i>
+                        " . round($vlpkt[1] ?? 0, 2) . "% Kepercayaan
+                    </span>
                 </div>
             </div>";
       
-      // Detail section
-      echo "<div class='card mb-3' style='border-left: 4px solid #3B82F6; border-radius: 12px;'>
-                <div class='card-body'>
-                    <h5 class='card-title mb-3' style='color: #3B82F6;'>
-                        <i class='fa-solid fa-circle-info me-2'></i> Detail Gangguan
-                    </h5>
-                    <div class='detail-content'>" . nl2br(htmlspecialchars($ardpkt[$idpkt[1]] ?? '', ENT_QUOTES, 'UTF-8')) . "</div>
+      // Gejala Table Section - Like detail page
+      echo "<div class='gejala-section-hasil'>
+                <h4 class='gejala-section-title'>
+                    <i class='fa-solid fa-list-check text-primary'></i>
+                    Gejala yang Dipilih
+                </h4>
+                <div class='gejala-table-container'>
+                    <table class='gejala-table'>
+                        <thead>
+                            <tr>
+                                <th style='width: 60px;'>No</th>
+                                <th style='width: 100px;'>Kode</th>
+                                <th>Gejala / Keluhan</th>
+                                <th style='width: 150px;'>Kondisi</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+      
+      $ig = 0;
+      foreach ($arincident as $key => $value) {
+        $kondisi = intval($value);
+        $ig++;
+        $incident = intval($key);
+        // Use prepared statement
+        $stmt4 = mysqli_prepare($conn, "SELECT * FROM incident WHERE kode_incident = ?");
+        mysqli_stmt_bind_param($stmt4, "i", $incident);
+        mysqli_stmt_execute($stmt4);
+        $result4 = mysqli_stmt_get_result($stmt4);
+        $r4 = mysqli_fetch_array($result4);
+        mysqli_stmt_close($stmt4);
+        
+        if ($r4) {
+          echo "<tr>
+                    <td><strong>$ig</strong></td>
+                    <td><span class='kode-badge'>G" . str_pad(htmlspecialchars($r4['kode_incident'], ENT_QUOTES, 'UTF-8'), 3, '0', STR_PAD_LEFT) . "</span></td>
+                    <td>" . htmlspecialchars($r4['nama_incident'], ENT_QUOTES, 'UTF-8') . "</td>
+                    <td><span class='kondisi-badge-hasil' style='color: " . ($arcolor[$kondisi] ?? '#e5e5e5') . "'>" . ($arkondisitext[$kondisi] ?? '-') . "</span></td>
+                </tr>";
+        }
+      }
+      echo "</tbody></table></div></div>";
+      
+      // Detail Card - Like detail page
+      echo "<div class='info-card'>
+                <div class='info-card-header detail-header-blue'>
+                    <i class='fa-solid fa-circle-info'></i>
+                    Detail Gangguan
                 </div>
+                <div class='info-card-body'>" . nl2br(htmlspecialchars($ardpkt[$idpkt[1]] ?? 'Tidak ada detail tersedia.', ENT_QUOTES, 'UTF-8')) . "</div>
             </div>";
       
-      // Saran section - use formatSaranToList for proper ordered list formatting
-      echo "<div class='card mb-3' style='border-left: 4px solid #F59E0B; border-radius: 12px;'>
-                <div class='card-body'>
-                    <h5 class='card-title mb-3' style='color: #F59E0B;'>
-                        <i class='fa-solid fa-lightbulb me-2'></i> Saran Penanganan
-                    </h5>
-                    <div class='saran-content'>" . formatSaranToList($arspkt[$idpkt[1]] ?? '') . "</div>
+      // Saran Card - Like detail page
+      echo "<div class='info-card'>
+                <div class='info-card-header saran-header-amber'>
+                    <i class='fa-solid fa-lightbulb'></i>
+                    Saran Penanganan
                 </div>
+                <div class='info-card-body'>" . formatSaranToList($arspkt[$idpkt[1]] ?? '') . "</div>
             </div>";
       
-      // Other possibilities
+      // Kemungkinan Lain Card - Like detail page
       if (count($idpkt) > 1) {
-        echo "<div class='card kemungkinan-lain-card' style='border-left: 4px solid #EF4444; border-radius: 12px;'>
-                    <div class='card-body'>
-                        <h5 class='card-title mb-3' style='color: #EF4444;'>
-                            <i class='fa-solid fa-list me-2'></i> Kemungkinan Lain
-                        </h5>
-                        <div class='kemungkinan-list'>";
+        echo "<div class='info-card'>
+                    <div class='info-card-header kemungkinan-header-red'>
+                        <i class='fa-solid fa-triangle-exclamation'></i>
+                        Kemungkinan Lain
+                    </div>
+                    <div class='info-card-body'>";
         
         for ($ipl = 2; $ipl <= count($idpkt); $ipl++) {
           if (isset($nmpkt[$ipl])) {
             echo "<div class='kemungkinan-item'>
-                        <div class='kemungkinan-content'>
-                            <i class='fa-solid fa-caret-right text-danger'></i>
-                            <span class='kemungkinan-text'>" . htmlspecialchars($nmpkt[$ipl], ENT_QUOTES, 'UTF-8') . "</span>
+                        <div class='kemungkinan-icon'>
+                            <i class='fa-solid fa-caret-right'></i>
                         </div>
-                        <span class='kemungkinan-badge'>" . round($vlpkt[$ipl], 2) . "%</span>
+                        <span class='kemungkinan-name'>" . htmlspecialchars($nmpkt[$ipl], ENT_QUOTES, 'UTF-8') . "</span>
+                        <span class='kemungkinan-percentage'>" . round($vlpkt[$ipl], 2) . "%</span>
                     </div>";
           }
         }
         
-        echo "</div></div></div>";
+        echo "</div></div>";
       }
       
-      // Action buttons
-      echo "<div class='text-center mt-4'>
-                <a href='?module=diagnosa' class='btn btn-primary me-2' style='border-radius: 10px; padding: 0.75rem 1.5rem;'>
-                    <i class='fa-solid fa-rotate-left me-2'></i> Diagnosa Ulang
+      // Action Buttons - Like detail page
+      echo "<div class='action-buttons'>
+                <a href='?module=diagnosa' class='btn-action-primary'>
+                    <i class='fa-solid fa-rotate-left'></i> Diagnosa Ulang
                 </a>
-                <a href='?module=riwayat' class='btn btn-outline-secondary' style='border-radius: 10px; padding: 0.75rem 1.5rem;'>
-                    <i class='fa-solid fa-clock-rotate-left me-2'></i> Lihat Riwayat
+                <a href='?module=riwayat' class='btn-action-secondary'>
+                    <i class='fa-solid fa-clock-rotate-left'></i> Lihat Riwayat
                 </a>
             </div>";
       
