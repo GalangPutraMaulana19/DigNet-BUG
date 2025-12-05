@@ -32,9 +32,9 @@
 ```mermaid
 flowchart LR
     subgraph Input["📥 INPUT"]
-        G1[Gejala 1]
-        G2[Gejala 2]
-        G3[Gejala N]
+        G1[/Gejala 1/]
+        G2[/Gejala 2/]
+        G3[/Gejala N/]
     end
     
     subgraph Process["⚙️ PROSES"]
@@ -43,9 +43,9 @@ flowchart LR
     end
     
     subgraph Output["📤 OUTPUT"]
-        D[Diagnosis Gangguan]
-        S[Saran Penanganan]
-        P[Persentase Keyakinan]
+        D[/Diagnosis Gangguan/]
+        S[/Saran Penanganan/]
+        P[/Persentase Keyakinan/]
     end
     
     G1 --> FC
@@ -60,6 +60,16 @@ flowchart LR
     style Process fill:#fff3e0
     style Output fill:#e8f5e9
 ```
+
+### Legenda Simbol Flowchart
+
+| Simbol | Bentuk | Nama | Kegunaan |
+|--------|--------|------|----------|
+| `([text])` | Stadium (Rounded) | Terminator | Mulai / Selesai |
+| `[text]` | Persegi Panjang | Process | Proses / Aktivitas |
+| `{text}` | Belah Ketupat | Decision | Keputusan Ya/Tidak |
+| `[/text/]` | Jajaran Genjang | Input/Output | Data masuk/keluar |
+| `[(text)]` | Silinder | Database | Penyimpanan data |
 
 ### Komponen yang Didiagnosis
 
@@ -81,25 +91,25 @@ Sistem ini mendiagnosis gangguan pada komponen IndiHome berikut:
 ```mermaid
 flowchart TD
     Start([🚀 MULAI]) --> Access[Akses Halaman Diagnosis]
-    Access --> ViewSymptoms[Lihat Daftar Gejala/Keluhan]
+    Access --> ViewSymptoms[/Lihat Daftar Gejala/Keluhan/]
     
-    ViewSymptoms --> SelectSymptom{Pilih Gejala<br/>yang Sesuai}
-    SelectSymptom --> InputCF[Input Tingkat Kepastian<br/>Certainty Factor]
+    ViewSymptoms --> SelectSymptom{Pilih Gejala<br/>yang Sesuai?}
+    SelectSymptom -->|Ya| InputCF[/Input Tingkat Kepastian<br/>Certainty Factor/]
     
     InputCF --> MoreSymptoms{Ada Gejala<br/>Lain?}
     MoreSymptoms -->|Ya| SelectSymptom
     MoreSymptoms -->|Tidak| Submit[Klik Tombol<br/>'Proses Diagnosa']
     
     Submit --> Calculate[Sistem Menghitung<br/>Forward Chaining + CF]
-    Calculate --> Result[Tampilkan Hasil Diagnosis]
+    Calculate --> Result[/Tampilkan Hasil Diagnosis/]
     
-    Result --> ViewDetail[Lihat Detail Gangguan]
-    ViewDetail --> Suggestion[Lihat Saran Penanganan]
+    Result --> ViewDetail[/Lihat Detail Gangguan/]
+    ViewDetail --> Suggestion[/Lihat Saran Penanganan/]
     
     Suggestion --> Action{Aksi Selanjutnya?}
-    Action -->|Cetak| Print[Cetak Hasil]
+    Action -->|Cetak| Print[/Cetak Hasil/]
     Action -->|Diagnosis Ulang| SelectSymptom
-    Action -->|Lihat Riwayat| History[Halaman Riwayat]
+    Action -->|Lihat Riwayat| History[/Halaman Riwayat/]
     Action -->|Selesai| End([✅ SELESAI])
     
     Print --> End
@@ -126,13 +136,16 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Open[Buka Browser] --> URL[Masukkan URL Sistem]
+    Open([Mulai]) --> URL[/Masukkan URL Sistem/]
     URL --> Load[Halaman Home DigNet 2.0]
     Load --> Sidebar[Klik Menu di Sidebar]
     Sidebar --> Diagnosa[Pilih 'Diagnosis Gangguan']
-    Diagnosa --> Form[Tampil Form Diagnosis]
+    Diagnosa --> Form[/Tampil Form Diagnosis/]
+    Form --> Done([Selesai])
     
-    style Form fill:#4caf50,color:#fff
+    style Open fill:#4caf50,color:#fff
+    style Done fill:#f44336,color:#fff
+    style Form fill:#2196f3,color:#fff
 ```
 
 ### Tampilan Menu
@@ -167,27 +180,27 @@ Sistem menampilkan daftar gejala/keluhan yang mungkin dialami, meliputi:
 
 ```mermaid
 flowchart TD
-    Form[Tampilan Form Diagnosis] --> List[Daftar Gejala dengan Kode]
+    Form[/Tampilan Form Diagnosis/] --> List[/Daftar Gejala dengan Kode/]
     
-    List --> G1["G001: Telepon tidak dapat digunakan"]
-    List --> G2["G002: Internet tidak terhubung"]
-    List --> G3["G003: Lampu PON merah"]
-    List --> GN["... Gejala lainnya"]
+    List --> G1[/"G001: Telepon tidak dapat digunakan"/]
+    List --> G2[/"G002: Internet tidak terhubung"/]
+    List --> G3[/"G003: Lampu PON merah"/]
+    List --> GN[/"... Gejala lainnya"/]
     
     G1 --> Select1{Gejala Sesuai?}
     G2 --> Select2{Gejala Sesuai?}
     G3 --> Select3{Gejala Sesuai?}
     GN --> SelectN{Gejala Sesuai?}
     
-    Select1 -->|Ya| Input1[Pilih Tingkat Kepastian]
-    Select2 -->|Ya| Input2[Pilih Tingkat Kepastian]
-    Select3 -->|Ya| Input3[Pilih Tingkat Kepastian]
-    SelectN -->|Ya| InputN[Pilih Tingkat Kepastian]
+    Select1 -->|Ya| Input1[/Input Tingkat Kepastian/]
+    Select2 -->|Ya| Input2[/Input Tingkat Kepastian/]
+    Select3 -->|Ya| Input3[/Input Tingkat Kepastian/]
+    SelectN -->|Ya| InputN[/Input Tingkat Kepastian/]
     
-    Select1 -->|Tidak| Skip1[Lewati/Biarkan Default]
-    Select2 -->|Tidak| Skip2[Lewati/Biarkan Default]
-    Select3 -->|Tidak| Skip3[Lewati/Biarkan Default]
-    SelectN -->|Tidak| SkipN[Lewati/Biarkan Default]
+    Select1 -->|Tidak| Skip1[Lewati - Biarkan Default]
+    Select2 -->|Tidak| Skip2[Lewati - Biarkan Default]
+    Select3 -->|Tidak| Skip3[Lewati - Biarkan Default]
+    SelectN -->|Tidak| SkipN[Lewati - Biarkan Default]
     
     style Input1 fill:#9c27b0,color:#fff
     style Input2 fill:#9c27b0,color:#fff
@@ -253,19 +266,23 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Gejala[Pilih Gejala] --> Dropdown[Klik Dropdown Kondisi]
-    Dropdown --> Options[Tampil Pilihan Kondisi]
+    Start([Mulai]) --> Gejala[Pilih Gejala]
+    Gejala --> Dropdown[Klik Dropdown Kondisi]
+    Dropdown --> Options[/Tampil Pilihan Kondisi/]
     
     Options --> Evaluate{Evaluasi Kondisi<br/>Perangkat}
     
-    Evaluate -->|"Yakin gejala ada"| Positive["Pilih: Pasti Ya atau<br/>Hampir Pasti Ya"]
-    Evaluate -->|"Ragu-ragu"| Neutral["Pilih: Mungkin Ya atau<br/>Tidak Tahu"]
-    Evaluate -->|"Yakin gejala tidak ada"| Negative["Pilih: Hampir Pasti Tidak<br/>atau Pasti Tidak"]
+    Evaluate -->|"Yakin gejala ada"| Positive[/Input: Pasti Ya atau<br/>Hampir Pasti Ya/]
+    Evaluate -->|"Ragu-ragu"| Neutral[/Input: Mungkin Ya atau<br/>Tidak Tahu/]
+    Evaluate -->|"Yakin gejala tidak ada"| Negative[/Input: Hampir Pasti Tidak<br/>atau Pasti Tidak/]
     
     Positive --> Next[Lanjut ke Gejala Berikutnya]
     Neutral --> Next
     Negative --> Next
+    Next --> Done([Selesai])
     
+    style Start fill:#4caf50,color:#fff
+    style Done fill:#f44336,color:#fff
     style Positive fill:#4caf50,color:#fff
     style Neutral fill:#ff9800,color:#fff
     style Negative fill:#f44336,color:#fff
@@ -293,31 +310,38 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Submit["Klik 'Proses Diagnosa'"] --> Validate{Validasi Input}
+    Start([Mulai]) --> Submit[Klik 'Proses Diagnosa']
+    Submit --> Validate{Validasi Input}
     
-    Validate -->|Invalid| Error["Tampilkan Pesan Error:<br/>'Pilih minimal 1 gejala'"]
+    Validate -->|Invalid| Error[/Output: Pesan Error<br/>'Pilih minimal 1 gejala'/]
     Error --> Retry[Kembali ke Form]
+    Retry --> EndError([Selesai])
     
-    Validate -->|Valid| Collect[Kumpulkan Data Gejala + Bobot]
+    Validate -->|Valid| Collect[/Input: Data Gejala + Bobot/]
     
-    Collect --> ForwardChain["Forward Chaining:<br/>Cocokkan dengan Basis Pengetahuan"]
+    Collect --> ForwardChain[Forward Chaining:<br/>Cocokkan dengan Basis Pengetahuan]
     
-    ForwardChain --> CalcCF["Hitung Certainty Factor:<br/>CF = (MB - MD) × Bobot_User"]
+    ForwardChain --> CalcCF[Hitung Certainty Factor:<br/>CF = MB - MD × Bobot_User]
     
     CalcCF --> Combine{Multiple Gejala?}
     
-    Combine -->|Ya| CombineCF["Kombinasi CF:<br/>CF_kombinasi = CF1 + CF2 × (1-CF1)"]
+    Combine -->|Ya| CombineCF[Kombinasi CF:<br/>CF_kombinasi = CF1 + CF2 × 1-CF1]
     Combine -->|Tidak| Sort
     
     CombineCF --> Sort[Urutkan Hasil dari Tertinggi]
     
-    Sort --> Save[Simpan ke Database Riwayat]
-    Save --> Display[Tampilkan Hasil Diagnosis]
+    Sort --> Save[(Simpan ke Database Riwayat)]
+    Save --> Display[/Output: Tampilkan Hasil Diagnosis/]
+    Display --> End([Selesai])
     
+    style Start fill:#4caf50,color:#fff
+    style End fill:#f44336,color:#fff
+    style EndError fill:#f44336,color:#fff
     style Submit fill:#2196f3,color:#fff
     style CalcCF fill:#ff9800,color:#fff
     style CombineCF fill:#9c27b0,color:#fff
     style Display fill:#4caf50,color:#fff
+    style Save fill:#03a9f4,color:#fff
 ```
 
 ### Apa yang Terjadi di Balik Layar?
@@ -340,11 +364,11 @@ Setelah proses selesai, sistem menampilkan:
 ```mermaid
 flowchart TD
     subgraph Output["📋 HASIL DIAGNOSIS"]
-        Header["🏆 Gangguan Terdeteksi Utama<br/>dengan Persentase Keyakinan"]
-        Symptoms["📝 Daftar Gejala yang Dipilih<br/>beserta Tingkat Kepastian"]
-        Detail["📖 Detail Gangguan<br/>Penjelasan Lengkap"]
-        Suggestion["💡 Saran Penanganan<br/>Langkah-langkah Perbaikan"]
-        Other["⚠️ Kemungkinan Lain<br/>Gangguan Alternatif"]
+        Header[/"🏆 Gangguan Terdeteksi Utama<br/>dengan Persentase Keyakinan"/]
+        Symptoms[/"📝 Daftar Gejala yang Dipilih<br/>beserta Tingkat Kepastian"/]
+        Detail[/"📖 Detail Gangguan<br/>Penjelasan Lengkap"/]
+        Suggestion[/"💡 Saran Penanganan<br/>Langkah-langkah Perbaikan"/]
+        Other[/"⚠️ Kemungkinan Lain<br/>Gangguan Alternatif"/]
     end
     
     Header --> Symptoms
@@ -406,16 +430,23 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Result[Lihat Hasil Diagnosis] --> Action{Aksi yang Tersedia}
+    Start([Mulai]) --> Result[/Lihat Hasil Diagnosis/]
+    Result --> Action{Aksi yang Tersedia?}
     
-    Action --> Print["🖨️ Cetak Hasil<br/>Klik tombol 'Cetak'"]
-    Action --> Retry["🔄 Diagnosa Ulang<br/>Klik 'Diagnosa Ulang'"]
-    Action --> History["📋 Lihat Riwayat<br/>Klik 'Lihat Riwayat'"]
+    Action -->|Cetak| Print[/🖨️ Output: Cetak Hasil/]
+    Action -->|Diagnosa Ulang| Retry[🔄 Kembali ke Form]
+    Action -->|Lihat Riwayat| History[/📋 Lihat Riwayat/]
+    Action -->|Selesai| End([✅ SELESAI])
     
-    Print --> Done[Hasil tercetak/PDF]
-    Retry --> Form[Kembali ke Form Diagnosis]
-    History --> HistoryPage[Halaman Riwayat Diagnosis]
+    Print --> Done[/Hasil Tercetak - PDF/]
+    Done --> End
+    Retry --> Form[/Tampil Form Diagnosis/]
+    Form --> End
+    History --> HistoryPage[/Halaman Riwayat Diagnosis/]
+    HistoryPage --> End
     
+    style Start fill:#4caf50,color:#fff
+    style End fill:#f44336,color:#fff
     style Print fill:#607d8b,color:#fff
     style Retry fill:#2196f3,color:#fff
     style History fill:#9c27b0,color:#fff
@@ -429,46 +460,46 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    %% START
+    %% START - Terminator Symbol
     Start([🚀 MULAI]) --> OpenBrowser[Buka Browser]
-    OpenBrowser --> AccessURL[Akses URL DigNet 2.0]
+    OpenBrowser --> AccessURL[/Input: URL DigNet 2.0/]
     
     %% HOME
-    AccessURL --> HomePage[Halaman Utama]
+    AccessURL --> HomePage[Halaman Utama Tampil]
     HomePage --> ClickMenu[Klik Menu 'Diagnosis Gangguan']
     
-    %% FORM DIAGNOSIS
-    ClickMenu --> DiagForm[Form Diagnosis Tampil]
-    DiagForm --> ReadInstruction["Baca Petunjuk:<br/>'Pilih tingkat kepastian untuk setiap gejala'"]
+    %% FORM DIAGNOSIS - I/O Symbol for display
+    ClickMenu --> DiagForm[/Output: Form Diagnosis/]
+    DiagForm --> ReadInstruction[/Baca Petunjuk Penggunaan/]
     
-    %% LOOP GEJALA
+    %% LOOP GEJALA - Decision Symbol
     ReadInstruction --> LoopStart{Ada Gejala<br/>yang Sesuai?}
     
     LoopStart -->|Ya| SelectSymptom[Pilih Gejala yang Sesuai]
     SelectSymptom --> OpenDropdown[Klik Dropdown Kondisi]
-    OpenDropdown --> ChooseCF["Pilih Tingkat Kepastian:<br/>• Pasti Ya<br/>• Hampir Pasti Ya<br/>• Mungkin Ya<br/>• dst..."]
+    OpenDropdown --> ChooseCF[/Input: Tingkat Kepastian<br/>Pasti Ya - Pasti Tidak/]
     ChooseCF --> LoopStart
     
     LoopStart -->|Tidak, Sudah Selesai| CheckMin{Minimal 1<br/>Gejala Dipilih?}
     
-    CheckMin -->|Tidak| Warning["⚠️ Peringatan:<br/>Pilih minimal 1 gejala!"]
+    CheckMin -->|Tidak| Warning[/Output: Peringatan<br/>Pilih minimal 1 gejala!/]
     Warning --> LoopStart
     
-    CheckMin -->|Ya| ClickProcess["Klik Tombol<br/>'Proses Diagnosa'"]
+    CheckMin -->|Ya| ClickProcess[Klik Tombol<br/>'Proses Diagnosa']
     
-    %% PROCESSING
-    ClickProcess --> Loading["⏳ Memproses..."]
-    Loading --> SystemCalc["Sistem Menghitung:<br/>1. Forward Chaining<br/>2. Certainty Factor<br/>3. Kombinasi CF"]
+    %% PROCESSING - Process Symbols
+    ClickProcess --> Loading[Memproses Data...]
+    Loading --> SystemCalc[Proses Sistem:<br/>1. Forward Chaining<br/>2. Certainty Factor<br/>3. Kombinasi CF]
     
-    %% RESULT
-    SystemCalc --> ShowResult["📊 Tampil Hasil:<br/>• Gangguan Utama + %<br/>• Gejala Terpilih<br/>• Detail & Saran<br/>• Kemungkinan Lain"]
+    %% RESULT - I/O Symbol for output
+    SystemCalc --> ShowResult[/Output: Hasil Diagnosis<br/>Gangguan + Persentase<br/>Gejala + Detail + Saran/]
     
-    %% POST RESULT ACTIONS
+    %% POST RESULT ACTIONS - Decision Symbol
     ShowResult --> PostAction{Aksi Selanjutnya?}
     
-    PostAction -->|Cetak| PrintResult["🖨️ Cetak Hasil"]
+    PostAction -->|Cetak| PrintResult[/Output: Cetak Hasil/]
     PostAction -->|Diagnosa Ulang| DiagForm
-    PostAction -->|Lihat Riwayat| HistoryPage["📋 Halaman Riwayat"]
+    PostAction -->|Lihat Riwayat| HistoryPage[/Output: Halaman Riwayat/]
     PostAction -->|Selesai| End([✅ SELESAI])
     
     PrintResult --> End
@@ -504,12 +535,20 @@ Ketika ada >1 gejala untuk gangguan yang sama:
 
 ```mermaid
 flowchart TD
-    Input["CF1 dan CF2"] --> Check{Cek Kondisi}
+    Start([Mulai]) --> Input[/Input: CF1 dan CF2/]
+    Input --> Check{Cek Kondisi}
     
-    Check -->|"CF1 ≥ 0 AND CF2 ≥ 0"| Positive["CF = CF1 + CF2 × (1 - CF1)"]
-    Check -->|"CF1 < 0 AND CF2 < 0"| Negative["CF = CF1 + CF2 × (1 + CF1)"]
-    Check -->|"Salah satu negatif"| Mixed["CF = (CF1 + CF2) / (1 - min(|CF1|, |CF2|))"]
+    Check -->|"CF1 ≥ 0 AND CF2 ≥ 0"| Positive[Hitung:<br/>CF = CF1 + CF2 × 1 - CF1]
+    Check -->|"CF1 < 0 AND CF2 < 0"| Negative[Hitung:<br/>CF = CF1 + CF2 × 1 + CF1]
+    Check -->|"Salah satu negatif"| Mixed[Hitung:<br/>CF = CF1 + CF2 / 1 - min CF1 CF2]
     
+    Positive --> Output[/Output: Nilai CF Kombinasi/]
+    Negative --> Output
+    Mixed --> Output
+    Output --> End([Selesai])
+    
+    style Start fill:#4caf50,color:#fff
+    style End fill:#f44336,color:#fff
     style Positive fill:#4caf50,color:#fff
     style Negative fill:#f44336,color:#fff
     style Mixed fill:#ff9800,color:#fff
