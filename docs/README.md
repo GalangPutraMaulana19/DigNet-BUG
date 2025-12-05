@@ -74,6 +74,24 @@ Tabel dan contoh perhitungan Certainty Factor:
 
 ---
 
+#### 5. **Panduan Pengguna (User Manual)**
+📄 File: `USER_MANUAL.md`
+
+Panduan lengkap cara kerja sistem dari perspektif pengguna:
+- Alur kerja diagnosis step-by-step
+- Flowchart interaksi pengguna dengan Mermaid
+- Cara memilih gejala kerusakan
+- Input nilai Certainty Factor
+- Interpretasi output hasil diagnosis
+- FAQ (Pertanyaan yang Sering Diajukan)
+
+**Gunakan untuk:**
+- Dokumentasi pengguna
+- Lampiran manual penggunaan
+- Training teknisi provisioning
+
+---
+
 ## 📁 Struktur Folder
 
 ```
@@ -82,7 +100,8 @@ docs/
 ├── BAB3_ERD_DATABASE.md                   (ERD + penjelasan DB)
 ├── BAB3_UML_DIAGRAM.md                    (Use Case, Activity, Sequence, dll)
 ├── BAB3_FLOWCHART_FORWARD_CHAINING.md     (Flowchart algoritma)
-└── BAB3_TABEL_PERHITUNGAN_CF.md           (Tabel perhitungan CF)
+├── BAB3_TABEL_PERHITUNGAN_CF.md           (Tabel perhitungan CF)
+└── USER_MANUAL.md                         (Panduan Pengguna)
 ```
 
 ---
