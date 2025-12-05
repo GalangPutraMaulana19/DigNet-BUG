@@ -2017,6 +2017,63 @@ switch ($_GET['act'] ?? '') {
         }
     });
 })();
+
+// Form validation - require at least one kondisi to be selected
+document.querySelector('form[name=\"text_form\"]').addEventListener('submit', function(e) {
+    const selects = document.querySelectorAll('select[name=\"kondisi[]\"]');
+    let hasSelection = false;
+    
+    selects.forEach(function(select) {
+        // Check if the value is not "0" (the default "Pilih jika sesuai")
+        if (select.value !== '0') {
+            hasSelection = true;
+        }
+    });
+    
+    if (!hasSelection) {
+        e.preventDefault();
+        
+        // Remove existing alert if any
+        const existingAlert = document.querySelector('.diagnosa-validation-alert');
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+        
+        // Create warning alert
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'diagnosa-validation-alert alert alert-warning';
+        alertDiv.style.cssText = 'border-radius: 12px; border-left: 4px solid #F59E0B; margin-bottom: 1.5rem; animation: fadeInShake 0.5s ease;';
+        alertDiv.innerHTML = `
+            <div class="d-flex align-items-start">
+                <i class="fa-solid fa-triangle-exclamation me-3 mt-1" style="color: #F59E0B; font-size: 1.25rem;"></i>
+                <div>
+                    <strong>Peringatan:</strong><br>
+                    Silakan pilih minimal satu kondisi gejala sebelum melakukan diagnosa. Pilih tingkat kepastian gejala yang sesuai dengan kondisi perangkat IndiHome Anda.
+                </div>
+            </div>
+        `;
+        
+        // Insert alert at the top of the form body
+        const formBody = document.querySelector('.diagnosa-form-body');
+        formBody.insertBefore(alertDiv, formBody.firstChild);
+        
+        // Scroll to the alert
+        alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        return false;
+    }
+});
+
+// Add shake animation style
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeInShake {
+        0%, 100% { transform: translateX(0); opacity: 1; }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+`;
+document.head.appendChild(style);
 </script>";
     }
     break;
