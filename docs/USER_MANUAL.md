@@ -364,7 +364,7 @@ flowchart TD
 ```
 ┌─────────────────────────────────────────────────────────┐
 │ 📊 HASIL DIAGNOSIS                                       │
-│ Tanggal: 05 Des 2025, 15:07                             │
+│ Tanggal: [Contoh] 15 Nov 2024, 10:30                    │
 ├─────────────────────────────────────────────────────────┤
 │ 🏆 DIAGNOSIS UTAMA                                       │
 │ ┌─────────────────────────────────────────────────────┐ │
@@ -579,5 +579,5 @@ CF_kombinasi = CF1 + CF2 × (1 - CF1)
 ---
 
 *Dokumentasi ini dibuat untuk DigNet 2.0 - Sistem Pakar Diagnosis Gangguan IndiHome*  
-*Tanggal: Desember 2025*  
+*Versi Dokumen: 1.0*  
 *Repository: GalangPutraMaulana19/DigNet-BUG*
