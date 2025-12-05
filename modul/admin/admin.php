@@ -1,5 +1,13 @@
 <title>Admin - DigNet 1.0</title>
 
+<?php
+// Generate CSRF token if not exists
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+?>
+
 <!-- Premium SaaS Admin Styles -->
 <style>
 .admin-page-header {
@@ -286,6 +294,7 @@ switch($act){
   
   case "tambahadmin":
 	echo "<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=admin&act=input' onsubmit='return Blank_TextField_Validator()'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td>Nama Lengkap</td>   <td>  <input autocomplete='off' placeholder='Masukkan nama lengkap...' type=text class='form-control' name='nama_lengkap' size=30></td></tr>
           <tr><td>Username</td>   <td>  <input autocomplete='off' placeholder='Masukkan username...' type=text class='form-control' name='username' size=30></td></tr>
@@ -302,6 +311,7 @@ switch($act){
     $r = mysqli_fetch_array($edit);
 	
     echo "<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=admin&act=update' onsubmit='return Blank_TextField_Validator()'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <input type=hidden name=id value='$r[username]'>
           <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 	      <tr><td>Username</td> <td>  <input autocomplete='off' type=text class='form-control' name='username' value=\"$r[username]\" size=30></td></tr>

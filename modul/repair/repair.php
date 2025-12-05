@@ -1,5 +1,13 @@
 <title>Data Gangguan - DigNet 1.0</title>
 
+<?php
+// Generate CSRF token if not exists
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+?>
+
 <!-- Premium SaaS Admin Styles -->
 <style>
 .admin-page-header {
@@ -291,6 +299,7 @@ if (empty($_SESSION['username'])) {
 
     case "tambahrepair":
       echo "<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=repair&act=input' onsubmit='return Blank_TextField_Validator()' enctype='multipart/form-data'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td width=120>Nama Gangguan</td><td><input autocomplete='off' type=text placeholder='Masukkan repair baru...' class='form-control' name='nama_repair' size=30></td></tr>
 		  <tr><td width=120>Detail Gangguan</td><td> <textarea rows='4' cols='50' class='form-control' name='det_repair'type=text placeholder='Masukkan detail repair baru...'></textarea></td></tr>
@@ -311,6 +320,7 @@ if (empty($_SESSION['username'])) {
       }
 
       echo "<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=repair&act=update' onsubmit='return Blank_TextField_Validator()' enctype='multipart/form-data'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <input type=hidden name=id value='{$r['kode_repair']}'>
           <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td width=120>Nama Gangguan</td><td><input autocomplete='off' type=text class='form-control' name='nama_repair' size=30 value=\"{$r['nama_repair']}\"></td></tr>

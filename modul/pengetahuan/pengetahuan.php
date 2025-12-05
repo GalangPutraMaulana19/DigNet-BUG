@@ -1,5 +1,13 @@
 <title>Basis Pengetahuan - DigNet 1.0</title>
 
+<?php
+// Generate CSRF token if not exists
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+?>
+
 <!-- Premium SaaS Admin Styles -->
 <style>
 .admin-page-header {
@@ -331,6 +339,7 @@ switch($act){
 				Dimana nilai kepastian anda terhadap incident Mencret keputih-putihan untuk repair Berak Kapur adalah <b>0.6 (Kemungkinan Besar)</b>
               </div>
           <div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=pengetahuan&act=input' onsubmit='return Blank_TextField_Validator()'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair'  id='kode_repair' style='border-radius: 8px;'><option value=''>- Pilih Gangguan -</option>";
 		$hasil4 = mysqli_query($conn, "SELECT * FROM repair order by nama_repair");
@@ -358,6 +367,7 @@ switch($act){
     echo "<br>
 	<br>
 	<div class='admin-form-container'><form name=text_form method=POST action='$aksi?module=pengetahuan&act=update' onsubmit='return Blank_TextField_Validator()'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <input type=hidden name=id value='".$r['kode_pengetahuan']."'>
           <table class='table table-bordered' style='border-radius: 12px; overflow: hidden;'>
 		  <tr><td width=120>Repair</td><td><select class='form-control' name='kode_repair' id='kode_repair' style='border-radius: 8px;'>";
