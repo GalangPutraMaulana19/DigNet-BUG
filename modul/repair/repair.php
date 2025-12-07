@@ -136,7 +136,6 @@ if (empty($_SESSION['username'])) {
       }
       return (true);
     }
-    -- >
   </script>
   <?php
 
@@ -338,23 +337,19 @@ if (empty($_SESSION['username'])) {
 
   <script>
     function readURL(input) {
-
-      if (input.files &&
-              input.files[0]) {
+      if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-          $('#preview').attr('src', e.target.result);
+          document.getElementById('preview').src = e.target.result;
         }
-
         reader.readAsDataURL(input.files[0]);
       }
     }
 
-    $("#upload").change(function () {
-      readURL(this);
-    });
-
-    
-
-
+    var uploadInput = document.getElementById("upload");
+    if (uploadInput) {
+      uploadInput.addEventListener("change", function() {
+        readURL(this);
+      });
+    }
   </script>
