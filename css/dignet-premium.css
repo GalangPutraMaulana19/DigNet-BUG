@@ -1767,6 +1767,16 @@ html, body {
     z-index: 1060 !important;
 }
 
+.modal-dialog {
+    pointer-events: auto;
+    position: relative;
+    z-index: 1061;
+}
+
+.modal-content {
+    pointer-events: auto;
+}
+
 .modal-backdrop {
     z-index: 1055 !important;
     pointer-events: auto !important;
@@ -1776,15 +1786,22 @@ html, body {
     opacity: 0.5;
 }
 
-/* Make sure footer button is clickable and above backdrop */
+/* Ensure close button is clickable */
+.modal .btn-close {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* Footer z-index - must be below modal-backdrop (1055) so modals can work properly */
 .main-footer {
-    z-index: 1056;
+    z-index: 1030;
     position: relative;
 }
 
 .main-footer .btn {
     position: relative;
-    z-index: 1057;
+    z-index: 1031;
     pointer-events: auto;
 }
 
