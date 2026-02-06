@@ -1,5 +1,13 @@
 <title>Post - DigNet 1.0</title>
 
+<?php
+// Generate CSRF token
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+?>
+
 <!-- Premium Page Header -->
 <div class="mb-5">
     <h2 class="text text-primary">
@@ -32,7 +40,7 @@
       }
       return (true);
     }
-    -- ></script>
+</script>
 <?php
 include "config/fungsi_alert.php";
 $aksi = "modul/post/aksi_post.php";
@@ -196,6 +204,7 @@ switch ($act) {
 
     case "tambahpost":
         echo "<form name=text_form method=POST action='$aksi?module=post&act=input' onsubmit='return Blank_TextField_Validator()' enctype='multipart/form-data'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <br><br><table class='table table-bordered'>
 		  <tr><td width=120>Nama Post</td><td><input autocomplete='off' type=text placeholder='Masukkan post baru...' class='form-control' name='nama_post' size=30></td></tr>
 		  <tr><td width=120>Detail Post</td><td> <textarea id='editor1' rows='4' cols='50' class='form-control' name='det_post'type=text placeholder='Masukkan detail post baru...'></textarea></td></tr>
@@ -212,6 +221,7 @@ switch ($act) {
         $gambar = $r['gambar'] ? 'gambar/' . $r['gambar'] : 'gambar/noimage.png';
 
         echo "<form name=text_form method=POST action='$aksi?module=post&act=update' onsubmit='return Blank_TextField_Validator()' enctype='multipart/form-data'>
+          <input type='hidden' name='csrf_token' value='$csrf_token'>
           <input type=hidden name=id value='$r[kode_post]'>
           <br><br><table class='table table-bordered'>
 		  <tr><td width=120>Nama Post</td><td><input autocomplete='off' type=text class='form-control' name='nama_post' size=30 value=\"$r[nama_post]\"></td></tr>
@@ -227,20 +237,26 @@ switch ($act) {
 ?>
 <script>
     function readURL(input) {
-
-      if (input.files &&
-              input.files[0]) {
+      if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-          $('#preview').attr('src', e.target.result);
+          var preview = document.getElementById('preview');
+          if (preview) {
+            preview.src = e.target.result;
+          }
         }
-
         reader.readAsDataURL(input.files[0]);
       }
     }
 
-    $("#upload").change(function () {
-      readURL(this);
+    // Use vanilla JavaScript instead of jQuery
+    document.addEventListener('DOMContentLoaded', function() {
+        var uploadInput = document.getElementById('upload');
+        if (uploadInput) {
+            uploadInput.addEventListener('change', function() {
+                readURL(this);
+            });
+        }
     });
 
     // CKEditor 5 Initialization
