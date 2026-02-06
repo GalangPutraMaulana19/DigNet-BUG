@@ -936,6 +936,39 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             .catch(err => { statusMsg.innerHTML = '<span class="text-danger">Error: ' + err.message + '</span>'; })
             .finally(() => { submitBtn.disabled = false; modalBody.style.opacity = '1'; });
     }
+    
+    // Fix: Clean up stale modal backdrops that may be blocking the page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Clean up any orphaned modal backdrops on page load
+        function cleanupStaleBackdrops() {
+            var backdrops = document.querySelectorAll('.modal-backdrop');
+            var openModals = document.querySelectorAll('.modal.show');
+            
+            // If there are no open modals but there are backdrops, remove them
+            if (openModals.length === 0 && backdrops.length > 0) {
+                backdrops.forEach(function(backdrop) {
+                    backdrop.remove();
+                });
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+            }
+        }
+        
+        // Clean up on page load
+        cleanupStaleBackdrops();
+        
+        // Also clean up after any modal is hidden
+        document.querySelectorAll('.modal').forEach(function(modal) {
+            modal.addEventListener('hidden.bs.modal', function() {
+                // Small delay to let Bootstrap finish its cleanup
+                setTimeout(cleanupStaleBackdrops, 100);
+            });
+        });
+        
+        // Periodic cleanup as a safety net
+        setInterval(cleanupStaleBackdrops, 1000);
+    });
     </script>
 </body>
 </html>

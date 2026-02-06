@@ -1767,6 +1767,16 @@ html, body {
     z-index: 1060 !important;
 }
 
+/* When modal is shown, ensure it receives pointer events */
+.modal.show {
+    pointer-events: auto !important;
+}
+
+/* When modal is not shown, don't block anything */
+.modal:not(.show) {
+    pointer-events: none !important;
+}
+
 .modal-dialog {
     pointer-events: auto;
     position: relative;
@@ -1777,13 +1787,22 @@ html, body {
     pointer-events: auto;
 }
 
+/* Modal backdrop should only have pointer-events when modal is actually visible */
 .modal-backdrop {
     z-index: 1055 !important;
-    pointer-events: auto !important;
 }
 
+/* Only show backdrop when it has .show class */
 .modal-backdrop.show {
     opacity: 0.5;
+    pointer-events: auto;
+}
+
+/* When backdrop doesn't have show class, make it invisible and non-blocking */
+.modal-backdrop:not(.show) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
 }
 
 /* Ensure close button is clickable */
@@ -1791,6 +1810,13 @@ html, body {
     position: relative;
     z-index: 1;
     pointer-events: auto;
+}
+
+/* Fix: Remove stale modal backdrops that are blocking the page */
+body:not(.modal-open) .modal-backdrop {
+    display: none !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
 }
 
 /* Footer z-index - must be below modal-backdrop (1055) so modals can work properly */
