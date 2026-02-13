@@ -788,8 +788,29 @@ h2.text.text-primary::after {
 .modal-content {
     border-radius: var(--radius-2xl);
     border: none;
-    box-shadow: var(--shadow-2xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
     overflow: hidden;
+    background: #ffffff; /* Ensure bright white background */
+    position: relative;
+    z-index: 1070 !important; /* Above everything */
+}
+
+/* Modal content should be highlighted/bright when shown */
+.modal.show .modal-content {
+    background: #ffffff !important;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 100px rgba(255, 255, 255, 0.3);
+    animation: modalHighlight 0.3s ease-out;
+}
+
+@keyframes modalHighlight {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .modal-header {
@@ -813,11 +834,13 @@ h2.text.text-primary::after {
 
 .modal-body {
     padding: var(--space-6);
+    background: #ffffff;
 }
 
 .modal-footer {
     padding: var(--space-5);
     border-top: 1px solid var(--neutral-200);
+    background: #f9fafb;
 }
 
 /* Premium Tabs */
@@ -1770,6 +1793,7 @@ html, body {
 /* When modal is shown, ensure it receives pointer events */
 .modal.show {
     pointer-events: auto !important;
+    display: block !important;
 }
 
 /* When modal is not shown, don't block anything */
@@ -1780,11 +1804,20 @@ html, body {
 .modal-dialog {
     pointer-events: auto;
     position: relative;
-    z-index: 1061;
+    z-index: 1070; /* Higher than backdrop */
+    margin: 1.75rem auto;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+    opacity: 1;
 }
 
 .modal-content {
     pointer-events: auto;
+    position: relative;
+    z-index: 1075; /* Highest - above everything */
+    background: #ffffff !important;
 }
 
 /* AGGRESSIVE FIX: Modal backdrop should NEVER block pointer events */
@@ -1792,6 +1825,7 @@ html, body {
 .modal-backdrop {
     z-index: 1055 !important;
     pointer-events: none !important; /* NEVER block pointer events */
+    background-color: #000;
 }
 
 /* Only show backdrop visually when it has .show class */
