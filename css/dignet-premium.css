@@ -1787,29 +1787,32 @@ html, body {
     pointer-events: auto;
 }
 
-/* Modal backdrop should only have pointer-events when modal is actually visible */
+/* AGGRESSIVE FIX: Modal backdrop should NEVER block pointer events */
+/* The backdrop is purely visual - interaction is handled by the modal itself */
 .modal-backdrop {
     z-index: 1055 !important;
+    pointer-events: none !important; /* NEVER block pointer events */
 }
 
-/* Only show backdrop when it has .show class */
+/* Only show backdrop visually when it has .show class */
 .modal-backdrop.show {
     opacity: 0.5;
-    pointer-events: auto;
+    pointer-events: none !important; /* Still don't block - modal handles clicks */
 }
 
-/* When backdrop doesn't have show class, make it invisible and non-blocking */
+/* When backdrop doesn't have show class, hide it completely */
 .modal-backdrop:not(.show) {
     opacity: 0 !important;
     pointer-events: none !important;
     display: none !important;
+    visibility: hidden !important;
 }
 
-/* Ensure close button is clickable */
+/* Ensure close button is always clickable */
 .modal .btn-close {
     position: relative;
-    z-index: 1;
-    pointer-events: auto;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
 }
 
 /* Fix: Remove stale modal backdrops that are blocking the page */
@@ -1817,6 +1820,25 @@ body:not(.modal-open) .modal-backdrop {
     display: none !important;
     pointer-events: none !important;
     opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* ULTIMATE FIX: If for any reason there's a blocking element, make content clickable */
+.content-wrapper,
+.content-wrapper * {
+    pointer-events: auto;
+}
+
+/* Make sure all buttons in content area are clickable */
+.content-wrapper .btn,
+.content-wrapper a,
+.content-wrapper button,
+.content-wrapper input,
+.content-wrapper select,
+.content-wrapper textarea {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 
 /* Footer z-index - must be below modal-backdrop (1055) so modals can work properly */

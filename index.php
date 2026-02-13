@@ -937,37 +937,59 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             .finally(() => { submitBtn.disabled = false; modalBody.style.opacity = '1'; });
     }
     
-    // Fix: Clean up stale modal backdrops that may be blocking the page
+    // Fix: AGGRESSIVELY clean up stale modal backdrops that may be blocking the page
     document.addEventListener('DOMContentLoaded', function() {
-        // Clean up any orphaned modal backdrops on page load
+        // Aggressive cleanup function - removes ALL backdrops when no modals are open
         function cleanupStaleBackdrops() {
             var backdrops = document.querySelectorAll('.modal-backdrop');
             var openModals = document.querySelectorAll('.modal.show');
             
-            // If there are no open modals but there are backdrops, remove them
-            if (openModals.length === 0 && backdrops.length > 0) {
+            // Always remove backdrops if no modals are open
+            if (openModals.length === 0) {
                 backdrops.forEach(function(backdrop) {
                     backdrop.remove();
+                    console.log('Removed stale modal backdrop');
                 });
                 document.body.classList.remove('modal-open');
                 document.body.style.overflow = '';
                 document.body.style.paddingRight = '';
             }
+            
+            // Extra: Make sure no element is blocking clicks
+            var allBackdrops = document.querySelectorAll('.modal-backdrop');
+            allBackdrops.forEach(function(b) {
+                b.style.pointerEvents = 'none';
+            });
         }
         
-        // Clean up on page load
+        // Clean up immediately on page load
         cleanupStaleBackdrops();
+        
+        // Clean up after small delay (for dynamically loaded content)
+        setTimeout(cleanupStaleBackdrops, 500);
+        setTimeout(cleanupStaleBackdrops, 1000);
         
         // Also clean up after any modal is hidden
         document.querySelectorAll('.modal').forEach(function(modal) {
             modal.addEventListener('hidden.bs.modal', function() {
                 // Small delay to let Bootstrap finish its cleanup
                 setTimeout(cleanupStaleBackdrops, 100);
+                setTimeout(cleanupStaleBackdrops, 300);
             });
         });
         
-        // Periodic cleanup as a safety net
-        setInterval(cleanupStaleBackdrops, 1000);
+        // Periodic cleanup every 500ms as a safety net
+        setInterval(cleanupStaleBackdrops, 500);
+        
+        // Click handler as last resort - if click is blocked, try to remove backdrop
+        document.addEventListener('click', function(e) {
+            // If click target is a backdrop, remove it
+            if (e.target.classList.contains('modal-backdrop')) {
+                e.target.remove();
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = '';
+            }
+        }, true); // Use capture phase
     });
     </script>
 </body>
