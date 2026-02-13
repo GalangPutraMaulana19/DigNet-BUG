@@ -1820,26 +1820,43 @@ html, body {
     background: #ffffff !important;
 }
 
-/* AGGRESSIVE FIX: Modal backdrop should NEVER block pointer events */
-/* The backdrop is purely visual - interaction is handled by the modal itself */
+/* NUCLEAR FIX: COMPLETELY HIDE ALL MODAL BACKDROPS BY DEFAULT */
+/* The backdrop darkens the page - we don't want that unless modal is truly open */
 .modal-backdrop {
-    z-index: 1055 !important;
-    pointer-events: none !important; /* NEVER block pointer events */
-    background-color: #000;
-}
-
-/* Only show backdrop visually when it has .show class */
-.modal-backdrop.show {
-    opacity: 0.5;
-    pointer-events: none !important; /* Still don't block - modal handles clicks */
-}
-
-/* When backdrop doesn't have show class, hide it completely */
-.modal-backdrop:not(.show) {
-    opacity: 0 !important;
-    pointer-events: none !important;
     display: none !important;
+    opacity: 0 !important;
     visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+    background-color: transparent !important;
+}
+
+/* Even with .show class - HIDE IT */
+.modal-backdrop.show {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    background-color: transparent !important;
+}
+
+/* Even with .fade.show - HIDE IT */
+.modal-backdrop.fade.show {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    background-color: transparent !important;
+}
+
+/* ONLY show backdrop when body has modal-open AND there's an actual modal.show */
+body.modal-open .modal.show ~ .modal-backdrop.show {
+    display: block !important;
+    opacity: 0.5 !important;
+    visibility: visible !important;
+    z-index: 1055 !important;
+    background-color: #000 !important;
+    pointer-events: none !important; /* Still don't block clicks */
 }
 
 /* Ensure close button is always clickable */
@@ -1849,12 +1866,16 @@ html, body {
     pointer-events: auto !important;
 }
 
-/* Fix: Remove stale modal backdrops that are blocking the page */
-body:not(.modal-open) .modal-backdrop {
+/* ALWAYS hide stale/orphan backdrops */
+body:not(.modal-open) .modal-backdrop,
+.modal-backdrop:not(.show),
+div.modal-backdrop {
     display: none !important;
-    pointer-events: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -9999 !important;
+    background: transparent !important;
 }
 
 /* ULTIMATE FIX: If for any reason there's a blocking element, make content clickable */

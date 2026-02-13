@@ -937,59 +937,71 @@ $base_url = $protocol . $host . rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') .
             .finally(() => { submitBtn.disabled = false; modalBody.style.opacity = '1'; });
     }
     
-    // Fix: AGGRESSIVELY clean up stale modal backdrops that may be blocking the page
+    // Fix: NUCLEAR cleanup of modal backdrops - they are darkening the page
     document.addEventListener('DOMContentLoaded', function() {
-        // Aggressive cleanup function - removes ALL backdrops when no modals are open
-        function cleanupStaleBackdrops() {
+        // NUCLEAR cleanup function - removes ALL backdrops ALWAYS
+        function nukeAllBackdrops() {
+            // Remove ALL modal-backdrop elements - we don't need them
             var backdrops = document.querySelectorAll('.modal-backdrop');
-            var openModals = document.querySelectorAll('.modal.show');
+            backdrops.forEach(function(backdrop) {
+                backdrop.remove();
+            });
             
-            // Always remove backdrops if no modals are open
+            // Also check if body has modal-open but no actual modal is shown
+            var openModals = document.querySelectorAll('.modal.show');
             if (openModals.length === 0) {
-                backdrops.forEach(function(backdrop) {
-                    backdrop.remove();
-                    console.log('Removed stale modal backdrop');
-                });
                 document.body.classList.remove('modal-open');
                 document.body.style.overflow = '';
                 document.body.style.paddingRight = '';
             }
-            
-            // Extra: Make sure no element is blocking clicks
-            var allBackdrops = document.querySelectorAll('.modal-backdrop');
-            allBackdrops.forEach(function(b) {
-                b.style.pointerEvents = 'none';
-            });
         }
         
-        // Clean up immediately on page load
-        cleanupStaleBackdrops();
+        // IMMEDIATE cleanup on page load - NUKE all backdrops
+        nukeAllBackdrops();
         
-        // Clean up after small delay (for dynamically loaded content)
-        setTimeout(cleanupStaleBackdrops, 500);
-        setTimeout(cleanupStaleBackdrops, 1000);
+        // Keep nuking every 100ms for the first 2 seconds
+        for (var i = 1; i <= 20; i++) {
+            setTimeout(nukeAllBackdrops, i * 100);
+        }
         
-        // Also clean up after any modal is hidden
+        // Then nuke every 250ms forever as safety net
+        setInterval(nukeAllBackdrops, 250);
+        
+        // Also nuke after any modal is hidden
         document.querySelectorAll('.modal').forEach(function(modal) {
             modal.addEventListener('hidden.bs.modal', function() {
-                // Small delay to let Bootstrap finish its cleanup
-                setTimeout(cleanupStaleBackdrops, 100);
-                setTimeout(cleanupStaleBackdrops, 300);
+                setTimeout(nukeAllBackdrops, 50);
+                setTimeout(nukeAllBackdrops, 150);
+                setTimeout(nukeAllBackdrops, 300);
             });
         });
         
-        // Periodic cleanup every 500ms as a safety net
-        setInterval(cleanupStaleBackdrops, 500);
-        
-        // Click handler as last resort - if click is blocked, try to remove backdrop
+        // Click anywhere removes any backdrop
         document.addEventListener('click', function(e) {
-            // If click target is a backdrop, remove it
             if (e.target.classList.contains('modal-backdrop')) {
                 e.target.remove();
                 document.body.classList.remove('modal-open');
                 document.body.style.overflow = '';
             }
-        }, true); // Use capture phase
+            // Also nuke on any click as safety
+            nukeAllBackdrops();
+        }, true);
+        
+        // Also watch for new elements being added and remove backdrops
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.classList && node.classList.contains('modal-backdrop')) {
+                        // Check if there's actually a modal shown
+                        var openModals = document.querySelectorAll('.modal.show');
+                        if (openModals.length === 0) {
+                            node.remove();
+                        }
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, { childList: true });
     });
     </script>
 </body>
