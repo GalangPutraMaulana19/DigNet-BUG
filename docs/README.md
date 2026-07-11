@@ -6,7 +6,23 @@ Folder ini berisi dokumentasi teknis lengkap untuk **BAB 3: Perancangan Sistem**
 
 ### 📊 Daftar Diagram dan Dokumentasi
 
-#### 1. **ERD Database** 
+#### 1. **BAB 3 Dokumentasi Lengkap (Baru)**
+📄 File: `BAB3_DOKUMENTASI_LENGKAP.md`
+
+Dokumen BAB 3 terpadu yang memuat:
+- Arsitektur sistem pakar
+- Algoritma diagnosis (Forward Chaining + Certainty Factor)
+- Struktur program
+- Use Case, Activity, Sequence, dan Class Diagram
+- Rancangan relasi tabel, ERD, dan relasi antartabel
+
+**Gunakan untuk:**
+- Naskah utama BAB 3
+- Ringkasan seluruh rancangan sistem dalam satu file
+
+---
+
+#### 2. **ERD Database** 
 📄 File: `BAB3_ERD_DATABASE.md`
 
 Entity Relationship Diagram lengkap dengan penjelasan:
@@ -23,7 +39,7 @@ Entity Relationship Diagram lengkap dengan penjelasan:
 
 ---
 
-#### 2. **UML Diagram**
+#### 3. **UML Diagram**
 📄 File: `BAB3_UML_DIAGRAM.md`
 
 Diagram UML lengkap meliputi:
@@ -40,7 +56,7 @@ Diagram UML lengkap meliputi:
 
 ---
 
-#### 3. **Flowchart Forward Chaining**
+#### 4. **Flowchart Forward Chaining**
 📄 File: `BAB3_FLOWCHART_FORWARD_CHAINING.md`
 
 Flowchart algoritma forward chaining dengan Certainty Factor:
@@ -56,7 +72,7 @@ Flowchart algoritma forward chaining dengan Certainty Factor:
 
 ---
 
-#### 4. **Tabel Perhitungan CF**
+#### 5. **Tabel Perhitungan CF**
 📄 File: `BAB3_TABEL_PERHITUNGAN_CF.md`
 
 Tabel dan contoh perhitungan Certainty Factor:
@@ -79,6 +95,7 @@ Tabel dan contoh perhitungan Certainty Factor:
 ```
 docs/
 ├── README.md                              (file ini)
+├── BAB3_DOKUMENTASI_LENGKAP.md            (dokumen BAB 3 terpadu)
 ├── BAB3_ERD_DATABASE.md                   (ERD + penjelasan DB)
 ├── BAB3_UML_DIAGRAM.md                    (Use Case, Activity, Sequence, dll)
 ├── BAB3_FLOWCHART_FORWARD_CHAINING.md     (Flowchart algoritma)
